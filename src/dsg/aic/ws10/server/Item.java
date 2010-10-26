@@ -14,6 +14,10 @@ public class Item {
     private int quantity = 0;
 
 
+
+    public Item() {
+    }
+
     public int getQuantity() {
         return quantity;
     }

@@ -21,25 +21,25 @@
 
     <import file="./common_build.xml"/>        
         
-    <target name="client" description="run demo client" depends="build">
+    <!--target name="client" description="run demo client" depends="build">
         <property name="param" value=""/>
         <cxfrun classname="dsg.aic.ws10.client.Client"
             param1="" 
             param2="${op}" 
             param3="${param}"/>
-    </target> 
+    </target-->
         
-    <target name="server" description="run demo server" depends="build">
+    <!--target name="server" description="run demo server" depends="build">
         <cxfrun classname="dsg.aic.ws10.server.Server"/>
-    </target>
+    </target-->
 	
-    <property name="cxf.war.file.name" value="helloworld"/>
+    <!--property name="cxf.war.file.name" value="helloworld"/>
     <target name="war" depends="build">
         <cxfwar filename="${cxf.war.file.name}.war"/>
-    </target>
+    </target-->
 
-    <target name="client-servlet" description="run demo client hitting servlet" depends="build">
+    <!--target name="client-servlet" description="run demo client hitting servlet" depends="build">
         <property name="param" value=""/>
         <cxfrun classname="dsg.aic.ws10.client.Client" param1="${base.url}/helloworld/services/hello_world?wsdl" param2="${op}" param3="${param}"/>
-    </target> 
+    </target--> 
 </project>

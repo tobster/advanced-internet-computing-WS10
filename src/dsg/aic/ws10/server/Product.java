@@ -18,6 +18,11 @@ public class Product {
     private String name;
     private BigDecimal singleUnitPrice = new BigDecimal(0);
 
+    public Product() {
+    }
+
+
+
     public String getId() {
         return id;
     }
