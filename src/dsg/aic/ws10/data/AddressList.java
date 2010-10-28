@@ -15,22 +15,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author smolle
  */
 
+
+
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
-public class ProductList{
+public class AddressList  {
 
-       ConcurrentHashMap<String, Product> products = new ConcurrentHashMap<String, Product>();
+    ConcurrentHashMap<String, Addresses> addresses = new ConcurrentHashMap<String, Addresses>();
 
-    public ProductList() {
+    public AddressList() {
     }
 
-    public void add (Product p){
-        products.put(p.getId(), p);
+    public void add (Addresses a){
+        addresses.put(a.getId(), a);
     }
 
 
-    public Product get (String id){
-        return products.get(id);
+    public Addresses get (String id){
+        return addresses.get(id);
     }
 
 }
+
+
