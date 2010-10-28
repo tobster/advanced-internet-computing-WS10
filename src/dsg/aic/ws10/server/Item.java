@@ -5,12 +5,20 @@
 
 package dsg.aic.ws10.server;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author smolle
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
 public class Item {
 
+    @XmlElement
     private int quantity = 0;
 
 

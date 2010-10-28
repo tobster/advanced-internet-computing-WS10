@@ -6,15 +6,26 @@
 package dsg.aic.ws10.server;
 
 import java.math.BigDecimal;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author smolle
  */
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
 public class Customer {
 
+    @XmlAttribute
     private String id;
+    @XmlElement
     private String name;
+    @XmlElement
     private BigDecimal openBalance = new BigDecimal(0);
 
     public Customer() {

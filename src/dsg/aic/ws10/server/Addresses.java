@@ -5,19 +5,37 @@
 
 package dsg.aic.ws10.server;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 /**
  *
  * @author smolle
  */
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
 public class Addresses {
 
+    @XmlAttribute
     private String id;
+    @XmlElement
     private String street;
+    @XmlElement
     private String city;
+    @XmlElement
     private int house = 0;
+    @XmlElement
     private int door = 0;
+    @XmlElement
     private String zipCode;
+    @XmlElement
     private boolean isBilling = false;
+    @XmlElement
     private boolean isOther = false;
 
     public Addresses() {
