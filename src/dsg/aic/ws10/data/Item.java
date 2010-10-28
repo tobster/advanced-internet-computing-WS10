@@ -3,12 +3,10 @@
  * and open the template in the editor.
  */
 
-package dsg.aic.ws10.server;
+package dsg.aic.ws10.data;
 
-import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,30 +16,22 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
-public class Order {
+public class Item {
 
-    @XmlAttribute
-    private String id;
     @XmlElement
-    private Date orderDate;
+    private int quantity = 0;
 
-    public Order() {
+
+
+    public Item() {
     }
 
-    public String getId() {
-        return id;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
@@ -52,8 +42,8 @@ public class Order {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Order other = (Order) obj;
-        if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
+        final Item other = (Item) obj;
+        if (this.quantity != other.quantity) {
             return false;
         }
         return true;
@@ -62,12 +52,11 @@ public class Order {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 67 * hash + (this.orderDate != null ? this.orderDate.hashCode() : 0);
+        hash = 97 * hash + this.quantity;
         return hash;
     }
 
 
 
-
 }
+

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package dsg.aic.ws10.server;
+package dsg.aic.ws10.data;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

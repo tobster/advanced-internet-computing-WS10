@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package dsg.aic.ws10.server;
+package dsg.aic.ws10.data;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,20 +16,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author smolle
  */
-
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
-public class Customer {
+public class Product {
 
     @XmlAttribute
     private String id;
     @XmlElement
     private String name;
     @XmlElement
-    private BigDecimal openBalance = new BigDecimal(0);
+    private BigDecimal singleUnitPrice = new BigDecimal(0);
 
-    public Customer() {
+    public Product() {
     }
+
+
 
     public String getId() {
         return id;
@@ -47,12 +48,12 @@ public class Customer {
         this.name = name;
     }
 
-    public BigDecimal getOpenBalance() {
-        return openBalance;
+    public BigDecimal getSingleUnitPrice() {
+        return singleUnitPrice;
     }
 
-    public void setOpenBalance(BigDecimal openBalance) {
-        this.openBalance = openBalance;
+    public void setSingleUnitPrice(BigDecimal singleUnitPrice) {
+        this.singleUnitPrice = singleUnitPrice;
     }
 
     @Override
@@ -63,14 +64,14 @@ public class Customer {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Customer other = (Customer) obj;
+        final Product other = (Product) obj;
         if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
             return false;
         }
         if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
             return false;
         }
-        if (this.openBalance != other.openBalance && (this.openBalance == null || !this.openBalance.equals(other.openBalance))) {
+        if (this.singleUnitPrice != other.singleUnitPrice && (this.singleUnitPrice == null || !this.singleUnitPrice.equals(other.singleUnitPrice))) {
             return false;
         }
         return true;
@@ -78,13 +79,13 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 59 * hash + (this.name != null ? this.name.hashCode() : 0);
-        hash = 59 * hash + (this.openBalance != null ? this.openBalance.hashCode() : 0);
+        int hash = 7;
+        hash = 61 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 61 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 61 * hash + (this.singleUnitPrice != null ? this.singleUnitPrice.hashCode() : 0);
         return hash;
     }
 
-
+    
 
 }
