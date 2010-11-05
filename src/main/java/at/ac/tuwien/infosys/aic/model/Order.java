@@ -2,27 +2,28 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package at.ac.tuwien.infosys.aic.model;
 
+import at.ac.tuwien.infosys.aic.model.adapter.DateAdapter;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
  * @author smolle
  */
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Order {
 
     @XmlAttribute
     private String id;
-    @XmlElement
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date orderDate;
 
     public Order() {
@@ -66,8 +67,4 @@ public class Order {
         hash = 67 * hash + (this.orderDate != null ? this.orderDate.hashCode() : 0);
         return hash;
     }
-
-
-
-
 }
