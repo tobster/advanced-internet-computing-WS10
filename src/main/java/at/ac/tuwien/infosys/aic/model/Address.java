@@ -19,26 +19,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
-public class Addresses {
+public class Address {
 
     @XmlAttribute
     private String id;
-    @XmlElement
+
     private String street;
-    @XmlElement
+
     private String city;
-    @XmlElement
+
     private int house = 0;
-    @XmlElement
+    
     private int door = 0;
-    @XmlElement
+    
     private String zipCode;
-    @XmlElement
+    
     private boolean isBilling = false;
-    @XmlElement
+    
     private boolean isOther = false;
 
-    public Addresses() {
+    public Address() {
     }
 
     public String getCity() {
@@ -113,7 +113,7 @@ public class Addresses {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Addresses other = (Addresses) obj;
+        final Address other = (Address) obj;
         if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
             return false;
         }

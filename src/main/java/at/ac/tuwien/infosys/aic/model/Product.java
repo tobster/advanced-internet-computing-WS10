@@ -22,15 +22,10 @@ public class Product {
 
     @XmlAttribute
     private String id;
-    @XmlElement
+    
     private String name;
-    @XmlElement
+
     private BigDecimal singleUnitPrice = new BigDecimal(0);
-
-    public Product() {
-    }
-
-
 
     public String getId() {
         return id;

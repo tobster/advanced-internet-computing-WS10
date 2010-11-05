@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package at.ac.tuwien.infosys.aic.model;
 
+import at.ac.tuwien.infosys.aic.model.adapter.ProductAdapter;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -18,12 +18,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
 public class Item {
 
-    @XmlElement
     private int quantity = 0;
 
+    @XmlJavaTypeAdapter(ProductAdapter.class)
+    private Product product;
 
+    public Product getProduct() {
+        return product;
+    }
 
-    public Item() {
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -46,17 +51,17 @@ public class Item {
         if (this.quantity != other.quantity) {
             return false;
         }
+        if (this.product != other.product && (this.product == null || !this.product.equals(other.product))) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.quantity;
+        int hash = 3;
+        hash = 37 * hash + this.quantity;
+        hash = 37 * hash + (this.product != null ? this.product.hashCode() : 0);
         return hash;
     }
-
-
-
 }
-

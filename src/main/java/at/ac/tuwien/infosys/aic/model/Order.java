@@ -6,10 +6,10 @@ package at.ac.tuwien.infosys.aic.model;
 
 import at.ac.tuwien.infosys.aic.model.adapter.DateAdapter;
 import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -25,6 +25,24 @@ public class Order {
     private String id;
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date orderDate;
+    private List<Item> items;
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
     public Order() {
     }
@@ -64,7 +82,6 @@ public class Order {
     public int hashCode() {
         int hash = 7;
         hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 67 * hash + (this.orderDate != null ? this.orderDate.hashCode() : 0);
         return hash;
     }
 }
