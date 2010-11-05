@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package at.ac.tuwien.infosys.aic.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,31 +10,22 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 /**
  *
  * @author smolle
  */
-
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD) //all Fields ill be serialized
 public class Address {
 
     @XmlAttribute
     private String id;
-
     private String street;
-
     private String city;
-
     private int house = 0;
-    
     private int door = 0;
-    
     private String zipCode;
-    
     private boolean isBilling = false;
-    
     private boolean isOther = false;
 
     public Address() {
@@ -146,6 +136,22 @@ public class Address {
         hash = 29 * hash + (this.zipCode != null ? this.zipCode.hashCode() : 0);
         return hash;
     }
-    
 
+    @Override
+    public String toString() {
+        StringBuffer stringbuffer = new StringBuffer();
+        stringbuffer.append(street);
+        stringbuffer.append(" ");
+        stringbuffer.append(house);
+        if (door != 0) {
+            stringbuffer.append("/");
+            stringbuffer.append(door);
+
+        }
+        stringbuffer.append(", ");
+        stringbuffer.append(zipCode);
+        stringbuffer.append(" ");
+        stringbuffer.append(city);
+        return stringbuffer.toString();
+    }
 }

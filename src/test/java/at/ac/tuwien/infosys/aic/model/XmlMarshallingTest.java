@@ -47,6 +47,12 @@ public class XmlMarshallingTest {
         product.setSingleUnitPrice(BigDecimal.TEN);
         item.setProduct(product);
         items.add(item);
+
+        Item item2 = new Item();
+        item2.setProduct(product);
+        item2.setQuantity(20);
+        items.add(item2);
+
         testOrder.setItems(items);
         StringWriter stringWriter = new StringWriter();
         m.marshal(testOrder, stringWriter);

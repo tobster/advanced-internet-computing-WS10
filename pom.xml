@@ -64,9 +64,42 @@
           <version>2.3</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>surefire-it</id>
+              <phase>integration-test</phase>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <configuration>
+                <excludes>
+                  <exclude>none</exclude>
+                </excludes>
+                <includes>
+                  <include>**/it/**</include>
+                </includes>
+              </configuration>
+            </execution>
+            <execution>
+              <id>surefire-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <configuration>
+                <excludes>
+                  <exclude>**/it/**</exclude>
+                </excludes>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+                <plugin>
           <groupId>org.mortbay.jetty</groupId>
           <artifactId>maven-jetty-plugin</artifactId>
-          <version>6.1.10</version>
+          <version>6.1.25</version>
           <configuration>
             <scanIntervalSeconds>10</scanIntervalSeconds>
             <stopKey>foo</stopKey>
@@ -96,5 +129,5 @@
       </plugins>
     </pluginManagement>
   </build>
-
 </project>
+

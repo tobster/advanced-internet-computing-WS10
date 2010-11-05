@@ -11,9 +11,14 @@
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-	<jaxws:endpoint 
-	  id="helloWorld" 
+	<!--jaxws:endpoint
+	  id="helloWorld"
 	  implementor="at.ac.tuwien.infosys.aic.soap.HelloWorldImpl"
-	  address="/HelloWorld" />
+	  address="/HelloWorld" /-->
+
+  <jaxws:endpoint
+	  id="shippingService"
+	  implementor="at.ac.tuwien.infosys.aic.soap.ShippingServiceImpl"
+	  address="/ShippingPT" />
 	  
 </beans>
