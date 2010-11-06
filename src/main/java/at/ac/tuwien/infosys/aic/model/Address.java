@@ -25,6 +25,7 @@ public class Address {
     private int house = 0;
     private int door = 0;
     private String zipCode;
+    private boolean isShipping = false;
     private boolean isBilling = false;
     private boolean isOther = false;
 
@@ -61,6 +62,14 @@ public class Address {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isIsShipping() {
+        return isBilling;
+    }
+
+    public void setIsShipping(boolean isShipping) {
+        this.isShipping = isShipping;
     }
 
     public boolean isIsBilling() {
