@@ -6,10 +6,14 @@ package at.ac.tuwien.infosys.aic.store;
 
 import at.ac.tuwien.infosys.aic.model.Address;
 import at.ac.tuwien.infosys.aic.model.Customer;
+import at.ac.tuwien.infosys.aic.model.Item;
 import at.ac.tuwien.infosys.aic.model.Order;
 import at.ac.tuwien.infosys.aic.model.Product;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DataStore {
@@ -18,7 +22,7 @@ public class DataStore {
 
     Map<String, Address> adresses = new ConcurrentHashMap<String, Address>();
     Map<String, Customer> customers = new ConcurrentHashMap<String, Customer>();
-    Map<String, Order> order = new ConcurrentHashMap<String, Order>();
+    Map<String, Order> orders = new ConcurrentHashMap<String, Order>();
     Map<String, Product> products = new ConcurrentHashMap<String, Product>();
 
     public static DataStore getInstance() {
@@ -27,6 +31,8 @@ public class DataStore {
 
     private DataStore() {
 
+
+//      Procucts
         Product p = new Product();
         p.setId("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         p.setName("Moby Dick");
@@ -35,6 +41,68 @@ public class DataStore {
         p.setId("aec0737d-e783-4c16-9b26-66040caf4aff");
         p.setName("War and Peace");
         products.put(p.getId(), p);
+
+//      Adress
+        Address a = new Address();
+        a.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        a.setCity("Wien");
+        a.setDoor(1);
+        a.setHouse(23);
+        a.setIsBilling(true);
+        a.setIsOther(true);
+        a.setStreet("Mollardgasse");
+        a.setZipCode("1060");
+        adresses.put(a.getId(), a);
+        a.setId("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        a = new Address();
+        a.setCity("Wien");
+        a.setHouse(6);
+        a.setIsBilling(false);
+        a.setIsOther(false);
+        a.setStreet("Mühlgasse");
+        a.setZipCode("1040");
+        adresses.put(a.getId(), a);
+
+//      Customer
+        Customer c = new Customer();
+        c.setId("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        List ad = new ArrayList();
+        ad.add(adresses.get("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        c.setAdresses(ad);
+        c.setName("Heinrich Harrer");
+        c.setOpenBalance(BigDecimal.ZERO);
+        customers.put("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb", c);
+        c = new Customer();
+        c.setId("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        ad = new ArrayList();
+        ad.add(adresses.get("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        c.setAdresses(ad);
+        c.setName("Heinrich Harrer");
+        c.setOpenBalance(BigDecimal.ZERO);
+        customers.put("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb", c);
+
+//      Order
+        Order o = new Order();
+        o.setId("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        o.setOrderDate(new Date());
+        o.setCustomer(customers.get("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        Item i = new Item();
+        i.setProduct(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        List it = new ArrayList();
+        it.add(i);
+        o.setItems(it);
+        orders.put("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb", o);
+        o = new Order();
+        o.setId("o8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        o.setOrderDate(new Date());
+        o.setCustomer(customers.get("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        i = new Item();
+        i.setProduct(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"));
+        it = new ArrayList();
+        it.add(i);
+        o.setItems(it);
+        orders.put("o8888070b-96f3-47ac-9fe9-dfe2dadc00cb", o);
+
     }
 
     public Address putAddress(String key, Address value) {
@@ -54,11 +122,11 @@ public class DataStore {
     }
 
     public Order putOrder(String key, Order value) {
-        return order.put(key, value);
+        return orders.put(key, value);
     }
 
     public Order getOrder(Object key) {
-        return order.get(key);
+        return orders.get(key);
     }
 
     public Product putProduct(String key, Product value) {
