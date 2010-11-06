@@ -26,6 +26,11 @@ public class DataStore {
     Map<String, Product> products = new ConcurrentHashMap<String, Product>();
 
     public static DataStore getInstance() {
+        if (instance == null) {
+            synchronized(DataStore.class) {
+                instance = new DataStore();
+            }
+        }
         return instance;
     }
 
@@ -36,10 +41,12 @@ public class DataStore {
         Product p = new Product();
         p.setId("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         p.setName("Moby Dick");
+        p.setSingleUnitPrice(BigDecimal.ZERO);
         products.put(p.getId(), p);
         p = new Product();
         p.setId("aec0737d-e783-4c16-9b26-66040caf4aff");
         p.setName("War and Peace");
+        p.setSingleUnitPrice(BigDecimal.TEN);
         products.put(p.getId(), p);
 
 //      Adress
@@ -53,8 +60,8 @@ public class DataStore {
         a.setStreet("Mollardgasse");
         a.setZipCode("1060");
         adresses.put(a.getId(), a);
-        a.setId("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a = new Address();
+        a.setId("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a.setCity("Wien");
         a.setHouse(6);
         a.setIsBilling(false);
@@ -88,6 +95,7 @@ public class DataStore {
         o.setCustomer(customers.get("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         Item i = new Item();
         i.setProduct(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        i.setQuantity(21);
         List it = new ArrayList();
         it.add(i);
         o.setItems(it);
@@ -98,6 +106,7 @@ public class DataStore {
         o.setCustomer(customers.get("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         i = new Item();
         i.setProduct(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"));
+        i.setQuantity(23);
         it = new ArrayList();
         it.add(i);
         o.setItems(it);

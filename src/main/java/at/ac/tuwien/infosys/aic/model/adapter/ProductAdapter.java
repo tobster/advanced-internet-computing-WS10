@@ -14,12 +14,12 @@ public class ProductAdapter extends XmlAdapter<String, Product>{
 
     @Override
     public Product unmarshal(String v) throws Exception {
-        return DataStore.getInstance().getProduct(v);
-    }
+            return DataStore.getInstance().getProduct(v);
+        }
 
     @Override
     public String marshal(Product v) throws Exception {
         return v.getId();
-    }
+        }
 
 }

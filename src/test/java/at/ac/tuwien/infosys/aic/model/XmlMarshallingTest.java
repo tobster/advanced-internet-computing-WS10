@@ -1,9 +1,11 @@
 package at.ac.tuwien.infosys.aic.model;
 
+import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.util.List;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.Unmarshaller;
@@ -18,60 +20,140 @@ public class XmlMarshallingTest {
 
     private Marshaller m;
     private Unmarshaller u;
+    private Address a1 = new Address();
+    private Address a2 = new Address();
+
 
     @Before
     public void setUp() throws Exception {
+
+
+//      Adress
+        a1.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        a1.setCity("Wien");
+        a1.setDoor(1);
+        a1.setHouse(23);
+        a1.setIsBilling(true);
+        a1.setIsOther(true);
+        a1.setStreet("Mollardgasse");
+        a1.setZipCode("1060");
+        a1.setId("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        a2.setCity("Wien");
+        a2.setHouse(6);
+        a2.setIsBilling(false);
+        a2.setIsOther(false);
+        a2.setStreet("Mühlgasse");
+        a2.setZipCode("1040");
+
+
+
+
+    }
+
+            @Test
+    public void marshallunmarshalAdress() throws Exception {
+        JAXBContext context = JAXBContext.newInstance(Address.class);
+        m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        u = context.createUnmarshaller();
+
+        StringWriter stringWriter = new StringWriter();
+        m.marshal(a1, stringWriter);
+        String result = stringWriter.toString();
+        System.out.println(result);
+        assertThat(result, containsString("<address id="));
+        assertThat(result, containsString("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        assertThat(result, containsString("<street>Mollardgasse</street>"));
+        assertThat(result, containsString("<city>Wien</city>"));
+        assertThat(result, containsString("<house>23</house>"));
+        assertThat(result, containsString("<door>1</door>"));
+        assertThat(result, containsString("<zipCode>1060</zipCode>"));
+        assertThat(result, containsString("<isBilling>true</isBilling>"));
+        assertThat(result, containsString("<isOther>true</isOther>"));
+
+        Address uAddress = (Address) u.unmarshal(new StringReader(result));
+        assertThat(uAddress, equalTo(a1));
+        assertThat(uAddress.getId(), is("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        assertThat(uAddress.getCity(), is("Wien"));
+        assertThat(uAddress.getStreet(), is("Mollardgasse"));
+        assertThat(uAddress.getZipCode(), is("1060"));
+        assertThat(uAddress.getDoor(), is(1));
+        assertThat(uAddress.getHouse(), is(23));
+        assertTrue(uAddress.isIsBilling());
+        assertTrue(uAddress.isIsOther());
+    }
+
+
+    @Test
+    public void marshallunmarshalOrder() throws Exception {
         JAXBContext context = JAXBContext.newInstance(Order.class);
         m = context.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         u = context.createUnmarshaller();
-    }
 
-    @Test
-    public void marshallunmarshalOrder() throws Exception {
-              Customer customer = new Customer();
-        customer.setId("customerid");
-        customer.setName("customername");
-        customer.setOpenBalance(BigDecimal.ZERO);
-        List<Address> adresses = new ArrayList<Address>();
-        customer.setAdresses(adresses);
-        Order testOrder = new Order();
-        testOrder.setId("test");
-        testOrder.setOrderDate(new Date(42L));
-        List<Item> items = new ArrayList<Item>(1);
-        Item item = new Item();
-        item.setQuantity(21);
-        Product product = new Product();
-        product.setName("cheese");
-        product.setId("productid");
-        product.setSingleUnitPrice(BigDecimal.TEN);
-        item.setProduct(product);
-        items.add(item);
+        Order o1 = DataStore.getInstance().getOrder("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
 
-        Item item2 = new Item();
-        item2.setProduct(product);
-        item2.setQuantity(20);
-        items.add(item2);
 
-        testOrder.setItems(items);
         StringWriter stringWriter = new StringWriter();
-        m.marshal(testOrder, stringWriter);
+        m.marshal(o1, stringWriter);
         String result = stringWriter.toString();
         System.out.println(result);
-        assertThat(result, containsString("id=\"test\""));
-        assertThat(result, containsString("orderDate>42"));
+
+        String s = String.valueOf(o1.getOrderDate().getTime());
+
+        assertThat(result, containsString("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        assertThat(result, containsString(s));
         assertThat(result, containsString("item"));
         assertThat(result, containsString("quantity"));
         assertThat(result, containsString("21"));
         assertThat(result, containsString("product"));
-        assertThat(result, containsString("productid"));
+        assertThat(result, containsString("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         Order uOrder = (Order) u.unmarshal(new StringReader(result));
-        assertThat(uOrder, equalTo(testOrder));
-        assertThat(uOrder.getId(), is("test"));
-        assertThat(uOrder.getOrderDate(), is(new Date(42L)));
+        assertThat(uOrder, equalTo(o1));
+        assertThat(uOrder.getId(), is("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        assertThat(uOrder.getOrderDate().getTime(), is(new Long(s)));
     }
 
     @Test
-    public void marshallunmarshalItem() throws Exception {
+    public void testUnknownProductFault() throws Exception {
+
+        Product p1 =   DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+
+        StringWriter stringWriter = new StringWriter();
+        m.marshal(p1, stringWriter);
+        String result = stringWriter.toString();
+        System.out.println(result);
+
+
+        Order o1 = DataStore.getInstance().getOrder("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        Item i = o1.getItems().get(0);
+        Product p = i.getProduct();
+        p.setId("notValid");
+        List items = new ArrayList();
+        items.add(i);
+        o1.setItems(items);
+
+        stringWriter = new StringWriter();
+        m.marshal(o1, stringWriter);
+        result = stringWriter.toString();
+        System.out.println(result);
     }
+
+
+    @Test
+    public void marshallunmarshalItem() throws Exception {
+        Item i = new Item();
+        i.setQuantity(4);
+        Product p2 = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
+        i.setProduct(p2);
+
+        StringWriter stringWriter = new StringWriter();
+        m.marshal(i, stringWriter);
+        String result = stringWriter.toString();
+        System.out.println(result);
+        
+    }
+
+
+
 }
