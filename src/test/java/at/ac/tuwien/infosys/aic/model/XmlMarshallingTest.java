@@ -28,11 +28,12 @@ public class XmlMarshallingTest {
     public void setUp() throws Exception {
 
 
-//      Adress
+//      Address
         a1.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a1.setCity("Wien");
         a1.setDoor(1);
         a1.setHouse(23);
+        a1.setIsShipping(true);
         a1.setIsBilling(true);
         a1.setIsOther(true);
         a1.setStreet("Mollardgasse");
@@ -40,6 +41,7 @@ public class XmlMarshallingTest {
         a1.setId("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a2.setCity("Wien");
         a2.setHouse(6);
+        a2.setIsShipping(false);
         a2.setIsBilling(false);
         a2.setIsOther(false);
         a2.setStreet("Mühlgasse");
@@ -51,7 +53,7 @@ public class XmlMarshallingTest {
     }
 
             @Test
-    public void marshallunmarshalAdress() throws Exception {
+    public void marshallunmarshalAddress() throws Exception {
         JAXBContext context = JAXBContext.newInstance(Address.class);
         m = context.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
