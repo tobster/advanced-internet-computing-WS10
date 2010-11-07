@@ -11,10 +11,9 @@ public class UnknownProductFault extends SoapFault {
 
     public UnknownProductFault() {
         super("unknown product", ATTACHMENT_IO);
-        //super("unknown Product", this, ATTACHMENT_IO);
-
+   
 
 
     }
-    
+
 }

@@ -65,7 +65,7 @@ public class Address {
     }
 
     public boolean isIsShipping() {
-        return isBilling;
+        return isShipping;
     }
 
     public void setIsShipping(boolean isShipping) {
