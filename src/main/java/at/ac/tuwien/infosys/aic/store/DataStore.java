@@ -57,6 +57,7 @@ public class DataStore {
         a.setHouse(23);
         a.setIsBilling(true);
         a.setIsOther(true);
+        a.setIsShipping(true);
         a.setStreet("Mollardgasse");
         a.setZipCode("1060");
         adresses.put(a.getId(), a);
@@ -66,6 +67,7 @@ public class DataStore {
         a.setHouse(6);
         a.setIsBilling(false);
         a.setIsOther(false);
+        a.setIsShipping(false);
         a.setStreet("Mühlgasse");
         a.setZipCode("1040");
         adresses.put(a.getId(), a);
