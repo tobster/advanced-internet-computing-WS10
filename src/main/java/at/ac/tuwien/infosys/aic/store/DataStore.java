@@ -120,7 +120,7 @@ public class DataStore {
         return adresses.put(key, value);
     }
 
-    public Address getAddress(Object key) {
+    public Address getAddress(String key) {
         return adresses.get(key);
     }
 
@@ -128,7 +128,7 @@ public class DataStore {
         return customers.put(key, value);
     }
 
-    public Customer getCustomer(Object key) {
+    public Customer getCustomer(String key) {
         return customers.get(key);
     }
 
@@ -136,7 +136,7 @@ public class DataStore {
         return orders.put(key, value);
     }
 
-    public Order getOrder(Object key) {
+    public Order getOrder(String key) {
         return orders.get(key);
     }
 
@@ -144,7 +144,7 @@ public class DataStore {
         return products.put(key, value);
     }
 
-    public Product getProduct(Object key) {
+    public Product getProduct(String key) {
         return products.get(key);
     }
 }

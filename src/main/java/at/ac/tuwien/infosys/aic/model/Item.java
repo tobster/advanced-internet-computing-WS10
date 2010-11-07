@@ -20,7 +20,7 @@ public class Item {
 
     private int quantity = 0;
 
-    @XmlJavaTypeAdapter(ProductAdapter.class)
+//    @XmlJavaTypeAdapter(ProductAdapter.class)
     private Product product;
 
     public Product getProduct() {

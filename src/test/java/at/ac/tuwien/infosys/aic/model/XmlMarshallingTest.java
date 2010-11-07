@@ -118,32 +118,63 @@ public class XmlMarshallingTest {
 
     @Test
     public void testUnknownProductFault() throws Exception {
+        JAXBContext context = JAXBContext.newInstance(Item.class);
+        m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        u = context.createUnmarshaller();
 
-        Product p1 =   DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        Item i = new Item();
+        i.setQuantity(4);
+        //Product p2 = DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        Product p2 = new Product();
+        p2.setId("wrongID");
+        i.setProduct(p2);
 
         StringWriter stringWriter = new StringWriter();
-        m.marshal(p1, stringWriter);
+        m.marshal(i, stringWriter);
         String result = stringWriter.toString();
         System.out.println(result);
 
+        Item ui = (Item) u.unmarshal(new StringReader(result));
+        System.out.println(ui.getProduct());
+        assertThat(ui.getProduct().getId(), equalTo(i.getProduct().getId() ));
 
-        Order o1 = DataStore.getInstance().getOrder("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
-        Item i = o1.getItems().get(0);
-        Product p = i.getProduct();
-        p.setId("notValid");
-        List items = new ArrayList();
-        items.add(i);
-        o1.setItems(items);
+    }
 
-        stringWriter = new StringWriter();
-        m.marshal(o1, stringWriter);
-        result = stringWriter.toString();
+    @Test
+    public void marshallunmarshalProduct() throws Exception {
+        JAXBContext context = JAXBContext.newInstance(Product.class);
+        m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        u = context.createUnmarshaller();
+
+        Product p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
+
+        StringWriter stringWriter = new StringWriter();
+        m.marshal(p, stringWriter);
+        String result = stringWriter.toString();
         System.out.println(result);
+        assertThat(result, containsString("product id="));
+        assertThat(result, containsString("aec0737d-e783-4c16-9b26-66040caf4aff"));
+        assertThat(result, containsString("name>War and Peace"));
+        assertThat(result, containsString("singleUnitPrice>10<"));
+        Product up = (Product) u.unmarshal(new StringReader(result));
+        assertThat(up, equalTo(p));
+        assertThat(up.getId(), equalTo(p.getId()));
+        assertThat(up.getName(), equalTo(p.getName()));
+        assertThat(up.getSingleUnitPrice(), equalTo(p.getSingleUnitPrice()));
+
+
     }
 
 
     @Test
     public void marshallunmarshalItem() throws Exception {
+        JAXBContext context = JAXBContext.newInstance(Item.class);
+        m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        u = context.createUnmarshaller();
+
         Item i = new Item();
         i.setQuantity(4);
         Product p2 = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
@@ -153,6 +184,15 @@ public class XmlMarshallingTest {
         m.marshal(i, stringWriter);
         String result = stringWriter.toString();
         System.out.println(result);
+        assertThat(result, containsString("item"));
+        assertThat(result, containsString("quantity>4"));
+//      assertThat(result, containsString("product>aec0737d-e783-4c16-9b26-66040caf4aff"));
+        Item ui = (Item) u.unmarshal(new StringReader(result));
+        assertThat(ui, equalTo(i));
+        assertThat(ui.getQuantity(), equalTo(4));
+        assertThat(ui.getProduct(), equalTo(i.getProduct()));
+
+
         
     }
 
