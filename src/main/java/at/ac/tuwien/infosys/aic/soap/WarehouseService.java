@@ -14,7 +14,7 @@ import javax.jws.WebService;
 public interface WarehouseService extends SupplierServices {
 
 
-    WarehouseResponse check_availability(@WebParam(name = "product") Product product, @WebParam(name = "amount") Integer amount);
+    Boolean check_availability(@WebParam(name = "product") Product product, @WebParam(name = "amount") Integer amount);
 
 
 

@@ -15,7 +15,7 @@ public class ProductData {
 
     private boolean isAvailable;
     private int deliveryTime;
-    private int ammount;
+    private int amount;
 
     public int getDeliveryTime() {
         return deliveryTime;
@@ -31,16 +31,14 @@ public class ProductData {
 
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
-
-
     }
 
-    public int getAmmount() {
-        return ammount;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setAmmount(int ammount) {
-        this.ammount = ammount;
+    public void setAmount(int ammount) {
+        this.amount = ammount;
     }
 
 }

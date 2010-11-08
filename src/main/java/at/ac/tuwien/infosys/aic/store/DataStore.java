@@ -122,12 +122,12 @@ public class DataStore {
         ProductData pd = new ProductData();
         pd.setDeliveryTime(5);
         pd.setIsAvailable(true);
-        pd.setAmmount(10);
+        pd.setAmount(10);
         availability.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"),pd);
         pd = new ProductData();
         pd.setDeliveryTime(5);
         pd.setIsAvailable(false);
-        pd.setAmmount(5);
+        pd.setAmount(5);
         availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"),pd);
         
 
@@ -170,7 +170,15 @@ public class DataStore {
         return availability.put(p, pd);
     }
 
-    public ProductData getAvailabilitiy(Product p) {
-        return availability.get(p);
+    public Boolean getAvailability(Product p, Integer a) {
+
+        ProductData pd = availability.get(p);
+        if (pd.isIsAvailable() == true) {
+            if (pd.getAmount() >= a) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
