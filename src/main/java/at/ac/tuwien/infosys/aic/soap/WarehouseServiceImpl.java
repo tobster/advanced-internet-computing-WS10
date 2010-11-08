@@ -43,12 +43,15 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public WarehouseResponse check_availability(Product product, Integer amount) {
 
-        ProductData pd = ds.getAvailability(product, amount);
+        ProductData pd = ds.getProductData(product);
 
         WarehouseResponse w = new WarehouseResponse();
         w.setDeliveryTime(pd.getDeliveryTime());
-        w.setIsAvailable(pd.isIsAvailable());
-
+        if (amount <= pd.getAmount()){
+            w.setIsAvailable(false);
+        } else {
+            w.setIsAvailable(true);
+        }
         return w;
     }
 

@@ -13,7 +13,6 @@ import at.ac.tuwien.infosys.aic.model.Product;
  */
 public class ProductData {
 
-    private boolean isAvailable;
     private int deliveryTime;
     private int amount;
 
@@ -25,13 +24,6 @@ public class ProductData {
         this.deliveryTime = deliveryTime;
     }
 
-    public boolean isIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
 
     public int getAmount() {
         return amount;
