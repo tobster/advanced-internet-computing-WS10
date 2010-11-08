@@ -9,6 +9,7 @@ import at.ac.tuwien.infosys.aic.model.Customer;
 import at.ac.tuwien.infosys.aic.model.Item;
 import at.ac.tuwien.infosys.aic.model.Order;
 import at.ac.tuwien.infosys.aic.model.Product;
+import at.ac.tuwien.infosys.aic.soap.ProductData;
 import at.ac.tuwien.infosys.aic.soap.WarehouseResponse;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class DataStore {
     Map<String, Customer> customers = new ConcurrentHashMap<String, Customer>();
     Map<String, Order> orders = new ConcurrentHashMap<String, Order>();
     Map<String, Product> products = new ConcurrentHashMap<String, Product>();
-    Map<Product, WarehouseResponse> availability = new ConcurrentHashMap<Product, WarehouseResponse>();
+    Map<Product, ProductData> availability = new ConcurrentHashMap<Product, ProductData>();
 
 
     public static DataStore getInstance() {
@@ -118,14 +119,16 @@ public class DataStore {
         orders.put("o8888070b-96f3-47ac-9fe9-dfe2dadc00cb", o);
 
         //Warehouse
-        WarehouseResponse w = new WarehouseResponse();
-        w.setDeliveryTime(5);
-        w.setIsAvailable(true);
-        availability.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"),w);
-        w = new WarehouseResponse();
-        w.setDeliveryTime(5);
-        w.setIsAvailable(false);
-        availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"),w);
+        ProductData pd = new ProductData();
+        pd.setDeliveryTime(5);
+        pd.setIsAvailable(true);
+        pd.setAmmount(10);
+        availability.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"),pd);
+        pd = new ProductData();
+        pd.setDeliveryTime(5);
+        pd.setIsAvailable(false);
+        pd.setAmmount(5);
+        availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"),pd);
         
 
     }
@@ -163,11 +166,11 @@ public class DataStore {
         return products.get(key);
     }
 
-    public WarehouseResponse putAvailability(Product p, WarehouseResponse w) {
-        return availability.put(p, w);
+    public ProductData putAvailability(Product p, ProductData pd) {
+        return availability.put(p, pd);
     }
 
-    public WarehouseResponse getAvailabilitiy(Product p) {
+    public ProductData getAvailabilitiy(Product p) {
         return availability.get(p);
     }
 }
