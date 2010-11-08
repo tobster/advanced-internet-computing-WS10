@@ -6,12 +6,16 @@
 package at.ac.tuwien.infosys.aic.soap;
 
 import at.ac.tuwien.infosys.aic.model.Product;
+import at.ac.tuwien.infosys.aic.store.DataStore;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @WebService
 public interface WarehouseService extends SupplierServices {
 
+
     WarehouseResponse check_availability(@WebParam(name = "product") Product product, @WebParam(name = "amount") Integer amount);
+
+
 
 }

@@ -18,9 +18,8 @@ portName = "WarehousePT",
 endpointInterface = "at.ac.tuwien.infosys.aic.soap.WarehouseService")
 public class WarehouseServiceImpl implements WarehouseService {
 
-    Logger log = Logger.getLogger("Supplier Service");
-
-    Map<Product, WarehouseResponse> availability = new ConcurrentHashMap<Product, WarehouseResponse>();
+    DataStore ds = DataStore.getInstance();
+    Logger log = Logger.getLogger("WarehouseServiceImpl");
 
     @Override
     public BigDecimal order(Product product, Integer amount) {
@@ -43,7 +42,11 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public WarehouseResponse check_availability(Product product, Integer amount) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        return ds.getAvailabilitiy(product);
+
     }
+
+
 
 }
