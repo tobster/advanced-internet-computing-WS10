@@ -170,15 +170,15 @@ public class DataStore {
         return availability.put(p, pd);
     }
 
-    public Boolean getAvailability(Product p, Integer a) {
+    public ProductData getAvailability(Product p, Integer a) {
 
         ProductData pd = availability.get(p);
         if (pd.isIsAvailable() == true) {
             if (pd.getAmount() >= a) {
-                return true;
+                return availability.get(p);
             }
         }
 
-        return false;
+        return availability.get(p);
     }
 }
