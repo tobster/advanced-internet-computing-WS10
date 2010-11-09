@@ -53,7 +53,7 @@ public class DataStore {
         p.setSingleUnitPrice(BigDecimal.ZERO);
         products.put(p.getId(), p);
 
-//      Adress
+//      Address
         Address a = new Address();
         a.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a.setCity("Wien");
