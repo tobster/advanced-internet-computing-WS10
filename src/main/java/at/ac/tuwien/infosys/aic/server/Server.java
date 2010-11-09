@@ -1,9 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package at.ac.tuwien.infosys.aic.server;
 
+import at.ac.tuwien.infosys.aic.registry.ServiceRegistry;
+import at.ac.tuwien.infosys.aic.registry.ServiceRegistryImpl;
+import static at.ac.tuwien.infosys.aic.Constants.*;
 import at.ac.tuwien.infosys.aic.soap.ShippingService;
 import at.ac.tuwien.infosys.aic.soap.ShippingServiceImpl;
 import at.ac.tuwien.infosys.aic.soap.SupplierImpl;
@@ -25,9 +24,10 @@ public class Server {
     public Server() {
         
         startService(svrFactory, ShippingService.class, "http://localhost:8080/Shipping", new ShippingServiceImpl());
-        startService(svrFactory, SupplierService.class, "http://localhost:8080/Supplier1", new SupplierImpl());
-        startService(svrFactory, SupplierService.class, "http://localhost:8080/Supplier2", new SupplierImpl());
+        startService(svrFactory, SupplierService.class, SUPPLIER1ADDRESS, new SupplierImpl());
+        startService(svrFactory, SupplierService.class, SUPPLIER2ADDRESS, new SupplierImpl());
         startService(svrFactory, WarehouseService.class, "http://localhost:8080/Warehouse", new WarehouseServiceImpl());
+        startService(svrFactory, ServiceRegistry.class, REGISTRYADDRESS, new ServiceRegistryImpl());
     }
 
     private void startService(JaxWsServerFactoryBean svrFactory, Class iface, String address, Object implementation) {
