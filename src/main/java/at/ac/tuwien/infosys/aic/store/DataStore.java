@@ -135,6 +135,14 @@ public class DataStore {
 
     }
 
+    public W3CEndpointReference putReference(Product p, W3CEndpointReference s) {
+        return productSupplier.put(p, s);
+    }
+
+    public W3CEndpointReference getReference(Product p) {
+        return productSupplier.get(p);
+    }
+
     public Address putAddress(String key, Address value) {
         return addresses.put(key, value);
     }

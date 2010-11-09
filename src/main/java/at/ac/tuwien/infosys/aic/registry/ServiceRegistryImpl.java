@@ -26,7 +26,7 @@ public class ServiceRegistryImpl implements ServiceRegistry {
 
         log.info("Service Registry called!");
 
-        //return ds.
+        return ds.getReference(product);
 
     }
 
