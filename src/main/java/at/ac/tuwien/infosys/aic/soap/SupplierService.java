@@ -11,7 +11,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @WebService
-public interface SupplierServices {
+public interface SupplierService {
 
     BigDecimal order(@WebParam(name = "product") Product product, @WebParam(name = "amount") Integer amount);
 

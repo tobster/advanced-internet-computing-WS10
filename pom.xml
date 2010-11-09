@@ -19,6 +19,11 @@
       <version>2.2.3</version>
     </dependency>
     <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http-jetty</artifactId>
+      <version>2.2.3</version>
+    </dependency>
+    <dependency>
       <groupId>org.mortbay.jetty</groupId>
       <artifactId>jetty</artifactId>
       <version>6.1.19</version>
@@ -67,6 +72,18 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <executions>
             <execution>
+              <id>surefire-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <configuration>
+                <excludes>
+                  <exclude>**/it/**</exclude>
+                </excludes>
+              </configuration>
+            </execution>
+            <execution>
               <id>surefire-it</id>
               <phase>integration-test</phase>
               <goals>
@@ -81,23 +98,11 @@
                 </includes>
               </configuration>
             </execution>
-            <execution>
-              <id>surefire-test</id>
-              <phase>test</phase>
-              <goals>
-                <goal>test</goal>
-              </goals>
-              <configuration>
-                <excludes>
-                  <exclude>**/it/**</exclude>
-                </excludes>
-              </configuration>
-            </execution>
           </executions>
         </plugin>
-                <plugin>
+        <plugin>
           <groupId>org.mortbay.jetty</groupId>
-	<artifactId>maven-jetty-plugin</artifactId>
+          <artifactId>maven-jetty-plugin</artifactId>
           <!--version>6.1.25</version-->
           <configuration>
             <scanIntervalSeconds>10</scanIntervalSeconds>

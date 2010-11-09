@@ -8,9 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/shipping",
-portName = "ShippingPT",
-endpointInterface = "at.ac.tuwien.infosys.aic.soap.ShippingService")
+@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.ShippingService")
 public class ShippingServiceImpl implements ShippingService {
 
     Logger log = Logger.getLogger("Shipping Service");
@@ -39,10 +37,10 @@ public class ShippingServiceImpl implements ShippingService {
 
             Address thisAddress = DataStore.getInstance().getAddress(address.getId());
 
-            message.append(thisAddress.getStreet() + " " +
-                    thisAddress.getHouse() + ", " +
-                    thisAddress.getZipCode() + " " +
-                    thisAddress.getCity());
+            message.append(thisAddress.getStreet() + " "
+                    + thisAddress.getHouse() + ", "
+                    + thisAddress.getZipCode() + " "
+                    + thisAddress.getCity());
         } else {
             log.log(Level.WARNING, "address fault");
             throw new UnknownAddressFault();
