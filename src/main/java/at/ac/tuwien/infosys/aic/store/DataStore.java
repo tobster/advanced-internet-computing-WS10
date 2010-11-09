@@ -17,18 +17,45 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.xml.namespace.QName;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
 
 public class DataStore {
 
     private static DataStore instance = new DataStore();
 
+    public static class EndpointData {
+        private String serviceName;
+        private String endpointName;
+
+        private EndpointData(String serviceName, String endpointName) {
+            this.serviceName = serviceName;
+            this.endpointName = endpointName;
+        }
+
+        public QName getEndpointName() {
+            return new QName(endpointName);
+        }
+        
+        public QName getServiceName() {
+            return new QName(serviceName);
+        }
+    }
+
     Map<String, Address> addresses = new ConcurrentHashMap<String, Address>();
     Map<String, Customer> customers = new ConcurrentHashMap<String, Customer>();
     Map<String, Order> orders = new ConcurrentHashMap<String, Order>();
     Map<String, Product> products = new ConcurrentHashMap<String, Product>();
     Map<Product, ProductData> availability = new ConcurrentHashMap<Product, ProductData>();
-    Map<Product, W3CEndpointReference> productSupplier = new ConcurrentHashMap<Product, W3CEndpointReference>();
+    Map<Product, String> productEndpointAddresses = new ConcurrentHashMap<Product, String>();
+
+    public String putProductEndpointAddress(Product key, String value) {
+        return productEndpointAddresses.put(key, value);
+    }
+
+    public String getProductEndpointAddress(Object key) {
+        return productEndpointAddresses.get(key);
+    }
 
     public static DataStore getInstance() {
         if (instance == null) {
@@ -130,17 +157,9 @@ public class DataStore {
         availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"),pd);
 
         //Service registry
-        productSupplier.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), null);
-        productSupplier.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), null);
+        productEndpointAddresses.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), Constants.SUPPLIER1ADDRESS);
+        productEndpointAddresses.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), Constants.SUPPLIER2ADDRESS);
 
-    }
-
-    public W3CEndpointReference putReference(Product p, W3CEndpointReference s) {
-        return productSupplier.put(p, s);
-    }
-
-    public W3CEndpointReference getReference(Product p) {
-        return productSupplier.get(p);
     }
 
     public Address putAddress(String key, Address value) {

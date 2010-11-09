@@ -2,16 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package at.ac.tuwien.infosys.aic.registry;
 
 import at.ac.tuwien.infosys.aic.model.Product;
+import at.ac.tuwien.infosys.aic.soap.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.store.DataStore;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import at.ac.tuwien.infosys.aic.store.DataStore.EndpointData;
 import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
+import javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder;
 
 @WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/registry",
 portName = "RegistryPT",
@@ -25,9 +25,13 @@ public class ServiceRegistryImpl implements ServiceRegistry {
     public W3CEndpointReference getSupplier(Product product) {
 
         log.info("Service Registry called!");
-
-        return ds.getReference(product);
-
+        W3CEndpointReferenceBuilder builder = new W3CEndpointReferenceBuilder();
+        String endpointAddress = ds.getProductEndpointAddress(product);
+        if (endpointAddress != null) {
+            builder.address(endpointAddress);
+            return builder.build();
+        } else {
+            throw new UnknownProductFault();
+        }
     }
-
 }
