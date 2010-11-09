@@ -22,7 +22,7 @@ public class DataStore {
 
     private static DataStore instance = new DataStore();
 
-    Map<String, Address> adresses = new ConcurrentHashMap<String, Address>();
+    Map<String, Address> addresses = new ConcurrentHashMap<String, Address>();
     Map<String, Customer> customers = new ConcurrentHashMap<String, Customer>();
     Map<String, Order> orders = new ConcurrentHashMap<String, Order>();
     Map<String, Product> products = new ConcurrentHashMap<String, Product>();
@@ -53,7 +53,7 @@ public class DataStore {
         p.setSingleUnitPrice(BigDecimal.ZERO);
         products.put(p.getId(), p);
 
-//      Adress
+//      Address
         Address a = new Address();
         a.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a.setCity("Wien");
@@ -64,7 +64,7 @@ public class DataStore {
         a.setIsShipping(true);
         a.setStreet("Mollardgasse");
         a.setZipCode("1060");
-        adresses.put(a.getId(), a);
+        addresses.put(a.getId(), a);
         a = new Address();
         a.setId("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a.setCity("Wien");
@@ -74,13 +74,13 @@ public class DataStore {
         a.setIsShipping(false);
         a.setStreet("Mühlgasse");
         a.setZipCode("1040");
-        adresses.put(a.getId(), a);
+        addresses.put(a.getId(), a);
 
 //      Customer
         Customer c = new Customer();
         c.setId("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         List ad = new ArrayList();
-        ad.add(adresses.get("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        ad.add(addresses.get("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         c.setAdresses(ad);
         c.setName("Heinrich Harrer");
         c.setOpenBalance(BigDecimal.ZERO);
@@ -88,7 +88,7 @@ public class DataStore {
         c = new Customer();
         c.setId("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
         ad = new ArrayList();
-        ad.add(adresses.get("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        ad.add(addresses.get("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         c.setAdresses(ad);
         c.setName("Heinrich Harrer");
         c.setOpenBalance(BigDecimal.ZERO);
@@ -132,11 +132,11 @@ public class DataStore {
     }
 
     public Address putAddress(String key, Address value) {
-        return adresses.put(key, value);
+        return addresses.put(key, value);
     }
 
     public Address getAddress(String key) {
-        return adresses.get(key);
+        return addresses.get(key);
     }
 
     public Customer putCustomer(String key, Customer value) {

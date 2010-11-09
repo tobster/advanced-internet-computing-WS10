@@ -47,7 +47,7 @@ public class WarehouseServiceImpl implements WarehouseService {
 
         WarehouseResponse w = new WarehouseResponse();
         w.setDeliveryTime(pd.getDeliveryTime());
-        if (amount <= pd.getAmount()){
+        if (amount > pd.getAmount()){
             w.setIsAvailable(false);
         } else {
             w.setIsAvailable(true);
