@@ -95,25 +95,39 @@ public class ShippingServiceIT {
     }
 
     @Test
-    public  void callWarehouseService() {
+    public void callWarehouseService() {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(WarehouseService.class);
         factory.setAddress("http://localhost:8080/Warehouse");
         WarehouseService ss = (WarehouseService) factory.create();
 
         //order something
-        int ammount = 5;
+        int amount = 5;
         BigDecimal totalPrice;
         Product p = DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
-        totalPrice = ss.order(p, ammount);
-        int comp = totalPrice.compareTo(new BigDecimal(50));
-        assertTrue(comp == 0);
+        totalPrice = ss.order(p, amount);
+        assertEquals(new BigDecimal(50), totalPrice);
+//        int comp = totalPrice.compareTo(new BigDecimal(50));
+//        assertTrue(comp == 0);
 
-        ammount = 1;
+        amount = 1;
         p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
-        totalPrice = ss.order(p, ammount);
-        comp = totalPrice.compareTo(new BigDecimal(0));
-        assertTrue(comp == 0);
+        totalPrice = ss.order(p, amount);
+        assertEquals(new BigDecimal(0), totalPrice);
+//        comp = totalPrice.compareTo(new BigDecimal(0));
+//        assertTrue(comp == 0);
+
+        amount = 6;
+        p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
+        assertFalse(ss.check_availability(p, amount).isIsAvailable());
+
+        amount = 5;
+        p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
+        assertTrue(ss.check_availability(p, amount).isIsAvailable());
+
+        amount = -1;
+        p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
+        assertFalse(ss.check_availability(p, amount).isIsAvailable());
 
     }
 
