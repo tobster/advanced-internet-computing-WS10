@@ -4,13 +4,13 @@
  */
 package at.ac.tuwien.infosys.aic.store;
 
+import static at.ac.tuwien.infosys.aic.Constants.*;
 import at.ac.tuwien.infosys.aic.model.Address;
 import at.ac.tuwien.infosys.aic.model.Customer;
 import at.ac.tuwien.infosys.aic.model.Item;
 import at.ac.tuwien.infosys.aic.model.Order;
 import at.ac.tuwien.infosys.aic.model.Product;
 import at.ac.tuwien.infosys.aic.soap.ProductData;
-import at.ac.tuwien.infosys.aic.soap.WarehouseResponse;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.xml.namespace.QName;
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
 
 public class DataStore {
 
-    private static DataStore instance = new DataStore();
+    private static final DataStore instance = new DataStore();
 
     public static class EndpointData {
+
         private String serviceName;
         private String endpointName;
 
@@ -36,12 +36,11 @@ public class DataStore {
         public QName getEndpointName() {
             return new QName(endpointName);
         }
-        
+
         public QName getServiceName() {
             return new QName(serviceName);
         }
     }
-
     Map<String, Address> addresses = new ConcurrentHashMap<String, Address>();
     Map<String, Customer> customers = new ConcurrentHashMap<String, Customer>();
     Map<String, Order> orders = new ConcurrentHashMap<String, Order>();
@@ -58,11 +57,6 @@ public class DataStore {
     }
 
     public static DataStore getInstance() {
-        if (instance == null) {
-            synchronized(DataStore.class) {
-                instance = new DataStore();
-            }
-        }
         return instance;
     }
 
@@ -150,15 +144,15 @@ public class DataStore {
         ProductData pd = new ProductData();
         pd.setDeliveryTime(5);
         pd.setAmount(10);
-        availability.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"),pd);
+        availability.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), pd);
         pd = new ProductData();
         pd.setDeliveryTime(5);
         pd.setAmount(5);
-        availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"),pd);
+        availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), pd);
 
         //Service registry
-        productEndpointAddresses.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), Constants.SUPPLIER1ADDRESS);
-        productEndpointAddresses.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), Constants.SUPPLIER2ADDRESS);
+        productEndpointAddresses.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), SUPPLIER1ADDRESS);
+        productEndpointAddresses.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), SUPPLIER2ADDRESS);
 
     }
 
@@ -202,5 +196,4 @@ public class DataStore {
     public ProductData getProductData(Product p) {
         return availability.get(p);
     }
-
 }
