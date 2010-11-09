@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package at.ac.tuwien.infosys.aic.registry;
 
 import at.ac.tuwien.infosys.aic.model.Product;
@@ -18,5 +17,4 @@ import javax.xml.ws.wsaddressing.W3CEndpointReference;
 public interface ServiceRegistry {
 
     W3CEndpointReference getSupplier(@WebParam(name = "product") Product product);
-
 }

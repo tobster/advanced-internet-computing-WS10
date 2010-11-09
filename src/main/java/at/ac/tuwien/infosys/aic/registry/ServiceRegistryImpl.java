@@ -7,15 +7,12 @@ package at.ac.tuwien.infosys.aic.registry;
 import at.ac.tuwien.infosys.aic.model.Product;
 import at.ac.tuwien.infosys.aic.soap.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.store.DataStore;
-import at.ac.tuwien.infosys.aic.store.DataStore.EndpointData;
 import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
 import javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder;
 
-@WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/registry",
-portName = "RegistryPT",
-endpointInterface = "at.ac.tuwien.infosys.aic.soap.ServiceRegistry")
+@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.ServiceRegistry")
 public class ServiceRegistryImpl implements ServiceRegistry {
 
     DataStore ds = DataStore.getInstance();
