@@ -13,7 +13,7 @@ import javax.jws.WebService;
 
 @WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/supplier",
 portName = "SupplierPT",
-endpointInterface = "at.ac.tuwien.infosys.aic.soap.SupplierServices")
+endpointInterface = "at.ac.tuwien.infosys.aic.soap.SupplierService")
 public class SupplierImpl implements SupplierService {
 
     Logger log = Logger.getLogger("Supplier Service");

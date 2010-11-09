@@ -10,7 +10,7 @@ import at.ac.tuwien.infosys.aic.store.DataStore;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService
+@WebService(portName = "WarehousePT", name = "Warehouse", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse")
 public interface WarehouseService extends SupplierService {
 
 

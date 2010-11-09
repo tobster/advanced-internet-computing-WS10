@@ -45,12 +45,12 @@ public class DataStore {
         Product p = new Product();
         p.setId("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         p.setName("Moby Dick");
-        p.setSingleUnitPrice(BigDecimal.ZERO);
+        p.setSingleUnitPrice(BigDecimal.TEN);
         products.put(p.getId(), p);
         p = new Product();
         p.setId("aec0737d-e783-4c16-9b26-66040caf4aff");
         p.setName("War and Peace");
-        p.setSingleUnitPrice(BigDecimal.TEN);
+        p.setSingleUnitPrice(BigDecimal.ZERO);
         products.put(p.getId(), p);
 
 //      Adress

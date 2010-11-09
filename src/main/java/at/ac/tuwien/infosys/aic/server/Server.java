@@ -21,9 +21,9 @@ public class Server {
     private List<org.apache.cxf.endpoint.Server> servers = new LinkedList<org.apache.cxf.endpoint.Server>();
     private LoggingInInterceptor loggingInInterceptor = new LoggingInInterceptor();
     private LoggingOutInterceptor loggingOutInterceptor = new LoggingOutInterceptor();
-
+    JaxWsServerFactoryBean svrFactory;
     public Server() {
-        JaxWsServerFactoryBean svrFactory = new JaxWsServerFactoryBean();
+        
         startService(svrFactory, ShippingService.class, "http://localhost:8080/Shipping", new ShippingServiceImpl());
         startService(svrFactory, SupplierService.class, "http://localhost:8080/Supplier1", new SupplierImpl());
         startService(svrFactory, SupplierService.class, "http://localhost:8080/Supplier2", new SupplierImpl());
@@ -31,11 +31,12 @@ public class Server {
     }
 
     private void startService(JaxWsServerFactoryBean svrFactory, Class iface, String address, Object implementation) {
+        svrFactory = new JaxWsServerFactoryBean();
         svrFactory.setServiceClass(iface);
         svrFactory.setAddress(address);
         svrFactory.setServiceBean(implementation);
-        svrFactory.getInInterceptors().add(loggingInInterceptor);
-        svrFactory.getOutInterceptors().add(loggingOutInterceptor);
+        //svrFactory.getInInterceptors().add(loggingInInterceptor);
+        //svrFactory.getOutInterceptors().add(loggingOutInterceptor);
         servers.add(svrFactory.create());
     }
 
