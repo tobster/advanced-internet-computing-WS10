@@ -6,8 +6,10 @@
 package at.ac.tuwien.infosys.aic.registry;
 
 import at.ac.tuwien.infosys.aic.model.Product;
+import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
 
@@ -16,11 +18,16 @@ portName = "RegistryPT",
 endpointInterface = "at.ac.tuwien.infosys.aic.soap.ServiceRegistry")
 public class ServiceRegistryImpl implements ServiceRegistry {
 
-    Map<Product, W3CEndpointReference> productSupplier = new ConcurrentHashMap<Product, W3CEndpointReference>();
+    DataStore ds = DataStore.getInstance();
+    Logger log = Logger.getLogger("ServiceRegistryImpl");
 
     @Override
     public W3CEndpointReference getSupplier(Product product) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        log.info("Service Registry called!");
+
+        //return ds.
+
     }
 
 }

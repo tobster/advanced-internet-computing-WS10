@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.xml.ws.wsaddressing.W3CEndpointReference;
 
 public class DataStore {
 
@@ -27,7 +28,7 @@ public class DataStore {
     Map<String, Order> orders = new ConcurrentHashMap<String, Order>();
     Map<String, Product> products = new ConcurrentHashMap<String, Product>();
     Map<Product, ProductData> availability = new ConcurrentHashMap<Product, ProductData>();
-
+    Map<Product, W3CEndpointReference> productSupplier = new ConcurrentHashMap<Product, W3CEndpointReference>();
 
     public static DataStore getInstance() {
         if (instance == null) {
@@ -127,7 +128,10 @@ public class DataStore {
         pd.setDeliveryTime(5);
         pd.setAmount(5);
         availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"),pd);
-        
+
+        //Service registry
+        productSupplier.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), null);
+        productSupplier.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), null);
 
     }
 
@@ -171,4 +175,5 @@ public class DataStore {
     public ProductData getProductData(Product p) {
         return availability.get(p);
     }
+
 }
