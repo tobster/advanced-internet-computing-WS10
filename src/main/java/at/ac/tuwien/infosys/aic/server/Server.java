@@ -2,6 +2,7 @@ package at.ac.tuwien.infosys.aic.server;
 
 import at.ac.tuwien.infosys.aic.registry.ServiceRegistry;
 import at.ac.tuwien.infosys.aic.registry.ServiceRegistryImpl;
+import at.ac.tuwien.infosys.aic.rest.CustomerManagementService;
 import static at.ac.tuwien.infosys.aic.Constants.*;
 import at.ac.tuwien.infosys.aic.soap.ShippingService;
 import at.ac.tuwien.infosys.aic.soap.ShippingServiceImpl;
@@ -14,6 +15,7 @@ import java.util.List;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
+import org.apache.cxf.service.invoker.BeanInvoker;
 
 public class Server {
 
@@ -28,6 +30,17 @@ public class Server {
         startService(svrFactory, SupplierService.class, SUPPLIER2ADDRESS, new SupplierImpl());
         startService(svrFactory, WarehouseService.class, "http://localhost:8080/Warehouse", new WarehouseServiceImpl());
         startService(svrFactory, ServiceRegistry.class, REGISTRYADDRESS, new ServiceRegistryImpl());
+
+//        JaxWsServerFactoryBean sf = new JaxWsServerFactoryBean();
+//        sf.setServiceClass(CustomerManagementService.class);
+//        sf.setBindingId(HttpBindingFactory.HTTP_BINDING_ID);
+//        sf.setAddress("http://localhost:8080/customermanagementservice");
+//
+//        CustomerManagementService customerManagement = new CustomerManagementService();
+//        sf.getServiceFactory().setInvoker(new BeanInvoker(customerManagement));
+//
+//        org.apache.cxf.endpoint.Server svr = sf.create();
+
     }
 
     private void startService(JaxWsServerFactoryBean svrFactory, Class iface, String address, Object implementation) {
