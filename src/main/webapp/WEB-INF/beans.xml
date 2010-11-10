@@ -31,9 +31,9 @@
 	  implementor="at.ac.tuwien.infosys.aic.soap.WarehouseServiceImpl"
 	  address="/WarehousePT" />
 
-  <!--jaxws:endpoint
-	  id="supplier2"
-	  implementor="at.ac.tuwien.infosys.aic.soap.Supplier2"
-	  address="/SupplierPT" /-->
+  <jaxws:endpoint
+	  id="registry"
+	  implementor="at.ac.tuwien.infosys.aic.registry.ServiceRegistry"
+	  address="/RegistryPT" /-->
 	  
 </beans>

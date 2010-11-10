@@ -10,6 +10,7 @@ import at.ac.tuwien.infosys.aic.model.Address;
 import at.ac.tuwien.infosys.aic.model.Item;
 import at.ac.tuwien.infosys.aic.model.Product;
 import at.ac.tuwien.infosys.aic.registry.ServiceRegistry;
+import at.ac.tuwien.infosys.aic.soap.NegativeAmountFault;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import at.ac.tuwien.infosys.aic.soap.ShippingService;
 import at.ac.tuwien.infosys.aic.soap.SupplierService;
@@ -96,7 +97,7 @@ public class ServiceIT {
         assertTrue(comp == 0);
     }
 
-    @Test
+    @Test(expected = NegativeAmountFault.class)
     public void callWarehouseService() {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(WarehouseService.class);
