@@ -14,13 +14,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-@Path("/customermanagementservice/")
+@Path("/customermanagement/")
 @Produces("application/json")
 public class CustomerManagementService {
 
     DataStore ds = DataStore.getInstance();
     Logger log = Logger.getLogger("CustomerManagementService");
-  
+
     //handleGet -> Customer Info holen
     @GET
     @Path("/customers/{id}")
@@ -32,7 +32,7 @@ public class CustomerManagementService {
         return null;
 
     }
-
+/*
     //handlePut -> Customer hinzufuegen
     @PUT
     @Path("/customers/{id}")
@@ -69,5 +69,5 @@ public class CustomerManagementService {
         //Customer loeschen
         return null;
     }
-
+*/
 }

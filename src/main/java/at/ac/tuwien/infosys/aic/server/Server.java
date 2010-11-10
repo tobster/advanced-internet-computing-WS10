@@ -24,22 +24,23 @@ public class Server {
     private LoggingOutInterceptor loggingOutInterceptor = new LoggingOutInterceptor();
     JaxWsServerFactoryBean svrFactory;
     public Server() {
-        
+
+        // SOAP
         startService(svrFactory, ShippingService.class, "http://localhost:8080/Shipping", new ShippingServiceImpl());
         startService(svrFactory, SupplierService.class, SUPPLIER1ADDRESS, new SupplierImpl());
         startService(svrFactory, SupplierService.class, SUPPLIER2ADDRESS, new SupplierImpl());
         startService(svrFactory, WarehouseService.class, "http://localhost:8080/Warehouse", new WarehouseServiceImpl());
         startService(svrFactory, ServiceRegistry.class, REGISTRYADDRESS, new ServiceRegistryImpl());
 
-//        JaxWsServerFactoryBean sf = new JaxWsServerFactoryBean();
-//        sf.setServiceClass(CustomerManagementService.class);
-//        sf.setBindingId(HttpBindingFactory.HTTP_BINDING_ID);
-//        sf.setAddress("http://localhost:8080/customermanagementservice");
-//
-//        CustomerManagementService customerManagement = new CustomerManagementService();
-//        sf.getServiceFactory().setInvoker(new BeanInvoker(customerManagement));
-//
-//        org.apache.cxf.endpoint.Server svr = sf.create();
+        //REST
+        JaxWsServerFactoryBean sf = new JaxWsServerFactoryBean();
+        sf.setServiceClass(CustomerManagementService.class);
+        sf.setAddress("http://localhost:8080/customermanagement");
+
+        CustomerManagementService customerManagement = new CustomerManagementService();
+        sf.getServiceFactory().setInvoker(new BeanInvoker(customerManagement));
+
+        sf.create();
 
     }
 
