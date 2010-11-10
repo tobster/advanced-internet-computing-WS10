@@ -32,7 +32,7 @@ import org.junit.Test;
  *
  * @author tobi, christoph, michael
  */
-public class ServiceIT {
+public class ServiceTest {
 
     private static Server server;
 
