@@ -48,7 +48,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testGetNonExsistingCustomer() throws Exception {
+    public void testGetNonExistingCustomer() throws Exception {
 
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
@@ -63,7 +63,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testDeleteNonExsistingCustomer() throws Exception {
+    public void testDeleteNonExistingCustomer() throws Exception {
 
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
@@ -79,7 +79,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testDeleteExsistingCustomer() throws Exception {
+    public void testDeleteExistingCustomer() throws Exception {
 
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
@@ -96,7 +96,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPutNonExsistingCustomer() throws Exception {
+    public void testPutNonExistingCustomer() throws Exception {
 
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
@@ -114,7 +114,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPutExsistingCustomer() throws Exception {
+    public void testPutExistingCustomer() throws Exception {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
         factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
@@ -127,7 +127,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPostNonExsistingCustomer() throws Exception {
+    public void testPostNonExistingCustomer() throws Exception {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
         factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
@@ -150,7 +150,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPostExsistingCustomer() throws Exception {
+    public void testPostExistingCustomer() throws Exception {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
         factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
