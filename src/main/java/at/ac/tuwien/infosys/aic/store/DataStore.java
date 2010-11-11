@@ -168,6 +168,10 @@ public class DataStore {
         return customers.put(key, value);
     }
 
+    public boolean deleteCustomer(String key) {
+        return customers.remove(key) != null ? true : false;
+    }
+
     public Customer getCustomer(String key) {
         return customers.get(key);
     }
