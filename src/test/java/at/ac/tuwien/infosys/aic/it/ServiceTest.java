@@ -5,7 +5,6 @@
 package at.ac.tuwien.infosys.aic.it;
 
 import static at.ac.tuwien.infosys.aic.Constants.*;
-import at.ac.tuwien.infosys.aic.server.Server;
 import at.ac.tuwien.infosys.aic.model.Address;
 import at.ac.tuwien.infosys.aic.model.Item;
 import at.ac.tuwien.infosys.aic.model.Product;
@@ -13,7 +12,6 @@ import at.ac.tuwien.infosys.aic.registry.ServiceRegistry;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import at.ac.tuwien.infosys.aic.soap.ShippingService;
 import at.ac.tuwien.infosys.aic.soap.SupplierService;
-import at.ac.tuwien.infosys.aic.soap.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.soap.WarehouseService;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -21,8 +19,6 @@ import javax.xml.ws.soap.SOAPFaultException;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
 
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
