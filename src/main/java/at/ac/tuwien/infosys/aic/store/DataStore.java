@@ -100,27 +100,27 @@ public class DataStore {
 
 //      Customer
         Customer c = new Customer();
-        c.setId("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        c.setId(CUSTOMER1);
         List ad = new ArrayList();
         ad.add(addresses.get("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         c.setAdresses(ad);
         c.setName("Heinrich Harrer");
         c.setOpenBalance(BigDecimal.ZERO);
-        customers.put("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb", c);
+        customers.put(c.getId(), c);
         c = new Customer();
-        c.setId("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        c.setId(CUSTOMER2);
         ad = new ArrayList();
         ad.add(addresses.get("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         c.setAdresses(ad);
         c.setName("Heinrich Harrer");
         c.setOpenBalance(BigDecimal.ZERO);
-        customers.put("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb", c);
+        customers.put(c.getId(), c);
 
 //      Order
         Order o = new Order();
         o.setId("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         o.setOrderDate(new Date());
-        o.setCustomer(customers.get("c7777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        o.setCustomer(customers.get(CUSTOMER1));
         Item i = new Item();
         i.setProduct(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         i.setQuantity(21);
@@ -131,7 +131,7 @@ public class DataStore {
         o = new Order();
         o.setId("o8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
         o.setOrderDate(new Date());
-        o.setCustomer(customers.get("c8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        o.setCustomer(customers.get(CUSTOMER2));
         i = new Item();
         i.setProduct(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"));
         i.setQuantity(23);

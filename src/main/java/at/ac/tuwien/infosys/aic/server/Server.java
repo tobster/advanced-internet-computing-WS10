@@ -14,8 +14,8 @@ import java.util.LinkedList;
 import java.util.List;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
+import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
-import org.apache.cxf.service.invoker.BeanInvoker;
 
 public class Server {
 
@@ -23,25 +23,22 @@ public class Server {
     private LoggingInInterceptor loggingInInterceptor = new LoggingInInterceptor();
     private LoggingOutInterceptor loggingOutInterceptor = new LoggingOutInterceptor();
     JaxWsServerFactoryBean svrFactory;
+
     public Server() {
 
         // SOAP
-        startService(svrFactory, ShippingService.class, "http://localhost:8080/Shipping", new ShippingServiceImpl());
+        startService(svrFactory, ShippingService.class, SHIPPINGADDRESS, new ShippingServiceImpl());
         startService(svrFactory, SupplierService.class, SUPPLIER1ADDRESS, new SupplierImpl());
         startService(svrFactory, SupplierService.class, SUPPLIER2ADDRESS, new SupplierImpl());
-        startService(svrFactory, WarehouseService.class, "http://localhost:8080/Warehouse", new WarehouseServiceImpl());
+        startService(svrFactory, WarehouseService.class, WAREHOUSEADDRESS, new WarehouseServiceImpl());
         startService(svrFactory, ServiceRegistry.class, REGISTRYADDRESS, new ServiceRegistryImpl());
+        //startService(svrFactory, CustomerManagementService.class, CUSTOMERMANAGEMENT, new ServiceRegistryImpl());
 
         //REST
-        JaxWsServerFactoryBean sf = new JaxWsServerFactoryBean();
-        sf.setServiceClass(CustomerManagementService.class);
-        sf.setAddress("http://localhost:8080/customermanagement");
-
-        CustomerManagementService customerManagement = new CustomerManagementService();
-        sf.getServiceFactory().setInvoker(new BeanInvoker(customerManagement));
-
-        sf.create();
-
+        JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
+        sf.setAddress(CUSTOMERMANAGEMENT);
+        sf.setServiceBeans(new CustomerManagementService());
+        servers.add(sf.create());
     }
 
     private void startService(JaxWsServerFactoryBean svrFactory, Class iface, String address, Object implementation) {
@@ -58,7 +55,19 @@ public class Server {
         new Server();
     }
 
-    public void stop() {
+    private void addShutdownHook() {
+
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+
+            @Override
+            public void run() {
+                System.out.println("Shutting down...");
+                stopMe();
+            }
+        });
+    }
+
+    public void stopMe() {
         for (org.apache.cxf.endpoint.Server server : servers) {
             server.stop();
         }
