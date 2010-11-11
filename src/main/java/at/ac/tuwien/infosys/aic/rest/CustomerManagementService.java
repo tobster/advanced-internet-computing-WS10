@@ -7,11 +7,13 @@ import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HttpMethod;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -66,6 +68,7 @@ public class CustomerManagementService {
     public void updateCustomer(@PathParam("id") String id, Customer customer) {
         log.info("postCustomer called!");
         if (!id.equals(customer.getId())) {
+            log.info("id miss missmatch in request");
             throw new WebApplicationException(Response.Status.CONFLICT);
         }
         Customer currentCustomer = ds.getCustomer(id);
@@ -85,10 +88,30 @@ public class CustomerManagementService {
     }
 
     //update_account just takes the customer and adds the changedValue parameter to the customer's open balance
-    @Path("/customers")
-    public Response update_account(@PathParam("id") String id, @PathParam("changedValue") BigDecimal changedValue) {
-        //Customer aktualisieren
-        return null;
+    @POST
+    @Path("{id}/account")
+    public void update_account(@PathParam("id") String id, @QueryParam("changedValue") BigDecimal changedValue) {
+        log.info("upadte account called");
+        Customer customer = ds.getCustomer(id);
+        if (customer == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        } else {
+            if (changedValue != null) {
+                log.info("value="+changedValue);
+                if (customer.getOpenBalance() != null) {
+                    log.info("adding to balance");
+                    customer.setOpenBalance(customer.getOpenBalance().add(changedValue));
+                    log.info("added to balance");
+                } else {
+                    log.info("setting balance");
+                    customer.setOpenBalance(changedValue);
+                    log.info("balance set");
+                }
+            } else {
+                log.info("cangedValue==null!!");
+                throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            }
+        }
     }
 
     //notify (customer and message, as string)
