@@ -26,6 +26,7 @@ public class Server {
 
     public Server() {
 
+        this.addShutdownHook();
         // SOAP
         startService(svrFactory, ShippingService.class, SHIPPINGADDRESS, new ShippingServiceImpl());
         startService(svrFactory, SupplierService.class, SUPPLIER1ADDRESS, new SupplierImpl());

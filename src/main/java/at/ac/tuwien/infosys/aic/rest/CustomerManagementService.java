@@ -24,8 +24,9 @@ public class CustomerManagementService {
         log.info("getCustomer called!");
 
         return ds.getCustomer(id);
-
     }
+
+
 /*
     //handlePut -> Customer hinzufuegen
     @PUT

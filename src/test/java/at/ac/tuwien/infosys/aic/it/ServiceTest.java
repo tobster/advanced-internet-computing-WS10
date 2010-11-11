@@ -32,14 +32,7 @@ import org.junit.Test;
  *
  * @author tobi, christoph, michael
  */
-public class ServiceTest {
-
-    private static Server server;
-
-    @BeforeClass
-    public static void intitServer() {
-        server = new Server();
-    }
+public class ServiceTest extends BaseIntegrationTest {
 
     @Test
     public void callShippingService() {
@@ -131,7 +124,7 @@ public class ServiceTest {
 
         amount = -1;
         p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
-        try{
+        try {
             assertFalse(ss.check_availability(p, amount).isIsAvailable());
             fail("exception expected");
         } catch (SOAPFaultException e) {
@@ -160,19 +153,11 @@ public class ServiceTest {
         p.setId("gugu");
         p.setName("gaga");
         p.setSingleUnitPrice(BigDecimal.ZERO);
-        try{
+        try {
             W3CEndpointReference result = sr.getSupplier(p);
             fail("exception expected");
         } catch (SOAPFaultException e) {
             assertThat(e.getFault().getFaultString(), is("unknown product fault"));
-        }
-    }
-
-    @AfterClass
-    public static void stop() {
-        if (server != null) {
-            server.stopMe();
-            server = null;
         }
     }
 }
