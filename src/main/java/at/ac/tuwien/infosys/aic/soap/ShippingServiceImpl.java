@@ -1,5 +1,7 @@
 package at.ac.tuwien.infosys.aic.soap;
 
+import at.ac.tuwien.infosys.aic.soap.faults.UnknownAddressFault;
+import at.ac.tuwien.infosys.aic.soap.faults.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.model.Address;
 import at.ac.tuwien.infosys.aic.model.Item;
 import at.ac.tuwien.infosys.aic.store.DataStore;

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.ac.tuwien.infosys.aic.soap;
+package at.ac.tuwien.infosys.aic.soap.faults;
 
 import org.apache.cxf.binding.soap.SoapFault;
 

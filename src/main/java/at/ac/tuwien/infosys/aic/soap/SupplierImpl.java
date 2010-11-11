@@ -5,6 +5,7 @@
 
 package at.ac.tuwien.infosys.aic.soap;
 
+import at.ac.tuwien.infosys.aic.soap.faults.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.model.Product;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.math.BigDecimal;

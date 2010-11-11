@@ -5,7 +5,7 @@
 package at.ac.tuwien.infosys.aic.registry;
 
 import at.ac.tuwien.infosys.aic.model.Product;
-import at.ac.tuwien.infosys.aic.soap.UnknownProductFault;
+import at.ac.tuwien.infosys.aic.soap.faults.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.util.logging.Logger;
 import javax.jws.WebService;
