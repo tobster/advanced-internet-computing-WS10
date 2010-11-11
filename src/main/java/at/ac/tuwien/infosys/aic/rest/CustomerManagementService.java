@@ -3,13 +3,17 @@ package at.ac.tuwien.infosys.aic.rest;
 import at.ac.tuwien.infosys.aic.model.Customer;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.util.logging.Logger;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import org.apache.cxf.jaxrs.impl.ResponseBuilderImpl;
 
 @Path("/Customer")
 @Produces("application/json")
@@ -29,22 +33,33 @@ public class CustomerManagementService {
         if (result != null) {
             return result;
         } else {
-            throw new WebApplicationException(404);
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }
-    /*
+
     //handlePut -> Customer hinzufuegen
     @PUT
-    @Path("/customers/{id}")
+    @Path("{id}")
     @Consumes("application/json")
-    public Response addCustomer(@PathParam("id") Long id, Customer customer) {
-    //Customer hinzufuegen
-    return null;
-    }
+    public Response addCustomer(@PathParam("id") String id, Customer customer) {
+        log.info("putCustomer called!");
+        if (!id.equals(customer.getId())) {
+            throw new WebApplicationException(Response.Status.CONFLICT);
+        }
+        ResponseBuilder builder = new ResponseBuilderImpl();
+        if (ds.getCustomer(id) != null) {
+            builder.status(Response.Status.NO_CONTENT);
+        } else {
+            builder.status(Response.Status.CREATED);
+        }
+        ds.putCustomer(id, customer);
+        return builder.build();
 
+    }
+    /*
     //handlePost -> Customer aktualisieren
     @POST
-    @Path("/customers")
+    @Path("/")
     @Consumes("application/json")
     public Response updateCustomer(Customer customer) {
     //Customer aktualisieren
@@ -60,15 +75,16 @@ public class CustomerManagementService {
 
     //notify (customer and message, as string)
     //TODO
-    */
+     */
     //handleDelete -> Customer loeschen
+
     @DELETE
     @Path("/{id}")
     public void deleteCustomer(@PathParam("id") String id) {
         log.info("deletCustomer called!");
         Customer result = ds.getCustomer(id);
         if (!ds.deleteCustomer(id)) {
-             throw new WebApplicationException(404);
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }
 }

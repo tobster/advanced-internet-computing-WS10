@@ -17,53 +17,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.xml.namespace.QName;
 
 public class DataStore {
 
     private static final DataStore instance = new DataStore();
+    private Map<String, Address> addresses;
+    private Map<String, Customer> customers;
+    private Map<String, Order> orders;
+    private Map<String, Product> products;
+    private Map<Product, ProductData> availability;
+    private Map<Product, String> productEndpointAddresses;
 
-    public static class EndpointData {
-
-        private String serviceName;
-        private String endpointName;
-
-        private EndpointData(String serviceName, String endpointName) {
-            this.serviceName = serviceName;
-            this.endpointName = endpointName;
-        }
-
-        public QName getEndpointName() {
-            return new QName(endpointName);
-        }
-
-        public QName getServiceName() {
-            return new QName(serviceName);
-        }
-    }
-    Map<String, Address> addresses = new ConcurrentHashMap<String, Address>();
-    Map<String, Customer> customers = new ConcurrentHashMap<String, Customer>();
-    Map<String, Order> orders = new ConcurrentHashMap<String, Order>();
-    Map<String, Product> products = new ConcurrentHashMap<String, Product>();
-    Map<Product, ProductData> availability = new ConcurrentHashMap<Product, ProductData>();
-    Map<Product, String> productEndpointAddresses = new ConcurrentHashMap<Product, String>();
-
-    public String putProductEndpointAddress(Product key, String value) {
-        return productEndpointAddresses.put(key, value);
-    }
-
-    public String getProductEndpointAddress(Object key) {
-        return productEndpointAddresses.get(key);
-    }
-
-    public static DataStore getInstance() {
-        return instance;
-    }
-
-    private DataStore() {
-
-
-//      Procucts
+    public void init() {
+        addresses = new ConcurrentHashMap<String, Address>();
+        customers = new ConcurrentHashMap<String, Customer>();
+        orders = new ConcurrentHashMap<String, Order>();
+        products = new ConcurrentHashMap<String, Product>();
+        availability = new ConcurrentHashMap<Product, ProductData>();
+        productEndpointAddresses = new ConcurrentHashMap<Product, String>();
+        //      Procucts
         Product p = new Product();
         p.setId("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         p.setName("Moby Dick");
@@ -74,8 +46,7 @@ public class DataStore {
         p.setName("War and Peace");
         p.setSingleUnitPrice(BigDecimal.ZERO);
         products.put(p.getId(), p);
-
-//      Address
+        //      Address
         Address a = new Address();
         a.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a.setCity("Wien");
@@ -97,8 +68,7 @@ public class DataStore {
         a.setStreet("Mühlgasse");
         a.setZipCode("1040");
         addresses.put(a.getId(), a);
-
-//      Customer
+        //      Customer
         Customer c = new Customer();
         c.setId(CUSTOMER1);
         List ad = new ArrayList();
@@ -115,8 +85,7 @@ public class DataStore {
         c.setName("Heinrich Harrer");
         c.setOpenBalance(BigDecimal.ZERO);
         customers.put(c.getId(), c);
-
-//      Order
+        //      Order
         Order o = new Order();
         o.setId("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         o.setOrderDate(new Date());
@@ -139,7 +108,6 @@ public class DataStore {
         it.add(i);
         o.setItems(it);
         orders.put("o8888070b-96f3-47ac-9fe9-dfe2dadc00cb", o);
-
         //Warehouse
         ProductData pd = new ProductData();
         pd.setDeliveryTime(5);
@@ -149,11 +117,25 @@ public class DataStore {
         pd.setDeliveryTime(5);
         pd.setAmount(5);
         availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), pd);
-
         //Service registry
         productEndpointAddresses.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), SUPPLIER1ADDRESS);
         productEndpointAddresses.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), SUPPLIER2ADDRESS);
+    }
 
+    public String putProductEndpointAddress(Product key, String value) {
+        return productEndpointAddresses.put(key, value);
+    }
+
+    public String getProductEndpointAddress(Object key) {
+        return productEndpointAddresses.get(key);
+    }
+
+    public static DataStore getInstance() {
+        return instance;
+    }
+
+    private DataStore() {
+        init();
     }
 
     public Address putAddress(String key, Address value) {

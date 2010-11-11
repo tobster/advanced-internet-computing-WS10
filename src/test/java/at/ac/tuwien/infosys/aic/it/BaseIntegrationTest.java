@@ -5,6 +5,7 @@
 package at.ac.tuwien.infosys.aic.it;
 
 import at.ac.tuwien.infosys.aic.server.Server;
+import at.ac.tuwien.infosys.aic.store.DataStore;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
@@ -19,6 +20,7 @@ public abstract class BaseIntegrationTest {
     @BeforeClass
     public static void intitServer() {
         server = new Server();
+        DataStore.getInstance().init();
     }
 
     @AfterClass
