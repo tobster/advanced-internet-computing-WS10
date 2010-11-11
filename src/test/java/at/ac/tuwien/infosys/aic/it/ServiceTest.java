@@ -171,7 +171,7 @@ public class ServiceTest {
     @AfterClass
     public static void stop() {
         if (server != null) {
-            server.stop();
+            server.stopMe();
             server = null;
         }
     }
