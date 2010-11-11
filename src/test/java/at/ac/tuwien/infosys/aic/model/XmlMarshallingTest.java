@@ -23,7 +23,6 @@ public class XmlMarshallingTest {
     private Address a1 = new Address();
     private Address a2 = new Address();
 
-
     @Before
     public void setUp() throws Exception {
 
@@ -52,7 +51,7 @@ public class XmlMarshallingTest {
 
     }
 
-            @Test
+    @Test
     public void marshallunmarshalAddress() throws Exception {
         JAXBContext context = JAXBContext.newInstance(Address.class);
         m = context.createMarshaller();
@@ -84,7 +83,6 @@ public class XmlMarshallingTest {
         assertTrue(uAddress.isIsBilling());
         assertTrue(uAddress.isIsOther());
     }
-
 
     @Test
     public void marshallunmarshalOrder() throws Exception {
@@ -137,7 +135,7 @@ public class XmlMarshallingTest {
 
         Item ui = (Item) u.unmarshal(new StringReader(result));
         System.out.println(ui.getProduct());
-        assertThat(ui.getProduct().getId(), equalTo(i.getProduct().getId() ));
+        assertThat(ui.getProduct().getId(), equalTo(i.getProduct().getId()));
 
     }
 
@@ -157,7 +155,7 @@ public class XmlMarshallingTest {
         assertThat(result, containsString("product id="));
         assertThat(result, containsString("aec0737d-e783-4c16-9b26-66040caf4aff"));
         assertThat(result, containsString("name>War and Peace"));
-        assertThat(result, containsString("singleUnitPrice>10<"));
+        assertThat(result, containsString("singleUnitPrice>0<"));
         Product up = (Product) u.unmarshal(new StringReader(result));
         assertThat(up, equalTo(p));
         assertThat(up.getId(), equalTo(p.getId()));
@@ -166,7 +164,6 @@ public class XmlMarshallingTest {
 
 
     }
-
 
     @Test
     public void marshallunmarshalItem() throws Exception {
@@ -193,9 +190,6 @@ public class XmlMarshallingTest {
         assertThat(ui.getProduct(), equalTo(i.getProduct()));
 
 
-        
+
     }
-
-
-
 }

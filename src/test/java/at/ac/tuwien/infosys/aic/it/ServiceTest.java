@@ -17,12 +17,14 @@ import at.ac.tuwien.infosys.aic.soap.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.soap.WarehouseService;
 import java.math.BigDecimal;
 import java.util.UUID;
+import javax.xml.ws.soap.SOAPFaultException;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
 
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.Test;
 
@@ -30,7 +32,7 @@ import org.junit.Test;
  *
  * @author tobi, christoph, michael
  */
-public class ServiceIT {
+public class ServiceTest {
 
     private static Server server;
 
@@ -129,7 +131,12 @@ public class ServiceIT {
 
         amount = -1;
         p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
-        assertFalse(ss.check_availability(p, amount).isIsAvailable());
+        try{
+            assertFalse(ss.check_availability(p, amount).isIsAvailable());
+            fail("exception expected");
+        } catch (SOAPFaultException e) {
+            assertThat(e.getFault().getFaultString(), is("negative amount fault"));
+        }
 
     }
 
@@ -143,7 +150,7 @@ public class ServiceIT {
         assertNotNull(result);
     }
 
-    @Test(expected = UnknownProductFault.class)
+    @Test
     public void callServiceRegistryFail() {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(ServiceRegistry.class);
@@ -153,7 +160,12 @@ public class ServiceIT {
         p.setId("gugu");
         p.setName("gaga");
         p.setSingleUnitPrice(BigDecimal.ZERO);
-        W3CEndpointReference result = sr.getSupplier(p);
+        try{
+            W3CEndpointReference result = sr.getSupplier(p);
+            fail("exception expected");
+        } catch (SOAPFaultException e) {
+            assertThat(e.getFault().getFaultString(), is("unknown product fault"));
+        }
     }
 
     @AfterClass
