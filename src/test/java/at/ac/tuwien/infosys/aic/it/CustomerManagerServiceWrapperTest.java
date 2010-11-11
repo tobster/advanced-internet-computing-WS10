@@ -4,6 +4,7 @@
  */
 package at.ac.tuwien.infosys.aic.it;
 
+import org.apache.cxf.binding.soap.SoapFault;
 import java.util.List;
 import at.ac.tuwien.infosys.aic.model.Address;
 import at.ac.tuwien.infosys.aic.soap.faults.UnknownCustomerFault;
@@ -15,6 +16,7 @@ import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+import javax.xml.ws.soap.SOAPFaultException;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -87,7 +89,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
         customerManager.delete(CUSTOMER1);
 
         try {
-                Customer c1 = ds.getCustomer(CUSTOMER1);
+            Customer c1 = ds.getCustomer(CUSTOMER1);
         } catch (Exception e) {
             log.info(e.getMessage());
         }
@@ -126,7 +128,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
 
     @Test
     public void testPostNonExsistingCustomer() throws Exception {
-                JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
         factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
         CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
@@ -140,10 +142,11 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
 
         try {
             customerManager.post(c);
-        } catch (UnknownCustomerFault e) {
-            log.info(e.getMessage());
+            fail("exception expected");
+        } catch (SOAPFaultException e) {
+            assertThat(e.getCause().getMessage(),is("404"));
         }
-        
+
     }
 
     @Test

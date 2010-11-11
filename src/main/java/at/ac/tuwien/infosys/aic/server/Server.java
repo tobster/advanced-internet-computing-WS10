@@ -2,7 +2,7 @@ package at.ac.tuwien.infosys.aic.server;
 
 import at.ac.tuwien.infosys.aic.registry.ServiceRegistry;
 import at.ac.tuwien.infosys.aic.registry.ServiceRegistryImpl;
-import at.ac.tuwien.infosys.aic.rest.CustomerManagementService;
+import at.ac.tuwien.infosys.aic.rest.CustomerManagementServiceImpl;
 import static at.ac.tuwien.infosys.aic.Constants.*;
 import at.ac.tuwien.infosys.aic.soap.ShippingService;
 import at.ac.tuwien.infosys.aic.soap.ShippingServiceImpl;
@@ -39,7 +39,7 @@ public class Server {
         //REST
         JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
         sf.setAddress(CUSTOMERMANAGEMENT);
-        sf.setServiceBeans(new CustomerManagementService());
+        sf.setServiceBeans(new CustomerManagementServiceImpl());
         sf.getInInterceptors().add(loggingInInterceptor);
         sf.getOutInterceptors().add(loggingOutInterceptor);
         servers.add(sf.create());
