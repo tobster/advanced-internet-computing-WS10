@@ -4,6 +4,7 @@
  */
 package at.ac.tuwien.infosys.aic.it;
 
+import org.apache.http.client.methods.HttpPost;
 import at.ac.tuwien.infosys.aic.model.Customer;
 import org.apache.http.util.EntityUtils;
 import javax.ws.rs.core.UriBuilder;
@@ -19,6 +20,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -31,6 +33,11 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
 
     private DataStore ds = DataStore.getInstance();
     private HttpClient httpclient = new DefaultHttpClient();
+
+    @Before
+    public void init(){
+        ds.init();
+    }
 
     @Test
     public void testGetExsistingCustomer() throws Exception {
@@ -119,6 +126,44 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
         assertThat(customer.getId(), is(CUSTOMER1));
         assertThat(customer.getName(), is("Hudrich Harrer"));
         assertThat(customer.getOpenBalance(), is(BigDecimal.TEN));
+        assertThat(customer.getAdresses().get(0).getId(), is("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+    }
+
+    @Test
+    public void testPostNonExsistingCustomer() throws Exception {
+        URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path("c4434070b-96f3-47ac-9fe9-dfe2dadc00cb").build();
+        HttpPost request = new HttpPost(uri);
+        StringEntity payload = new StringEntity("{\"customer\":{\"@id\":\"c4434070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"name\":\"Heinrich Harrer\",\"openBalance\":0,\"adresses\":{\"@id\":\"a8888070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"street\":\"Mollardgasse\",\"city\":\"Wien\",\"house\":23,\"door\":1,\"zipCode\":1060,\"isShipping\":true,\"isBilling\":true,\"isOther\":true}}}");
+        payload.setContentType("application/json");
+        request.setEntity(payload);
+        HttpResponse response = httpclient.execute(request);
+        assertThat(response.getStatusLine().getStatusCode(), is(404));
+    }
+    @Test
+    public void testPostCustomerIDmissmatch() throws Exception {
+        URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).build();
+         HttpPost request = new HttpPost(uri);
+        StringEntity payload = new StringEntity("{\"customer\":{\"@id\":\"" + CUSTOMER2 + "\",\"name\":\"Hudrich Harrer\",\"openBalance\":10,\"adresses\":{\"@id\":\"a8888070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"street\":\"Mollardgasse\",\"city\":\"Wien\",\"house\":23,\"door\":1,\"zipCode\":1060,\"isShipping\":true,\"isBilling\":true,\"isOther\":true}}}");
+        payload.setContentType("application/json");
+        request.setEntity(payload);
+        HttpResponse response = httpclient.execute(request);
+        assertThat(response.getStatusLine().getStatusCode(), is(409));
+    }
+
+    @Test
+    public void testPostExsistingCustomer() throws Exception {
+        URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).build();
+        HttpPost request = new HttpPost(uri);
+        StringEntity payload = new StringEntity("{\"customer\":{\"@id\":\"" + CUSTOMER1 + "\",\"name\":\"Hudrich Harrer\"}}");
+        payload.setContentType("application/json");
+        request.setEntity(payload);
+        HttpResponse response = httpclient.execute(request);
+        assertThat(response.getStatusLine().getStatusCode(), is(204));
+        Customer customer = ds.getCustomer(CUSTOMER1);
+        assertNotNull(customer);
+        assertThat(customer.getId(), is(CUSTOMER1));
+        assertThat(customer.getName(), is("Hudrich Harrer"));
+        assertThat(customer.getOpenBalance(), is(BigDecimal.ZERO));
         assertThat(customer.getAdresses().get(0).getId(), is("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
     }
 

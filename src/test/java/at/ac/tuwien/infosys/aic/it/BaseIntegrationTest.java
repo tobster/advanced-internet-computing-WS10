@@ -20,7 +20,6 @@ public abstract class BaseIntegrationTest {
     @BeforeClass
     public static void intitServer() {
         server = new Server();
-        DataStore.getInstance().init();
     }
 
     @AfterClass
