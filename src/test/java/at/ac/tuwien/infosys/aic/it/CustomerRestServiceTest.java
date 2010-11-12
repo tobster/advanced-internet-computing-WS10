@@ -196,4 +196,20 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
         assertThat(customer.getId(), is(CUSTOMER1));
         assertThat(customer.getOpenBalance(), is(new BigDecimal("15.0")));
     }
+
+    @Test
+    public void notifyExistingCustomer()  throws Exception {
+        URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).path("notify").build();
+        //System.out.println(uri);
+        HttpPost request = new HttpPost(uri);
+        StringEntity payload = new StringEntity("{\"message\": \"John\" }");
+        payload.setContentType("application/json");
+        request.setEntity(payload);
+        HttpResponse response = httpclient.execute(request);
+        assertThat(response.getStatusLine().getStatusCode(), is(204));
+
+
+
+
+    }
 }
