@@ -4,6 +4,9 @@
  */
 package at.ac.tuwien.infosys.aic.it;
 
+import org.apache.cxf.jaxrs.client.WebClient;
+import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
+import at.ac.tuwien.infosys.aic.rest.CustomerManagementService;
 import org.apache.http.HttpRequest;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpPost;
@@ -34,13 +37,18 @@ import static org.hamcrest.Matchers.*;
  */
 public class CustomerManagementServiceTest extends BaseIntegrationTest {
 
-    private DataStore ds = DataStore.getInstance();
+    //private DataStore ds = DataStore.getInstance();
     private HttpClient httpclient = new DefaultHttpClient();
+    private CustomerManagementService customerManagementService;
 
-    @Before
-    public void init() {
-        ds.init();
+    public CustomerManagementServiceTest() {
+        URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").build();
+        customerManagementService = JAXRSClientFactory.create( uri.toString() , CustomerManagementService.class);
+        WebClient.client(customerManagementService).accept("application/json");
     }
+
+
+
 
     @Test
     public void testGetExistingCustomer() throws Exception {
@@ -52,7 +60,7 @@ public class CustomerManagementServiceTest extends BaseIntegrationTest {
         assertNotNull(entity);
         String result = EntityUtils.toString(entity);
         assertThat(result, containsString(CUSTOMER1));
-        assertThat(result, containsString(ds.getCustomer(CUSTOMER1).getName()));
+        assertThat(result, containsString(customerManagementService.getCustomer(CUSTOMER1).getName()));
         //TODO more sophisticated assertions
     }
 
@@ -107,7 +115,8 @@ public class CustomerManagementServiceTest extends BaseIntegrationTest {
         request.setEntity(payload);
         HttpResponse response = httpclient.execute(request);
         assertThat(response.getStatusLine().getStatusCode(), is(201));
-        Customer customer = ds.getCustomer("c4444070b-96f3-47ac-9fe9-dfe2dadc00cb");
+
+        Customer customer = customerManagementService.getCustomer("c4444070b-96f3-47ac-9fe9-dfe2dadc00cb");
         assertNotNull(customer);
         assertThat(customer.getId(), is("c4444070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         assertThat(customer.getName(), is("Heinrich Harrer"));
@@ -124,7 +133,7 @@ public class CustomerManagementServiceTest extends BaseIntegrationTest {
         request.setEntity(payload);
         HttpResponse response = httpclient.execute(request);
         assertThat(response.getStatusLine().getStatusCode(), is(204));
-        Customer customer = ds.getCustomer(CUSTOMER1);
+        Customer customer = customerManagementService.getCustomer(CUSTOMER1);
         assertNotNull(customer);
         assertThat(customer.getId(), is(CUSTOMER1));
         assertThat(customer.getName(), is("Hudrich Harrer"));
@@ -163,7 +172,7 @@ public class CustomerManagementServiceTest extends BaseIntegrationTest {
         request.setEntity(payload);
         HttpResponse response = httpclient.execute(request);
         assertThat(response.getStatusLine().getStatusCode(), is(204));
-        Customer customer = ds.getCustomer(CUSTOMER1);
+        Customer customer = customerManagementService.getCustomer(CUSTOMER1);
         assertNotNull(customer);
         assertThat(customer.getId(), is(CUSTOMER1));
         assertThat(customer.getName(), is("Hudrich Harrer"));
@@ -191,10 +200,10 @@ public class CustomerManagementServiceTest extends BaseIntegrationTest {
         HttpPost request = new HttpPost(uri);
         HttpResponse response = httpclient.execute(request);
         assertThat(response.getStatusLine().getStatusCode(), is(204));
-        Customer customer = ds.getCustomer(CUSTOMER1);
+        Customer customer = customerManagementService.getCustomer(CUSTOMER1);
         assertNotNull(customer);
         assertThat(customer.getId(), is(CUSTOMER1));
-        assertThat(customer.getOpenBalance(), is(new BigDecimal("15.0")));
+        assertThat(customer.getOpenBalance(), is(new BigDecimal("15")));
     }
 
     @Test

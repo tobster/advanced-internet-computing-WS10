@@ -4,6 +4,7 @@
  */
 package at.ac.tuwien.infosys.aic.it;
 
+import org.junit.BeforeClass;
 import java.util.List;
 import at.ac.tuwien.infosys.aic.model.Address;
 import org.junit.Before;
@@ -24,6 +25,7 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
 
     private DataStore ds = DataStore.getInstance();
     Logger log = Logger.getLogger("CustomerManagerServiceWrapperTes");
+
 
     @Before
     public void init() {
