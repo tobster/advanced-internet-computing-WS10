@@ -20,4 +20,17 @@
     <echo message="Please run: $ant -projecthelp"/>
   </target>
 
+  <target name="run-services"
+        depends="compile-tests" >
+            <java fork="true" classname="at.ac.tuwien.infosys.aic.server.Server">
+      <classpath>
+        <path refid="build.test.classpath"/>
+        <pathelement location="${maven.build.outputDir}"/>
+        <pathelement location="${maven.build.testOutputDir}"/>
+      </classpath>
+        </java>
+
+    </target>
+   
+
 </project>
