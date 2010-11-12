@@ -89,8 +89,10 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
 
         try {
             Customer c1 = ds.getCustomer(CUSTOMER1);
-        } catch (Exception e) {
-            log.info(e.getMessage());
+        } catch (SOAPFaultException e) {
+            log.info("caught UnknownCustomerFault");
+            assertThat(e.getMessage(), is("unknown costumer fault"));
+            
         }
     }
 
@@ -110,6 +112,7 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
         c.setAdresses(addresses);
 
         customerManager.put(c);
+        assertThat(ds.getCustomer("newCustomer"), is(c));
     }
 
     @Test
@@ -121,8 +124,8 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
 
         Customer c = ds.getCustomer(CUSTOMER1);
         c.setName("New Name");
-
         customerManager.put(c);
+        assertThat(ds.getCustomer(CUSTOMER1).getName(), is("New Name"));
     }
 
     @Test
@@ -158,8 +161,9 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
 
         Customer c = ds.getCustomer(CUSTOMER1);
         c.setName("New Name");
-
         customerManager.post(c);
+        assertThat(ds.getCustomer(CUSTOMER1).getName(), is("New Name"));
+
     }
 
     @Test
@@ -168,8 +172,10 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
         factory.setServiceClass(CustomerManagementServiceWrapper.class);
         factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
         CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
-
+        assertNotNull(ds.getCustomer(CUSTOMER1).getOpenBalance());
         customerManager.update_account(CUSTOMER1, new BigDecimal(8.0));
+        assertThat(ds.getCustomer(CUSTOMER1).getOpenBalance(), is(new BigDecimal(18.0)));
+
     }
 
     @Test
@@ -180,5 +186,24 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
         CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
 
         customerManager.notify(CUSTOMER1, "Good Morning Vienna");
+        assertNotNull(ds.getMessages(CUSTOMER1).getLast());
+        log.info("Customer1 got new Message: " + ds.getMessages(CUSTOMER1).getLast());
+        assertThat(ds.getMessages(CUSTOMER1).getLast(), is("Good Morning Vienna"));
+     
+    }
+
+    @Test
+    public void testNotifyNonExistingCustomer() throws Exception {
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(CustomerManagementServiceWrapper.class);
+        factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
+        CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
+
+        try {
+              customerManager.notify("NoCustomer", "Good Morning Vienna");
+        } catch (SOAPFaultException e) {
+            log.info("caught UnknownCustomerFault");
+            assertThat(e.getMessage(), is("unknown costumer fault"));
+        }
     }
 }
