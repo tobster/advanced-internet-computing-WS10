@@ -45,4 +45,10 @@ public interface CustomerManagementService {
     String id, @QueryParam(value = "changedValue")
     BigDecimal changedValue);
 
+    @POST
+    @Path(value = "{id}/notify")
+    @Consumes(value = "application/json")
+    void notify(@PathParam(value = "id")
+    String id, String message);
+
 }

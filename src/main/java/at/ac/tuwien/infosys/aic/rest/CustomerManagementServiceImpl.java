@@ -116,7 +116,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 
     @POST
     @Path("{id}/notify")
-    public void notify_customer(@PathParam("id") String id, String message) {
+    public void notify(@PathParam("id") String id, String message) {
         log.info("notify customer called");
         Customer customer = ds.getCustomer(id);
         if (customer == null) {
