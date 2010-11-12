@@ -27,6 +27,7 @@ public class XmlMarshallingTest {
     public void setUp() throws Exception {
 
 
+        DataStore.getInstance().init();
 //      Address
         a1.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
         a1.setCity("Wien");
