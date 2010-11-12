@@ -6,6 +6,7 @@
 package at.ac.tuwien.infosys.aic.soap;
 
 import at.ac.tuwien.infosys.aic.model.Customer;
+import java.math.BigDecimal;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
@@ -20,5 +21,9 @@ public interface CustomerManagementServiceWrapper {
      public void post(@WebParam(name = "customer") Customer customer);
      //deleteCustomer
      public void delete(@WebParam(name = "id") String id);
+     //update_account
+     //public void update_account(@WebParam(name = "id") String id, BigDecimal changedValue);
+     //notify_customer
+     //public void notify(@WebParam(name = "id") String message);
 
 }
