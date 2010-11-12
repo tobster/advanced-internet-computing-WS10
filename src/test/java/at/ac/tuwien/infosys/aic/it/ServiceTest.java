@@ -30,62 +30,6 @@ import org.junit.Test;
  */
 public class ServiceTest extends BaseIntegrationTest {
 
-    @Test
-    public void callShippingService() {
-
-        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
-        factory.setServiceClass(ShippingService.class);
-        factory.setAddress("http://localhost:8080/Shipping");
-        ShippingService ss = (ShippingService) factory.create();
-
-        Item[] items = new Item[2];
-        items[0] = new Item();
-        items[0].setProduct(DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
-        items[1] = new Item();
-        items[1].setProduct(DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff"));
-
-        Address address = new Address();
-        address.setId("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb");
-        String result = ss.ship_items(items, address);
-        UUID.fromString(result);
-
-    }
-
-    @Test
-    public void callSupplierService1() {
-
-        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
-        factory.setServiceClass(SupplierService.class);
-        factory.setAddress("http://localhost:8080/Supplier1");
-        SupplierService ss = (SupplierService) factory.create();
-
-        //order something
-        int ammount = 5;
-        BigDecimal totalPrice;
-        //price of product is 0
-        Product p = DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
-        totalPrice = ss.order(p, ammount);
-        int comp = totalPrice.compareTo(new BigDecimal(50));
-        assertTrue(comp == 0);
-    }
-
-    @Test
-    public void callSupplierServce2() {
-
-        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
-        factory.setServiceClass(SupplierService.class);
-        factory.setAddress("http://localhost:8080/Supplier1");
-        SupplierService ss = (SupplierService) factory.create();
-
-        //order something
-        int ammount = 5;
-        BigDecimal totalPrice;
-        //price of product is 0
-        Product p = DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
-        totalPrice = ss.order(p, ammount);
-        int comp = totalPrice.compareTo(new BigDecimal(50));
-        assertTrue(comp == 0);
-    }
 
     @Test
     public void callWarehouseService() {
