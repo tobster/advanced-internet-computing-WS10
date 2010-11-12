@@ -29,8 +29,49 @@ public class WarehouseServiceTest extends BaseIntegrationTest{
         ds.init();
     }
 
+        @Test
+    public void orderTest() {
+
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(WarehouseService.class);
+        factory.setAddress(WAREHOUSEADDRESS);
+        WarehouseService sw = (WarehouseService) factory.create();
+
+        //order something
+        int ammount = 5;
+        BigDecimal totalPrice;
+        //price of product is 0
+        Product p = DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        totalPrice = sw.order(p, ammount);
+        int comp = totalPrice.compareTo(new BigDecimal(50));
+        assertTrue(comp == 0);
+    }
+
+    @Test
+    public void orderWrongProductTest() {
+
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(WarehouseService.class);
+        factory.setAddress(WAREHOUSEADDRESS);
+        WarehouseService ws = (WarehouseService) factory.create();
+
+        //order something
+        int ammount = 5;
+        BigDecimal totalPrice;
+        //price of product is 0
+        Product p = DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
+        p.setId("unknownProduct");
+
+        try {
+            totalPrice = ws.order(p, ammount);
+        } catch (SOAPFaultException e) {
+            assertThat(e.getMessage(), is("unknown product fault"));
+        }
+
+    }
+
        @Test
-    public void callWarehouseService() {
+    public void check_availabilityTests() {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(WarehouseService.class);
         factory.setAddress(WAREHOUSEADDRESS);
@@ -68,7 +109,23 @@ public class WarehouseServiceTest extends BaseIntegrationTest{
 
     }
 
+    @Test
+    public void check_availabilityWrongProductTests() {
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(WarehouseService.class);
+        factory.setAddress(WAREHOUSEADDRESS);
+        WarehouseService ss = (WarehouseService) factory.create();
 
+        int   amount = 1;
+        Product p = DataStore.getInstance().getProduct("aec0737d-e783-4c16-9b26-66040caf4aff");
+        p.setId("WrongProduct");
+        try {
+            assertFalse(ss.check_availability(p, amount).isIsAvailable());
+            fail("exception expected");
+        } catch (SOAPFaultException e) {
+            assertThat(e.getFault().getFaultString(), is("unknown product fault"));
+        }
 
+    }
 
 }
