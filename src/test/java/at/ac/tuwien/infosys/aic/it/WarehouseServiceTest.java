@@ -1,9 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package at.ac.tuwien.infosys.aic.it;
+
 import at.ac.tuwien.infosys.aic.soap.WarehouseService;
 import at.ac.tuwien.infosys.aic.model.Product;
 import at.ac.tuwien.infosys.aic.store.DataStore;
@@ -17,7 +13,6 @@ import static org.hamcrest.Matchers.*;
 import org.junit.Before;
 import org.junit.Test;
 import static at.ac.tuwien.infosys.aic.Constants.*;
-
 
 public class WarehouseServiceTest extends BaseIntegrationTest{
 

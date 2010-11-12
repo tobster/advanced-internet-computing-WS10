@@ -4,6 +4,7 @@
  */
 package at.ac.tuwien.infosys.aic.it;
 
+import org.junit.BeforeClass;
 import java.util.List;
 import at.ac.tuwien.infosys.aic.model.Address;
 import org.junit.Before;
@@ -24,6 +25,7 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
 
     private DataStore ds = DataStore.getInstance();
     Logger log = Logger.getLogger("CustomerManagerServiceWrapperTes");
+
 
     @Before
     public void init() {
@@ -112,7 +114,7 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
         c.setAdresses(addresses);
 
         customerManager.put(c);
-        assertThat(ds.getCustomer("newCustomer"), is(c));
+        assertThat(customerManager.get("newCustomer"), is(c));
     }
 
     @Test
@@ -174,7 +176,7 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
         CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
         assertNotNull(ds.getCustomer(CUSTOMER1).getOpenBalance());
         customerManager.update_account(CUSTOMER1, new BigDecimal(8.0));
-        assertThat(ds.getCustomer(CUSTOMER1).getOpenBalance(), is(new BigDecimal(18.0)));
+        assertThat(customerManager.get(CUSTOMER1).getOpenBalance(), is(new BigDecimal(18.0)));
 
     }
 

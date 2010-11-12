@@ -53,15 +53,18 @@ public class WarehouseServiceImpl implements WarehouseService {
             throw new NegativeAmountFault();
             
         } else {
-            
-            w.setDeliveryTime(pd.getDeliveryTime());
 
-            if (amount > pd.getAmount()){
-                w.setIsAvailable(false);
+            if (pd == null) {
+                throw new UnknownProductFault();
             } else {
-                w.setIsAvailable(true);
-            }
+                w.setDeliveryTime(pd.getDeliveryTime());
 
+                if (amount > pd.getAmount()){
+                    w.setIsAvailable(false);
+                } else {
+                    w.setIsAvailable(true);
+                }
+            }
             return w;
         }
 
