@@ -12,6 +12,8 @@ import at.ac.tuwien.infosys.aic.soap.WarehouseService;
 import at.ac.tuwien.infosys.aic.soap.WarehouseServiceImpl;
 import at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapper;
 import at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapperImpl;
+import at.ac.tuwien.infosys.aic.soap.ResetService;
+import at.ac.tuwien.infosys.aic.soap.ResetServiceImpl;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
@@ -29,13 +31,13 @@ public class Server {
 
         this.addShutdownHook();
         // SOAP
+        startService(ResetService.class,RESETADDRESS,new ResetServiceImpl());
         startService(ShippingService.class, SHIPPINGADDRESS, new ShippingServiceImpl());
         startService(SupplierService.class, SUPPLIER1ADDRESS, new SupplierImpl());
         startService(SupplierService.class, SUPPLIER2ADDRESS, new SupplierImpl());
         startService(WarehouseService.class, WAREHOUSEADDRESS, new WarehouseServiceImpl());
         startService(ServiceRegistry.class, REGISTRYADDRESS, new ServiceRegistryImpl());
         startService(CustomerManagementServiceWrapper.class,  CUSTOMERMANAGEMENTWRAPPER , new CustomerManagementServiceWrapperImpl());
-
         //REST
         JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
         sf.setAddress(CUSTOMERMANAGEMENT);

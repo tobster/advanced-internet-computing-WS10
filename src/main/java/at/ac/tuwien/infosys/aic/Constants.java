@@ -2,6 +2,8 @@ package at.ac.tuwien.infosys.aic;
 
 
 public interface Constants {
+
+    public static final String RESETADDRESS = "http://localhost:8080/Reset";
     public static final String SUPPLIER1ADDRESS = "http://localhost:8080/Supplier1";
     public static final String SUPPLIER2ADDRESS = "http://localhost:8080/Supplier2";
     public static final String WAREHOUSEADDRESS = "http://localhost:8080/Warehouse";

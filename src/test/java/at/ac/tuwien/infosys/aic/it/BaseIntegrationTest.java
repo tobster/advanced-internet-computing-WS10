@@ -4,9 +4,12 @@
  */
 package at.ac.tuwien.infosys.aic.it;
 
+import static at.ac.tuwien.infosys.aic.Constants.*;
 import at.ac.tuwien.infosys.aic.server.Server;
-import at.ac.tuwien.infosys.aic.store.DataStore;
+import at.ac.tuwien.infosys.aic.soap.ResetService;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 
 /**
@@ -15,18 +18,17 @@ import org.junit.BeforeClass;
  */
 public abstract class BaseIntegrationTest {
 
-    protected static Server server;
+    private ResetService resetService;
 
-    @BeforeClass
-    public static void intitServer() {
-        server = new Server();
+    public BaseIntegrationTest() {
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(ResetService.class);
+        factory.setAddress(RESETADDRESS);
+        resetService = (ResetService) factory.create();
     }
 
-    @AfterClass
-    public static void stop() {
-        if (server != null) {
-            server.stopMe();
-            server = null;
-        }
+    @Before
+    public void reset() {
+        resetService.reset();
     }
 }
