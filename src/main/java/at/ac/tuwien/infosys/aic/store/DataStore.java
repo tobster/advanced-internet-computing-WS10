@@ -185,4 +185,14 @@ public class DataStore {
     public ProductData getProductData(Product p) {
         return availability.get(p);
     }
+
+    public LinkedList<String> putMessages(String key, LinkedList<String> value) {
+        return messages.put(key, value);
+    }
+
+    public LinkedList<String> getMessages(Object key) {
+        return messages.get(key);
+    }
+
+
 }
