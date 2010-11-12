@@ -188,10 +188,6 @@ public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
         CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
 
         customerManager.notify(CUSTOMER1, "Good Morning Vienna");
-        assertNotNull(ds.getMessages(CUSTOMER1).getLast());
-        log.info("Customer1 got new Message: " + ds.getMessages(CUSTOMER1).getLast());
-        assertThat(ds.getMessages(CUSTOMER1).getLast(), is("Good Morning Vienna"));
-     
     }
 
     @Test
