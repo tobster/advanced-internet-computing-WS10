@@ -36,7 +36,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
         if (result != null) {
             return result;
         } else {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
+            throw new WebApplicationException(Response.Status.NOT_FOUND);         
         }
     }
 

@@ -16,4 +16,11 @@ public class UnknownCustomerFault extends SoapFault {
 
     }
 
+    public UnknownCustomerFault(String msg) {
+        super("unknown costumer fault", ATTACHMENT_IO);
+
+
+
+    }
+
 }

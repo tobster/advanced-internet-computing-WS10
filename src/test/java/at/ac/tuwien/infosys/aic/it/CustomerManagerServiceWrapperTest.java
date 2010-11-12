@@ -4,14 +4,11 @@
  */
 package at.ac.tuwien.infosys.aic.it;
 
-import org.apache.cxf.binding.soap.SoapFault;
 import java.util.List;
 import at.ac.tuwien.infosys.aic.model.Address;
-import at.ac.tuwien.infosys.aic.soap.faults.UnknownCustomerFault;
 import org.junit.Before;
 import at.ac.tuwien.infosys.aic.model.Customer;
 import at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapper;
-import at.ac.tuwien.infosys.aic.soap.faults.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -47,7 +44,7 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
 
     }
 
-    @Test
+    @Test //(expected=SOAPFaultException.class)
     public void testGetNonExistingCustomer() throws Exception {
 
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
@@ -57,8 +54,9 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
 
         try {
             Customer c1 = customerManager.get("WRONGID");
-        } catch (UnknownProductFault e) {
-            log.info(e.getMessage());
+        } catch (SOAPFaultException e) {
+            log.info("caught UnknownCustomerFault");
+            assertThat(e.getMessage(), is("unknown costumer fault"));
         }
     }
 
@@ -72,8 +70,9 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
 
         try {
             customerManager.delete("WrongCustomer");
-        } catch (UnknownCustomerFault e) {
-            log.info(e.getMessage());
+        } catch (SOAPFaultException e) {
+            log.info("caught UnknownCustomerFault");
+            assertThat(e.getMessage(), is("unknown costumer fault"));
         }
 
     }
@@ -144,7 +143,8 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
             customerManager.post(c);
             fail("exception expected");
         } catch (SOAPFaultException e) {
-            assertThat(e.getCause().getMessage(),is("404"));
+            log.info("caught UnknownCustomerFault");
+            assertThat(e.getMessage(), is("unknown costumer fault"));
         }
 
     }

@@ -14,6 +14,7 @@ import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import at.ac.tuwien.infosys.aic.model.Customer;
+import at.ac.tuwien.infosys.aic.soap.faults.MyHttpErrorFault;
 import javax.xml.namespace.QName;
 import org.apache.cxf.binding.soap.SoapFault;
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -32,7 +33,13 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
 
     @Override
     public Customer get(String id) {
-        return customerManagementService.getCustomer(id);
+
+        try {
+           return customerManagementService.getCustomer(id);
+        } catch (WebApplicationException wea) {
+
+            throw new UnknownCustomerFault();
+        }      
         
     }
 
@@ -59,12 +66,24 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
 
     @Override
     public void delete(String id) {
-        customerManagementService.deleteCustomer(id);
+
+        try {
+           customerManagementService.deleteCustomer(id);
+        } catch (WebApplicationException wea) {
+
+            throw new UnknownCustomerFault();
+        }  
     }
 
     @Override
     public void post(Customer customer) {
-        customerManagementService.updateCustomer(customer.getId(), customer);
+
+        try {
+           customerManagementService.updateCustomer(customer.getId(), customer);
+        } catch (WebApplicationException wea) {
+
+            throw new UnknownCustomerFault();
+        }
     }
 
 }
