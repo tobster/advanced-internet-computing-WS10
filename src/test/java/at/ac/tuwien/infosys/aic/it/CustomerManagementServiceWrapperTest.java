@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 import static at.ac.tuwien.infosys.aic.Constants.*;
 
-public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
+public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
 
     private DataStore ds = DataStore.getInstance();
     Logger log = Logger.getLogger("CustomerManagerServiceWrapperTes");

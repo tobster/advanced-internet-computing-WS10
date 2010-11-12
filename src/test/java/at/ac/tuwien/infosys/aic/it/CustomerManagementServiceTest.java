@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.*;
  *
  * @author smolle
  */
-public class CustomerRestServiceTest extends BaseIntegrationTest {
+public class CustomerManagementServiceTest extends BaseIntegrationTest {
 
     private DataStore ds = DataStore.getInstance();
     private HttpClient httpclient = new DefaultHttpClient();
