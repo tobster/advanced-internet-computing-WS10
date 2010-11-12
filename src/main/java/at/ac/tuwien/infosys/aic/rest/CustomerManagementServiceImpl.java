@@ -3,6 +3,7 @@ package at.ac.tuwien.infosys.aic.rest;
 import at.ac.tuwien.infosys.aic.model.Customer;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -36,7 +37,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
         if (result != null) {
             return result;
         } else {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);         
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }
 
@@ -112,6 +113,21 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
             }
         }
     }
+
+        //update_account just takes the customer and adds the changedValue parameter to the customer's open balance
+    @POST
+    @Path("{id}/notify")
+    public void notify_customer(@PathParam("id") String id, @QueryParam("message") String message) {
+        log.info("notify customer called");
+        Customer customer = ds.getCustomer(id);
+        if (customer == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        } else {
+            LinkedList<String> messages = ds.get(id);
+            messages.add(message);
+        }
+    }
+    
 
     //notify (customer and message, as string)
     //TODO

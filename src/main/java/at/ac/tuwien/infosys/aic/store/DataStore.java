@@ -14,6 +14,7 @@ import at.ac.tuwien.infosys.aic.soap.ProductData;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,6 +28,8 @@ public class DataStore {
     private Map<String, Product> products;
     private Map<Product, ProductData> availability;
     private Map<Product, String> productEndpointAddresses;
+    private Map<String, LinkedList<String>> messages;
+
 
     public void init() {
         addresses = new ConcurrentHashMap<String, Address>();
