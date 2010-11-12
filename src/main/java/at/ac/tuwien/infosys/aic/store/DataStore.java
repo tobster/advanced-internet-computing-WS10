@@ -38,7 +38,9 @@ public class DataStore {
         products = new ConcurrentHashMap<String, Product>();
         availability = new ConcurrentHashMap<Product, ProductData>();
         productEndpointAddresses = new ConcurrentHashMap<Product, String>();
-        //      Procucts
+        messages = new ConcurrentHashMap<String, LinkedList<String>>();
+
+        //      Products
         Product p = new Product();
         p.setId("a777070b-96f3-47ac-9fe9-dfe2dadc00cb");
         p.setName("Moby Dick");

@@ -14,6 +14,7 @@ import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import at.ac.tuwien.infosys.aic.model.Customer;
+import java.math.BigDecimal;
 import javax.xml.namespace.QName;
 import org.apache.cxf.binding.soap.SoapFault;
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -79,6 +80,29 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
 
         try {
            customerManagementService.updateCustomer(customer.getId(), customer);
+        } catch (WebApplicationException wea) {
+
+            throw new UnknownCustomerFault();
+        }
+    }
+
+    @Override
+    public void update_account(String id, BigDecimal changedValue) {
+
+        try {
+           customerManagementService.update_account(id, changedValue);
+        } catch (WebApplicationException wea) {
+
+            throw new UnknownCustomerFault();
+        }
+    }
+
+
+    @Override
+    public void notify(String id, String message) {
+
+        try {
+           customerManagementService.notify(id, message);
         } catch (WebApplicationException wea) {
 
             throw new UnknownCustomerFault();

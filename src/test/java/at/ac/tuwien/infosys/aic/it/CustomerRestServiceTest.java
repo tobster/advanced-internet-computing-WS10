@@ -43,7 +43,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testGetExsistingCustomer() throws Exception {
+    public void testGetExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).build();
         HttpGet request = new HttpGet(uri);
         HttpResponse response = httpclient.execute(request);
@@ -53,11 +53,11 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
         String result = EntityUtils.toString(entity);
         assertThat(result, containsString(CUSTOMER1));
         assertThat(result, containsString(ds.getCustomer(CUSTOMER1).getName()));
-        //TODO more suffisticated assertions
+        //TODO more sophisticated assertions
     }
 
     @Test
-    public void testGetNonExsistingCustomer() throws Exception {
+    public void testGetNonExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path("nix77070b-96f3-47ac-9fe9-dfe2dadc00cb").build();
 
         HttpGet request = new HttpGet(uri);
@@ -66,7 +66,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testDeleteNonExsistingCustomer() throws Exception {
+    public void testDeleteNonExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path("nix77070b-96f3-47ac-9fe9-dfe2dadc00cb").build();
 
         HttpDelete request = new HttpDelete(uri);
@@ -75,7 +75,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testDeleteExsistingCustomer() throws Exception {
+    public void testDeleteExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER2).build();
 
         HttpDelete request = new HttpDelete(uri);
@@ -99,7 +99,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPutNonExsistingCustomer() throws Exception {
+    public void testPutNonExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path("c4444070b-96f3-47ac-9fe9-dfe2dadc00cb").build();
         HttpPut request = new HttpPut(uri);
         StringEntity payload = new StringEntity("{\"customer\":{\"@id\":\"c4444070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"name\":\"Heinrich Harrer\",\"openBalance\":0,\"adresses\":{\"@id\":\"a8888070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"street\":\"Mollardgasse\",\"city\":\"Wien\",\"house\":23,\"door\":1,\"zipCode\":1060,\"isShipping\":true,\"isBilling\":true,\"isOther\":true}}}");
@@ -116,7 +116,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPutExsistingCustomer() throws Exception {
+    public void testPutExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).build();
         HttpPut request = new HttpPut(uri);
         StringEntity payload = new StringEntity("{\"customer\":{\"@id\":\"" + CUSTOMER1 + "\",\"name\":\"Hudrich Harrer\",\"openBalance\":10,\"adresses\":{\"@id\":\"a8888070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"street\":\"Mollardgasse\",\"city\":\"Wien\",\"house\":23,\"door\":1,\"zipCode\":1060,\"isShipping\":true,\"isBilling\":true,\"isOther\":true}}}");
@@ -133,7 +133,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPostNonExsistingCustomer() throws Exception {
+    public void testPostNonExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path("c4434070b-96f3-47ac-9fe9-dfe2dadc00cb").build();
         HttpPost request = new HttpPost(uri);
         StringEntity payload = new StringEntity("{\"customer\":{\"@id\":\"c4434070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"name\":\"Heinrich Harrer\",\"openBalance\":0,\"adresses\":{\"@id\":\"a8888070b-96f3-47ac-9fe9-dfe2dadc00cb\",\"street\":\"Mollardgasse\",\"city\":\"Wien\",\"house\":23,\"door\":1,\"zipCode\":1060,\"isShipping\":true,\"isBilling\":true,\"isOther\":true}}}");
@@ -155,7 +155,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testPostExsistingCustomer() throws Exception {
+    public void testPostExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).build();
         HttpPost request = new HttpPost(uri);
         StringEntity payload = new StringEntity("{\"customer\":{\"@id\":\"" + CUSTOMER1 + "\",\"name\":\"Hudrich Harrer\"}}");
@@ -172,7 +172,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testUpdateAccoutnNonExsistingCustomer() throws Exception {
+    public void testUpdateAccountNonExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer")
                 .path("c4434070b-96f3-47ac-9fe9-dfe2dadc00cb")
                 .path("account")
@@ -185,7 +185,7 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void testUpdateAccoutnExsistingCustomer() throws Exception {
+    public void testUpdateAccountExistingCustomer() throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).path("account").queryParam("changedValue", "5.0").build();
         System.out.println(uri);
         HttpPost request = new HttpPost(uri);
@@ -198,9 +198,8 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void notifyExistingCustomer()  throws Exception {
+    public void testNotifyExistingCustomer()  throws Exception {
         URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path(CUSTOMER1).path("notify").build();
-        //System.out.println(uri);
         HttpPost request = new HttpPost(uri);
         StringEntity payload = new StringEntity("{\"message\": \"John\" }");
         payload.setContentType("application/json");
@@ -208,8 +207,17 @@ public class CustomerRestServiceTest extends BaseIntegrationTest {
         HttpResponse response = httpclient.execute(request);
         assertThat(response.getStatusLine().getStatusCode(), is(204));
 
+    }
 
-
+    @Test
+    public void testNotifyNonExistingCustomer()  throws Exception {
+        URI uri = UriBuilder.fromUri(CUSTOMERMANAGEMENT).path("Customer").path("WRONGID").path("notify").build();
+        HttpPost request = new HttpPost(uri);
+        StringEntity payload = new StringEntity("{\"message\": \"John\" }");
+        payload.setContentType("application/json");
+        request.setEntity(payload);
+        HttpResponse response = httpclient.execute(request);
+        assertThat(response.getStatusLine().getStatusCode(), is(404));
 
     }
 }

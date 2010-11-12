@@ -161,4 +161,24 @@ public class CustomerManagerServiceWrapperTest extends BaseIntegrationTest {
 
         customerManager.post(c);
     }
+
+    @Test
+    public void testUpdateAccountExistingCustomer() throws Exception {
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(CustomerManagementServiceWrapper.class);
+        factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
+        CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
+
+        customerManager.update_account(CUSTOMER1, new BigDecimal(8.0));
+    }
+
+    @Test
+    public void testNotifyExistingCustomer() throws Exception {
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setServiceClass(CustomerManagementServiceWrapper.class);
+        factory.setAddress(CUSTOMERMANAGEMENTWRAPPER);
+        CustomerManagementServiceWrapper customerManager = (CustomerManagementServiceWrapper) factory.create();
+
+        customerManager.notify(CUSTOMER1, "Good Morning Vienna");
+    }
 }

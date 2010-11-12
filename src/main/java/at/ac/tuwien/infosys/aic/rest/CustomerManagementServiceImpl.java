@@ -68,7 +68,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
     public void updateCustomer(@PathParam("id") String id, Customer customer) {
         log.info("postCustomer called!");
         if (!id.equals(customer.getId())) {
-            log.info("id miss missmatch in request");
+            log.info("id missmatch in request");
             throw new WebApplicationException(Response.Status.CONFLICT);
         }
         Customer currentCustomer = ds.getCustomer(id);
@@ -122,15 +122,21 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
         if (customer == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         } else {
+
             LinkedList<String> messages = ds.getMessages(id);
-            messages.add(message);
-            ds.putMessages(id, messages);
+
+            if (messages == null) {
+                messages = new LinkedList<String>();
+            }
+               
+                messages.add(message);
+                ds.putMessages(id, messages);
+
+                log.info("Message " + "'" + message + "' was delivered to customer " + ds.getCustomer(id).getName());
+           
         }
     }
     
-
-    //notify (customer and message, as string)
-    //TODO
     //handleDelete -> Customer loeschen
     @DELETE
     @Path("/{id}")

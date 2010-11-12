@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package at.ac.tuwien.infosys.aic.soap;
 
 import at.ac.tuwien.infosys.aic.model.Customer;
 import java.math.BigDecimal;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.ws.rs.QueryParam;
 
 @WebService(portName = "CustomerManagerServiceWrapperPT", name = "CustomManagerWrapper", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper")
 public interface CustomerManagementServiceWrapper {
@@ -22,8 +18,8 @@ public interface CustomerManagementServiceWrapper {
      //deleteCustomer
      public void delete(@WebParam(name = "id") String id);
      //update_account
-     //public void update_account(@WebParam(name = "id") String id, BigDecimal changedValue);
+     public void update_account(@WebParam(name = "id") String id, @QueryParam(value = "changedValue") BigDecimal changedValue);
      //notify_customer
-     //public void notify(@WebParam(name = "id") String message);
+     public void notify(@WebParam(name = "id") String id, String message);
 
 }
