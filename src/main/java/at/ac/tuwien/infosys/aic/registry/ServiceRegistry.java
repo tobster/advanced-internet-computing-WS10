@@ -7,14 +7,15 @@ package at.ac.tuwien.infosys.aic.registry;
 import at.ac.tuwien.infosys.aic.model.Product;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
+import javax.xml.bind.JAXBElement;
+import org.xmlsoap.schemas.ws._2004._08.addressing.EndpointReferenceType;
 
 /**
  *
- * @author smolle
+ * @author smolle, derndorfer
  */
 @WebService(portName = "RegistryPT", name = "Registry", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/registry")
 public interface ServiceRegistry {
 
-    W3CEndpointReference getSupplier(@WebParam(name = "product") Product product);
+    EndpointReferenceType getSupplier(@WebParam(name = "product") Product product);
 }

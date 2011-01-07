@@ -9,6 +9,7 @@ import at.ac.tuwien.infosys.aic.model.Product;
 import at.ac.tuwien.infosys.aic.registry.ServiceRegistry;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.math.BigDecimal;
+import javax.xml.bind.JAXBElement;
 import javax.xml.ws.soap.SOAPFaultException;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
 
@@ -17,6 +18,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
 import org.junit.Test;
+import org.xmlsoap.schemas.ws._2004._08.addressing.EndpointReferenceType;
 
 /**
  *
@@ -30,7 +32,7 @@ public class ServiceRegistryTest extends BaseIntegrationTest {
         factory.setServiceClass(ServiceRegistry.class);
         factory.setAddress(REGISTRYADDRESS);
         ServiceRegistry sr = (ServiceRegistry) factory.create();
-        W3CEndpointReference result = sr.getSupplier(DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        EndpointReferenceType result = sr.getSupplier(DataStore.getInstance().getProduct("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         assertNotNull(result);
     }
 
@@ -45,7 +47,7 @@ public class ServiceRegistryTest extends BaseIntegrationTest {
         p.setName("gaga");
         p.setSingleUnitPrice(BigDecimal.ZERO);
         try {
-            W3CEndpointReference result = sr.getSupplier(p);
+            EndpointReferenceType result = sr.getSupplier(p);
             fail("exception expected");
         } catch (SOAPFaultException e) {
             assertThat(e.getFault().getFaultString(), is("unknown product fault"));
