@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SupplierServiceService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="order" type="tns:order"/>
+      <xs:element name="orderResponse" type="tns:orderResponse"/>
+      <xs:element name="product" type="tns:product"/>
+      <xs:complexType name="order">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="product" type="tns:product"/>
+          <xs:element minOccurs="0" name="amount" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="product">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="singleUnitPrice" type="xs:decimal"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="orderResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:decimal"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="orderResponse">
+    <wsdl:part element="tns:orderResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="order">
+    <wsdl:part element="tns:order" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="Supplier">
+    <wsdl:operation name="order">
+      <wsdl:input message="tns:order" name="order"/>
+      <wsdl:output message="tns:orderResponse" name="orderResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SupplierServiceServiceSoapBinding" type="tns:Supplier">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="order">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="order">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="orderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SupplierServiceService">
+    <wsdl:port binding="tns:SupplierServiceServiceSoapBinding" name="SupplierPT">
+      <soap:address location="http://localhost:8080/Supplier2"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
