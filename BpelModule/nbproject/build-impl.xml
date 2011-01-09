@@ -10,7 +10,7 @@
     - dist
     - cleanup
 -->
-<project name="BpelModule1-impl" default="default" basedir="..">
+<project name="BpelModule-impl" default="default" basedir="..">
     <fail message="Please build using Ant 1.7.1 or higher.">
         <condition>
             <not>
