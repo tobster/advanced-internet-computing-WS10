@@ -11,29 +11,33 @@
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-	<!--jaxws:endpoint
-	  id="helloWorld"
-	  implementor="at.ac.tuwien.infosys.aic.soap.HelloWorldImpl"
-	  address="/HelloWorld" /-->
-
   <jaxws:endpoint
 	  id="shippingService"
 	  implementor="at.ac.tuwien.infosys.aic.soap.ShippingServiceImpl"
-	  address="/ShippingPT" />
+	  address="/Shipping" />
 
   <jaxws:endpoint
-	  id="supplierService"
+	  id="supplierService1"
 	  implementor="at.ac.tuwien.infosys.aic.soap.Supplier1"
-	  address="/SupplierPT" />
+	  address="/Supplier1" />
+
+  <jaxws:endpoint
+	  id="supplierService2"
+	  implementor="at.ac.tuwien.infosys.aic.soap.Supplier2"
+	  address="/Supplier2" />
 
   <jaxws:endpoint
 	  id="warehouseService"
 	  implementor="at.ac.tuwien.infosys.aic.soap.WarehouseServiceImpl"
-	  address="/WarehousePT" />
+	  address="/Warehouse" />
 
   <jaxws:endpoint
 	  id="registry"
 	  implementor="at.ac.tuwien.infosys.aic.registry.ServiceRegistry"
-	  address="/RegistryPT" /-->
-	  
+	  address="/Registry">
+
+  <jaxws:endpoint
+	  id="registry"
+	  implementor="at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapper"
+	  address="/CustomerManagementServiceWrapper">
 </beans>

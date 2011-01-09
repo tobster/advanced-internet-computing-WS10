@@ -1,0 +1,12 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ord="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema">
+  <soapenv:Body>
+    <ord:parameters>
+      <ord:customer>?string?</ord:customer>
+      <!--1 or more repetitions:-->
+      <ord:orderParts>
+        <ord:product_id>?string?</ord:product_id>
+        <ord:amount>?100?</ord:amount>
+      </ord:orderParts>
+    </ord:parameters>
+  </soapenv:Body>
+</soapenv:Envelope>

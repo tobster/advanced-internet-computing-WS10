@@ -110,3 +110,5 @@ velocity.log*
 #================
 *.swp
 
+*/build/*
+
