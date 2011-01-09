@@ -2,47 +2,58 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
+        xmlns:jaxrs="http://cxf.apache.org/jaxrs"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
 
-	<import resource="classpath:META-INF/cxf/cxf.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-  <jaxws:endpoint
+    <jaxws:endpoint
 	  id="shippingService"
 	  implementor="at.ac.tuwien.infosys.aic.soap.ShippingServiceImpl"
 	  address="/Shipping" />
 
-  <jaxws:endpoint
+    <jaxws:endpoint
 	  id="supplierService1"
 	  implementor="at.ac.tuwien.infosys.aic.soap.SupplierImpl"
 	  address="/Supplier1" />
 
-  <jaxws:endpoint
+    <jaxws:endpoint
 	  id="supplierService2"
 	  implementor="at.ac.tuwien.infosys.aic.soap.SupplierImpl"
 	  address="/Supplier2" />
 
-  <jaxws:endpoint
+    <jaxws:endpoint
 	  id="warehouseService"
 	  implementor="at.ac.tuwien.infosys.aic.soap.WarehouseServiceImpl"
 	  address="/Warehouse" />
 
-  <jaxws:endpoint
-	  id="customerManagementService"
+    <jaxws:endpoint
+	  id="customerManagementServiceWrapper"
 	  implementor="at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapperImpl"
 	  address="/CustomerManagementServiceWrapper" />
           
-  <jaxws:endpoint
+    <jaxws:endpoint
 	  id="resetService"
 	  implementor="at.ac.tuwien.infosys.aic.soap.ResetServiceImpl"
 	  address="/Reset" />
 
-  <jaxws:endpoint
+    <jaxws:endpoint
 	  id="registry"
 	  implementor="at.ac.tuwien.infosys.aic.registry.ServiceRegistryImpl"
 	  address="/Registry"/>
+
+    <jaxrs:server id="customerManagementService" address="/CustomerManagement">
+        <jaxrs:serviceBeans>
+            <ref bean="customerManagement" />
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
+
+    <bean id="customerManagement" class="at.ac.tuwien.infosys.aic.rest.CustomerManagementServiceImpl" />
 </beans>
