@@ -15,12 +15,13 @@ import java.net.URI;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import at.ac.tuwien.infosys.aic.model.Customer;
 import java.math.BigDecimal;
+import javax.jws.WebService;
 import javax.xml.namespace.QName;
 import org.apache.cxf.binding.soap.SoapFault;
 import org.apache.cxf.jaxrs.client.WebClient;
 import static at.ac.tuwien.infosys.aic.Constants.*;
 
-//@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.CustomManagerServiceWrapper")
+@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapper")
 public class CustomerManagementServiceWrapperImpl implements CustomerManagementServiceWrapper {
     private Logger log = Logger.getLogger("CustomerManagementServiceWrapperImpl");
     private CustomerManagementService customerManagementService;

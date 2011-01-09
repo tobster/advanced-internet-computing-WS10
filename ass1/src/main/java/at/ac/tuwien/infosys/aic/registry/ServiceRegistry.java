@@ -14,7 +14,7 @@ import org.xmlsoap.schemas.ws._2004._08.addressing.EndpointReferenceType;
  *
  * @author smolle, derndorfer
  */
-@WebService(portName = "RegistryPT", name = "Registry", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/registry")
+@WebService//(portName = "RegistryPT", name = "Registry", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/registry")
 public interface ServiceRegistry {
 
     EndpointReferenceType getSupplier(@WebParam(name = "product") Product product);

@@ -18,12 +18,12 @@
 
   <jaxws:endpoint
 	  id="supplierService1"
-	  implementor="at.ac.tuwien.infosys.aic.soap.Supplier1"
+	  implementor="at.ac.tuwien.infosys.aic.soap.SupplierImpl"
 	  address="/Supplier1" />
 
   <jaxws:endpoint
 	  id="supplierService2"
-	  implementor="at.ac.tuwien.infosys.aic.soap.Supplier2"
+	  implementor="at.ac.tuwien.infosys.aic.soap.SupplierImpl"
 	  address="/Supplier2" />
 
   <jaxws:endpoint
@@ -32,12 +32,17 @@
 	  address="/Warehouse" />
 
   <jaxws:endpoint
-	  id="registry"
-	  implementor="at.ac.tuwien.infosys.aic.registry.ServiceRegistry"
-	  address="/Registry">
+	  id="customerManagementService"
+	  implementor="at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapperImpl"
+	  address="/CustomerManagementServiceWrapper" />
+          
+  <jaxws:endpoint
+	  id="resetService"
+	  implementor="at.ac.tuwien.infosys.aic.soap.ResetServiceImpl"
+	  address="/Reset" />
 
   <jaxws:endpoint
 	  id="registry"
-	  implementor="at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapper"
-	  address="/CustomerManagementServiceWrapper">
+	  implementor="at.ac.tuwien.infosys.aic.registry.ServiceRegistryImpl"
+	  address="/Registry"/>
 </beans>

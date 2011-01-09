@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>at.ac.tuwien.infosys.aic</groupId>
   <artifactId>soap</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1</version>
   <packaging>war</packaging>
   <name>Advanced Internet Computing BSP1</name>
   <dependencies>
