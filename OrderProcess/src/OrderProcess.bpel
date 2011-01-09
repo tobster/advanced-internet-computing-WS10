@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="OrderProcess"
+    targetNamespace="http://enterprise.netbeans.org/bpel/OrderProcess/OrderProcess"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/OrderProcess/OrderProcess"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:sxxf="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions" xmlns:ns1="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns2="http://soap.aic.infosys.tuwien.ac.at/">
+    <import namespace="http://infosys.tuwien.ac.at/aic10/ass2/process" location="OrderProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/CustomerManagementServiceWrapperWrapper" location="CustomerManagementServiceWrapperWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="CustomerManagementServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="CustomerManagementPl" xmlns:tns="http://enterprise.netbeans.org/bpel/CustomerManagementServiceWrapperWrapper" partnerLinkType="tns:CustomerManagementServiceWrapperLinkType" partnerRole="CustomerManagementServiceWrapperRole"/>
+        <partnerLink name="OrderProcessPl" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" partnerLinkType="tns:OrderProcessLinkType" myRole="OrderProcessProvider"/>
+    </partnerLinks>
+    <variables>
+        <variable name="customer" messageType="ns2:getResponse"/>
+        <variable name="result" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" messageType="tns:start_process_response"/>
+        <variable name="customerID" xmlns:tns="http://soap.aic.infosys.tuwien.ac.at/" messageType="tns:get"/>
+        <variable name="receivedOrder" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" messageType="tns:start_process_request"/>
+    </variables>
+    <sequence>
+        <receive name="ReceiveOrder" createInstance="yes" partnerLink="OrderProcessPl" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="receivedOrder"/>
+        <assign name="Assign1">
+            <copy>
+                <from>$receivedOrder.part1/ns0:customer</from>
+                <to>$customerID.parameters/id</to>
+            </copy>
+        </assign>
+        <invoke name="GetCustomer" partnerLink="CustomerManagementPl" operation="get" portType="ns2:CustomerManagementServiceWrapper" inputVariable="customerID" outputVariable="customer"/>
+        <assign name="Assign2">
+            <copy>
+                <from>$customer.parameters/return/name</from>
+                <to>$result.part1/ns0:orderResult/ns0:comment</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="OrderProcessPl" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="result"/>
+    </sequence>
+</process>
+
+
+
+
+
