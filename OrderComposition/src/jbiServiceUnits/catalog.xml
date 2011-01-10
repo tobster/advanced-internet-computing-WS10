@@ -1,2 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/Warehouse?wsdl=WarehouseService.wsdl" uri="OrderProcess/src/_references/_cache/localhost_8080/Warehouse.wsdl_WarehouseService.wsdl"/>
 </catalog>

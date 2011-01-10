@@ -4,12 +4,8 @@
       <ord:customer>c7777070b-96f3-47ac-9fe9-dfe2dadc00cb</ord:customer>
       <!--1 or more repetitions:-->
       <ord:orderParts>
-        <ord:product_id>a777070b-96f3-47ac-9fe9-dfe2dadc00cb</ord:product_id>
-        <ord:amount>2</ord:amount>
-      </ord:orderParts>
-      <ord:orderParts>
         <ord:product_id>aec0737d-e783-4c16-9b26-66040caf4aff</ord:product_id>
-        <ord:amount>1</ord:amount>
+        <ord:amount>2</ord:amount>
       </ord:orderParts>
     </ord:parameters>
   </soapenv:Body>

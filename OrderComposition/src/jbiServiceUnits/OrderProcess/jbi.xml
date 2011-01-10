@@ -11,5 +11,10 @@
             <ns3:process-name>orderProcess</ns3:process-name>
             <ns3:file-path>orderProcess.bpel</ns3:file-path>
         </consumes>
+        <consumes endpoint-name="WarehouseServiceRole_partnerRole" interface-name="ns1:WarehouseService" service-name="ns0:WarehousePL">
+            <ns3:display-name>WarehousePL</ns3:display-name>
+            <ns3:process-name>orderProcess</ns3:process-name>
+            <ns3:file-path>orderProcess.bpel</ns3:file-path>
+        </consumes>
     </services>
 </jbi>

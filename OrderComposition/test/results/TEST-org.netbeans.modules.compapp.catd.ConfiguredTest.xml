@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="t400" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="0.195" timestamp="2011-01-10T19:04:23">
+<testsuite errors="0" failures="1" hostname="t400" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="193.554" timestamp="2011-01-10T20:04:51">
   <properties>
     <property name="netbeans.autoupdate.country" value="AT" />
     <property name="com.sun.jbi.sa.internal.routing" value="true" />
@@ -290,7 +290,7 @@
     <property name="libs.cdc-ant-utils.maven-pom" value="" />
     <property name="libs.cdc-agui-swing-layout.classpath" value="C:\GlassFishESBv22\netbeans\mobility8\modules\ext\cdc-agui-swing-layout.jar" />
     <property name="dist.dir" value="dist" />
-    <property name="inDebug" value="${inDebug}" />
+    <property name="inDebug" value="true" />
     <property name="org.netbeans.modules.compapp.catd.context" value="" />
     <property name="libs.sjmc-ant-utils.classpath" value="C:\GlassFishESBv22\netbeans\mobility8\modules\ext\org-netbeans-modules-j2me-cdc-project-sjmc.jar" />
     <property name="libs.JMUnit4CLDC10.classpath" value="C:\GlassFishESBv22\netbeans\mobility8\modules\ext\jmunit4cldc10-1.2.1.jar" />
@@ -312,8 +312,8 @@
     <property name="user.timezone" value="" />
     <property name="java.module.install.dir" value="C:\GlassFishESBv22\netbeans\java2\modules" />
     <property name="libs.ant-contrib.src" value="" />
-    <property name="ant.file.OrderComposition-jbi-impl" value="D:\Studium\Advanced Internet Computing\Assignment 2\code\advanced-internet-computing-WS10\OrderComposition\nbproject\build-impl.xml" />
     <property name="netbeans.dirs" value="C:\GlassFishESBv22\netbeans\nb6.7;C:\GlassFishESBv22\netbeans\ide11;C:\GlassFishESBv22\netbeans\java2;C:\GlassFishESBv22\netbeans\xml2;C:\GlassFishESBv22\netbeans\apisupport1;C:\GlassFishESBv22\netbeans\webcommon1;C:\GlassFishESBv22\netbeans\websvccommon1;C:\GlassFishESBv22\netbeans\enterprise5;C:\GlassFishESBv22\netbeans\mobility8;C:\GlassFishESBv22\netbeans\profiler3;C:\GlassFishESBv22\netbeans\ruby2;C:\GlassFishESBv22\netbeans\python1;C:\GlassFishESBv22\netbeans\php1;C:\GlassFishESBv22\netbeans\visualweb2;C:\GlassFishESBv22\netbeans\soa2;C:\GlassFishESBv22\netbeans\identity2;C:\GlassFishESBv22\netbeans\uml6;C:\GlassFishESBv22\netbeans\harness;C:\GlassFishESBv22\netbeans\cnd2;C:\GlassFishESBv22\netbeans\dlight1;C:\GlassFishESBv22\netbeans\groovy1;C:\GlassFishESBv22\netbeans\extra;C:\GlassFishESBv22\netbeans\javafx2;C:\GlassFishESBv22\netbeans\{platform-cluster};C:\GlassFishESBv22\netbeans\{ide-cluster};C:\GlassFishESBv22\netbeans\{xml-cluster}" />
+    <property name="ant.file.OrderComposition-jbi-impl" value="D:\Studium\Advanced Internet Computing\Assignment 2\code\advanced-internet-computing-WS10\OrderComposition\nbproject\build-impl.xml" />
     <property name="java.ext.dirs" value="C:\Sun\SDK\jdk\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
     <property name="libs.metro.src" value="" />
     <property name="libs.savaje-ant-utils.maven-pom" value="" />
@@ -331,8 +331,8 @@
     <property name="libs.JMUnit4CLDC11.maven-pom" value="" />
     <property name="libs.toplink.javadoc" value="C:\GlassFishESBv22\netbeans\enterprise5\docs\javaee5-doc-api.zip" />
     <property name="sun.desktop" value="windows" />
-    <property name="libs.nb_svg_midp_components.maven-pom" value="" />
     <property name="libs.PojoSELib.maven-pom" value="" />
+    <property name="libs.nb_svg_midp_components.maven-pom" value="" />
     <property name="libs.ricoh-ant-utils.javadoc" value="" />
     <property name="libs.NetBeans MIDP Components PDA.maven-pom" value="" />
     <property name="libs.restlib.javadoc" value="C:\GlassFishESBv22\netbeans\enterprise5\docs\jersey-api-doc.zip" />
@@ -347,16 +347,16 @@
     <property name="libs.PostgreSQLDriver.classpath" value="C:\GlassFishESBv22\netbeans\ide11\modules\ext\postgresql-8.3-603.jdbc3.jar" />
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="soa.module.install.dir" value="C:\GlassFishESBv22\netbeans\soa2\modules" />
-    <property name="libs.Encoder-Custom.src" value="" />
     <property name="libs.junit.src" value="" />
+    <property name="libs.Encoder-Custom.src" value="" />
     <property name="libs.CopyLibs.src" value="" />
     <property name="build.dir" value="build" />
     <property name="ant.version" value="Apache Ant version 1.7.1 compiled on June 27 2008" />
     <property name="file.encoding" value="Cp1252" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestCase1" time="0.179">
-    <failure message="[10.01.2011 20:04:23] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [10.01.2011 20:04:23] The response is not identical to the expected output.
+  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestCase2" time="193.54">
+    <failure message="[10.01.2011 21:08:05] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [10.01.2011 21:08:05] The response is not identical to the expected output.
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2348)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2218)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.testConcurrentSOAPRequest(ConfiguredTest.java:862)
@@ -368,7 +368,7 @@ awt.toolkit=sun.awt.windows.WToolkit
 file.encoding=Cp1252
 file.encoding.pkg=sun.io
 file.separator=\
-inDebug=${inDebug}
+inDebug=true
 java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
 java.awt.printerjob=sun.awt.windows.WPrinterJob
 java.class.path=C:\GlassFishESBv22\netbeans\soa2\modules\org-netbeans-modules-compapp-manager-jbi.jar;C:\GlassFishESBv22\netbeans\soa2\modules\org-netbeans-modules-compapp-projects-jbi.jar;C:\GlassFishESBv22\netbeans\soa2\modules\ext\jbi\jbi-admin-common.jar;C:\GlassFishESBv22\netbeans\soa2\modules\ext\jbi\catd.jar;C:\GlassFishESBv22\netbeans\java2\modules\ext\junit-3.8.2.jar;C:\GlassFishESBv22\netbeans\java2\modules\ext\jaxws21\api\saaj-api.jar;C:\GlassFishESBv22\netbeans\java2\modules\ext\jaxws21\saaj-impl.jar;C:\GlassFishESBv22\netbeans\java2\modules\ext\jaxws21\FastInfoset.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-lib.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-util.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-lib2.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-indent.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-plain.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-plain-lib.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-settings.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-editor-settings-storage.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-lexer.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-xml-core.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-xml-lexer.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-xml-text.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-xml-xdm.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-xml-xam.jar;C:\GlassFishESBv22\netbeans\ide11\modules\org-netbeans-modules-csl-api.jar;C:\GlassFishESBv22\netbeans\ide11\modules\ext\jaxb\activation.jar;C:\GlassFishESBv22\netbeans\platform10\lib\org-openide-modules.jar;C:\GlassFishESBv22\netbeans\platform10\lib\org-openide-util.jar;C:\GlassFishESBv22\netbeans\platform10\modules\org-openide-options.jar;C:\GlassFishESBv22\netbeans\platform10\modules\org-openide-text.jar;C:\GlassFishESBv22\netbeans\platform10\modules\org-openide-loaders.jar;C:\GlassFishESBv22\netbeans\platform10\modules\org-openide-nodes.jar;C:\GlassFishESBv22\netbeans\platform10\modules\org-netbeans-modules-editor-mimelookup.jar;C:\GlassFishESBv22\netbeans\platform10\modules\org-netbeans-modules-editor-mimelookup-impl.jar;C:\GlassFishESBv22\netbeans\platform10\core\org-openide-filesystems.jar;D:\Studium\Advanced Internet Computing\Assignment 2\code\advanced-internet-computing-WS10\OrderComposition;C:\Program Files\Apache Software Foundation\Tomcat 6.0\lib;C:\Program Files (x86)\Java\jre6\lib\ext\mysql-connector-java-5.1.12-bin.jar;C:\Program Files (x86)\Java\jre6\lib\ext\QTJava.zip;C:\GlassFishESBv22\netbeans\java2\ant\lib\ant-launcher.jar;C:\GlassFishESBv22\netbeans\java2\ant\lib\ant.jar;C:\GlassFishESBv22\netbeans\java2\ant\patches\72080.jar
@@ -419,7 +419,7 @@ user.language=de
 user.name=Christoph Derndorfer
 user.timezone=Europe/Berlin
 user.variant=
-Test TestCase1\Concurrent.properties Failed. (Destination: http://localhost:9080/OrderProcessService/OrderProcessPort)
+Test TestCase2\Concurrent.properties Failed. (Destination: http://localhost:9080/OrderProcessService/OrderProcessPort)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
