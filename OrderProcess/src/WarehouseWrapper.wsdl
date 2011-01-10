@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WarehouseWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/WarehouseWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/WarehouseWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://soap.aic.infosys.tuwien.ac.at/">
+    <import location="Warehouse.wsdl" namespace="http://soap.aic.infosys.tuwien.ac.at/"/>
+    <plnk:partnerLinkType name="WarehouseServiceLinkType">
+        <plnk:role name="WarehouseServiceRole" portType="ns:WarehouseService"/>
+    </plnk:partnerLinkType>
+</definitions>
+

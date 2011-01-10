@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/ass2/process" xmlns:ns2="http://enterprise.netbeans.org/bpel/OrderProcess/orderProcess" xmlns:ns3="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns4="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="OrderProcessPort" interface-name="ns1:OrderProcessPortType" name="endpoint1" service-name="ns1:OrderProcessService"/>
+        <endpoint display-name="OrderProcessPL" endpoint-name="OrderProcessProvider_myRole" file-path="orderProcess.bpel" interface-name="ns1:OrderProcessPortType" name="endpoint2" process-name="orderProcess" service-name="ns2:OrderProcessPL"/>
+        <endpoint display-name="CustomerManagementPL" endpoint-name="CustomerManagementServiceWrapperRole_partnerRole" file-path="orderProcess.bpel" interface-name="ns3:CustomerManagementServiceWrapper" name="endpoint3" process-name="orderProcess" service-name="ns2:CustomerManagementPL"/>
+        <endpoint endpoint-name="CustomerManagementServiceWrapperImplPort" interface-name="ns3:CustomerManagementServiceWrapper" name="endpoint4" service-name="ns3:CustomerManagementServiceWrapperImplService"/>
+        <endpoint endpoint-name="CustomerManagerServiceWrapperPT" interface-name="ns4:CustomManagerWrapper" name="endpoint5" service-name="ns4:CustomerManagementServiceWrapperService"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="OrderProcess.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrderComposition-OrderProcess" unit-name="OrderProcess" unknown="false" x="149" y="99">
+            <provides endpoint="endpoint2"/>
+            <consumes endpoint="endpoint3"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="OrderComposition-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port x="67" y="39">
+                    <link xlink:href="../jbiServiceUnits/OrderProcess/CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/service[@name='CustomerManagementServiceWrapperImplService']/port[@name='CustomerManagementServiceWrapperImplPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+                <port x="67" y="118">
+                    <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/service[@name='OrderProcessService']/port[@name='OrderProcessPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint3" provider="endpoint4" state="unchanged"/>
+        <connection consumer="endpoint1" provider="endpoint2" state="unchanged"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/portType[@name='CustomerManagementServiceWrapper'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/portType[@name='OrderProcessPortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/binding[@name='CustomerManagementServiceWrapperImplServiceSoapBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/binding[@name='OrderProcessBinding'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/service[@name='CustomerManagementServiceWrapperImplService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/service[@name='OrderProcessService'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/OrderProcess/orderProcess" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://infosys.tuwien.ac.at/aic10/ass2/process" xmlns:ns3="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="OrderProcessProvider_myRole" interface-name="ns2:OrderProcessPortType" service-name="ns0:OrderProcessPL">
+            <ns3:display-name>OrderProcessPL</ns3:display-name>
+            <ns3:process-name>orderProcess</ns3:process-name>
+            <ns3:file-path>orderProcess.bpel</ns3:file-path>
+        </provides>
+        <consumes endpoint-name="CustomerManagementServiceWrapperRole_partnerRole" interface-name="ns1:CustomerManagementServiceWrapper" service-name="ns0:CustomerManagementPL">
+            <ns3:display-name>CustomerManagementPL</ns3:display-name>
+            <ns3:process-name>orderProcess</ns3:process-name>
+            <ns3:file-path>orderProcess.bpel</ns3:file-path>
+        </consumes>
+    </services>
+</jbi>

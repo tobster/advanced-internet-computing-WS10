@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema"
+            xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema"
+            elementFormDefault="qualified">
+                
+    <xs:complexType name="orderPart">
+        <xs:sequence>
+            <xs:element name="product_id" type="xs:string"/>
+            <xs:element name="amount" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="orderResult">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="comment" type="xs:string"/>
+            <xs:element name="orderid" type="xs:long"/>
+            <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="parameters">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customer" type="xs:string"/>
+                <xs:element name="orderParts" minOccurs="1" maxOccurs="unbounded" type="tns:orderPart"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="parameters_callback">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="shipping_id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="result">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orderResult" type="tns:orderResult"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="callback_result">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="shipping_id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+</xs:schema>
