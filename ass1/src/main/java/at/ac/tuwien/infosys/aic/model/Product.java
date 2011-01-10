@@ -63,24 +63,14 @@ public class Product {
         if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
             return false;
         }
-        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
-            return false;
-        }
-        if (this.singleUnitPrice != other.singleUnitPrice && (this.singleUnitPrice == null || !this.singleUnitPrice.equals(other.singleUnitPrice))) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 61 * hash + (this.name != null ? this.name.hashCode() : 0);
-        hash = 61 * hash + (this.singleUnitPrice != null ? this.singleUnitPrice.hashCode() : 0);
+        int hash = 5;
+        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
-    }
-
-    
+    }    
 
 }

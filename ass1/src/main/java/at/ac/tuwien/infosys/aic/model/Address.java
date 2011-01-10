@@ -134,33 +134,4 @@ public class Address {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 29 * hash + (this.street != null ? this.street.hashCode() : 0);
-        hash = 29 * hash + (this.city != null ? this.city.hashCode() : 0);
-        hash = 29 * hash + this.house;
-        hash = 29 * hash + this.door;
-        hash = 29 * hash + (this.zipCode != null ? this.zipCode.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public String toString() {
-        StringBuffer stringbuffer = new StringBuffer();
-        stringbuffer.append(street);
-        stringbuffer.append(" ");
-        stringbuffer.append(house);
-        if (door != 0) {
-            stringbuffer.append("/");
-            stringbuffer.append(door);
-
-        }
-        stringbuffer.append(", ");
-        stringbuffer.append(zipCode);
-        stringbuffer.append(" ");
-        stringbuffer.append(city);
-        return stringbuffer.toString();
-    }
 }
