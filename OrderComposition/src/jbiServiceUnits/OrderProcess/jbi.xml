@@ -16,5 +16,15 @@
             <ns3:process-name>orderProcess</ns3:process-name>
             <ns3:file-path>orderProcess.bpel</ns3:file-path>
         </consumes>
+        <consumes endpoint-name="SupplierServiceRole_partnerRole" interface-name="ns1:SupplierService" service-name="ns0:SupplierPL">
+            <ns3:display-name>SupplierPL</ns3:display-name>
+            <ns3:process-name>orderProcess</ns3:process-name>
+            <ns3:file-path>orderProcess.bpel</ns3:file-path>
+        </consumes>
+        <consumes endpoint-name="ShippingServiceRole_partnerRole" interface-name="ns1:ShippingService" service-name="ns0:ShippingPL">
+            <ns3:display-name>ShippingPL</ns3:display-name>
+            <ns3:process-name>orderProcess</ns3:process-name>
+            <ns3:file-path>orderProcess.bpel</ns3:file-path>
+        </consumes>
     </services>
 </jbi>

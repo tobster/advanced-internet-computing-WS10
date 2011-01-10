@@ -8,19 +8,30 @@
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://infosys.tuwien.ac.at/aic10/dto/warehouse">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns3="http://infosys.tuwien.ac.at/aic10/dto/supplier">
     <import namespace="http://infosys.tuwien.ac.at/aic10/ass2/process" location="OrderProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="CustomerManagementServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/CustomerManagementServiceWrapperWrapper" location="CustomerManagementServiceWrapperWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse" location="Warehouse.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="WarehouseService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/WarehouseServiceWrapper" location="WarehouseServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" location="Supplier2.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="SupplierService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/SupplierServiceWrapper" location="SupplierServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="Shipping.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/ShippingWrapper" location="ShippingWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="CustomerManagementPL" xmlns:tns="http://enterprise.netbeans.org/bpel/CustomerManagementServiceWrapperWrapper" partnerLinkType="tns:CustomerManagementServiceWrapperLinkType" partnerRole="CustomerManagementServiceWrapperRole"/>
         <partnerLink name="WarehousePL" xmlns:tns="http://enterprise.netbeans.org/bpel/WarehouseServiceWrapper" partnerLinkType="tns:WarehouseServiceLinkType" partnerRole="WarehouseServiceRole"/>
+        <partnerLink name="SupplierPL" xmlns:tns="http://enterprise.netbeans.org/bpel/SupplierServiceWrapper" partnerLinkType="tns:SupplierServiceLinkType" partnerRole="SupplierServiceRole"/>
+        <partnerLink name="ShippingPL" xmlns:tns="http://enterprise.netbeans.org/bpel/ShippingWrapper" partnerLinkType="tns:ShippingServiceLinkType" partnerRole="ShippingServiceRole"/>
         <partnerLink name="OrderProcessPL" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" partnerLinkType="tns:OrderProcessLinkType" myRole="OrderProcessProvider"/>
     </partnerLinks>
     <variables>
+        <variable name="notificationResponse" messageType="ns1:notifyResponse"/>
+        <variable name="notification" messageType="ns1:notify"/>
+        <variable name="shippingID" messageType="ns1:ship_itemsResponse"/>
+        <variable name="shippingItems" messageType="ns1:ship_items"/>
         <variable name="customer" messageType="ns1:getResponse"/>
         <variable name="CustomerID" messageType="ns1:get"/>
         <variable name="returnValue" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" messageType="tns:start_process_response"/>
@@ -43,6 +54,10 @@
             </completionCondition>
             <scope name="Scope1">
                 <variables>
+                    <variable name="orderSupplierResponse" messageType="ns1:orderResponse"/>
+                    <variable name="orderSupplierProduct" messageType="ns1:order"/>
+                    <variable name="orderWarehouseResponse" messageType="ns1:orderResponse"/>
+                    <variable name="OrderWarehouseProduct" messageType="ns1:order"/>
                     <variable name="OneOrderOut" messageType="ns1:check_availabilityResponse"/>
                     <variable name="OneOrderIn" messageType="ns1:check_availability"/>
                 </variables>
@@ -58,18 +73,73 @@
                         </copy>
                     </assign>
                     <invoke name="CheckAvailability" partnerLink="WarehousePL" operation="check_availability" portType="ns1:WarehouseService" inputVariable="OneOrderIn" outputVariable="OneOrderOut"/>
+                    <if name="If1">
+                        <condition>$OneOrderOut.parameters/return/isAvailable</condition>
+                        <sequence name="Sequence2">
+                            <assign name="Assign5">
+                                <copy>
+                                    <from variable="OneOrderIn" part="parameters"/>
+                                    <to variable="OrderWarehouseProduct" part="parameters"/>
+                                </copy>
+                            </assign>
+                            <invoke name="OrderWarehouse" partnerLink="WarehousePL" operation="order" portType="ns1:WarehouseService" inputVariable="OrderWarehouseProduct" outputVariable="orderWarehouseResponse"/>
+                        </sequence>
+                    </if>
                 </sequence>
             </scope>
         </forEach>
+        <flow name="Flow1">
+            <sequence name="FlowSequence">
+                <assign name="Assign6">
+                    <copy>
+                        <from>$ExternalOrder.part1/ns0:orderParts/ns0:product_id</from>
+                        <to>$shippingItems.parameters/items/product/@id</to>
+                    </copy>
+                    <copy>
+                        <from>$ExternalOrder.part1/ns0:orderParts/ns0:amount</from>
+                        <to>$shippingItems.parameters/items/quantity</to>
+                    </copy>
+                    <copy>
+                        <from>$customer.parameters/return/adresses/@id</from>
+                        <to>$shippingItems.parameters/address/@id</to>
+                    </copy>
+                </assign>
+                <invoke name="ShipItems" partnerLink="ShippingPL" operation="ship_items" portType="ns1:ShippingService" inputVariable="shippingItems" outputVariable="shippingID"/>
+            </sequence>
+            <sequence name="FlowSequence1">
+                <assign name="Assign7">
+                    <copy>
+                        <from>$customer.parameters/return/@id</from>
+                        <to>$notification.parameters/id</to>
+                    </copy>
+                    <copy>
+                        <from>'Order sent'</from>
+                        <to>$notification.parameters/arg1</to>
+                    </copy>
+                </assign>
+                <invoke name="NotifyCustomer" partnerLink="CustomerManagementPL" operation="notify" portType="ns1:CustomerManagementServiceWrapper" inputVariable="notification" outputVariable="notificationResponse"/>
+            </sequence>
+        </flow>
         <assign name="Assign2">
             <copy>
-                <from>$customer.parameters/return/@id</from>
+                <from>true()</from>
+                <to>$returnValue.part1/ns0:orderResult/ns0:success</to>
+            </copy>
+            <copy>
+                <from>$shippingID.parameters/return</from>
                 <to>$returnValue.part1/ns0:orderResult/ns0:orderid</to>
             </copy>
         </assign>
         <reply name="SendReply" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="returnValue"/>
     </sequence>
 </process>
+
+
+
+
+
+
+
 
 
 

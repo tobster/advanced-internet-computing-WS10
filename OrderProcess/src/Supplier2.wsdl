@@ -1,0 +1,20 @@
+<wsdl:definitions name="SupplierImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <wsdl:import location="SupplierService.wsdl" namespace="http://soap.aic.infosys.tuwien.ac.at/"/>
+   <wsdl:binding name="SupplierImplServiceSoapBinding" type="ns1:SupplierService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="order">
+         <soap:operation soapAction="" style="document"/>
+         <wsdl:input name="order">
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="orderResponse">
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="SupplierImplService">
+      <wsdl:port binding="tns:SupplierImplServiceSoapBinding" name="SupplierPT">
+         <soap:address location="http://localhost:8080/Supplier2"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
