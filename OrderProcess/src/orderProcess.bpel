@@ -12,11 +12,8 @@
     <import namespace="http://infosys.tuwien.ac.at/aic10/ass2/process" location="OrderProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="CustomerManagementServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/CustomerManagementServiceWrapperWrapper" location="CustomerManagementServiceWrapperWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
-    <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="Warehouse.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
-    <import namespace="http://enterprise.netbeans.org/bpel/WarehouseWrapper" location="WarehouseWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="CustomerManagementPL" xmlns:tns="http://enterprise.netbeans.org/bpel/CustomerManagementServiceWrapperWrapper" partnerLinkType="tns:CustomerManagementServiceWrapperLinkType" partnerRole="CustomerManagementServiceWrapperRole"/>
-        <partnerLink name="WarehousePL" xmlns:tns="http://enterprise.netbeans.org/bpel/WarehouseWrapper" partnerLinkType="tns:WarehouseServiceLinkType" partnerRole="WarehouseServiceRole"/>
         <partnerLink name="OrderProcessPL" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" partnerLinkType="tns:OrderProcessLinkType" myRole="OrderProcessProvider"/>
     </partnerLinks>
     <variables>
@@ -34,37 +31,6 @@
             </copy>
         </assign>
         <invoke name="GetCustomer" partnerLink="CustomerManagementPL" operation="get" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" portType="ns1:CustomerManagementServiceWrapper" inputVariable="CustomerID" outputVariable="customer"/>
-        <assign name="Assign4"/>
-        <forEach name="ForEachOrder" parallel="no" counterName="currentOrder">
-            <sxt:trace>
-                <sxt:log level="warning" location="onStart">
-                    <ns3:from>concat('Number of nodes = ', count($request.request/ns1:Person[.]))</ns3:from>
-                </sxt:log>
-            </sxt:trace>
-            <startCounterValue>1</startCounterValue>
-            <finalCounterValue>count($request.request/ns1:Person[.])</finalCounterValue>
-            <completionCondition>
-                <branches successfulBranchesOnly="yes">count($request.request/ns1:Person[.])</branches>
-            </completionCondition>
-            <scope name="Scope1">
-                <sequence name="Sequence1">
-                    <assign name="AssignEmployee">
-                        <copy>
-                                <from>$request.request/ns1:Person[$currentPerson]/ns1:FirstName</from>
-                                    <to>$reply.response/ns2:Employee[$currentPerson]/ns2:FirstName</to>
-                            </copy>
-                            <copy>
-                                <from>$request.request/ns1:Person[$currentPerson]/ns1:LastName</from>
-                                    <to>$reply.response/ns2:Employee[$currentPerson]/ns2:LastName</to>
-                            </copy>
-                            <copy>
-                                <from>$request.request/ns1:Person[$currentPerson]/ns1:Age</from>
-                                    <to>$reply.response/ns2:Employee[$currentPerson]/ns2:Age</to>
-                            </copy>
-                    </assign>
-                </sequence>
-            </scope>
-        </forEach>
         <assign name="Assign2">
             <copy>
                 <from>$customer.parameters/return/@id</from>
