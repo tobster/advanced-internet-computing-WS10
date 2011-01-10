@@ -94,5 +94,9 @@
       <url>http://download.java.net/maven/2</url>
     </repository>
   </repositories>
+    <properties>
+        <netbeans.hint.deploy.server>J2EE</netbeans.hint.deploy.server>
+    </properties>
 </project>
+
 
