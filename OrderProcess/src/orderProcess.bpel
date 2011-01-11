@@ -8,7 +8,7 @@
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns3="http://infosys.tuwien.ac.at/aic10/dto/supplier">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns3="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns4="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
     <import namespace="http://infosys.tuwien.ac.at/aic10/ass2/process" location="OrderProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://soap.aic.infosys.tuwien.ac.at/" location="CustomerManagementServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/CustomerManagementServiceWrapperWrapper" location="CustomerManagementServiceWrapperWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -92,16 +92,12 @@
             <sequence name="FlowSequence">
                 <assign name="Assign6">
                     <copy>
-                        <from>$ExternalOrder.part1/ns0:orderParts/ns0:product_id</from>
-                        <to>$shippingItems.parameters/items/product/@id</to>
-                    </copy>
-                    <copy>
-                        <from>$ExternalOrder.part1/ns0:orderParts/ns0:amount</from>
-                        <to>$shippingItems.parameters/items/quantity</to>
-                    </copy>
-                    <copy>
                         <from>$customer.parameters/return/adresses/@id</from>
                         <to>$shippingItems.parameters/address/@id</to>
+                    </copy>
+                    <copy>
+                        <from>ns4:doXslTransform('urn:stylesheets:OrderItemTransformation.xsl', $ExternalOrder.part1)</from>
+                        <to>$shippingItems.parameters/items</to>
                     </copy>
                 </assign>
                 <invoke name="ShipItems" partnerLink="ShippingPL" operation="ship_items" portType="ns1:ShippingService" inputVariable="shippingItems" outputVariable="shippingID"/>
@@ -133,6 +129,9 @@
         <reply name="SendReply" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="returnValue"/>
     </sequence>
 </process>
+
+
+
 
 
 

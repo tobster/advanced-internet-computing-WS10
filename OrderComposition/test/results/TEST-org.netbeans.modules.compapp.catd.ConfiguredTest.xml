@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="t400" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="0.842" timestamp="2011-01-10T21:48:09">
+<testsuite errors="0" failures="1" hostname="t400" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="0.167" timestamp="2011-01-11T16:14:28">
   <properties>
     <property name="netbeans.autoupdate.country" value="AT" />
     <property name="com.sun.jbi.sa.internal.routing" value="true" />
@@ -354,8 +354,8 @@
     <property name="file.encoding" value="Cp1252" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestCase2" time="0.826">
-    <failure message="[10.01.2011 22:48:10] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [10.01.2011 22:48:10] The response is not identical to the expected output.
+  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestTwoItems" time="0.152">
+    <failure message="[11.01.2011 17:14:28] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [11.01.2011 17:14:28] The response is not identical to the expected output.
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2348)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2218)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.testConcurrentSOAPRequest(ConfiguredTest.java:862)
@@ -418,12 +418,7 @@ user.language=de
 user.name=Christoph Derndorfer
 user.timezone=Europe/Berlin
 user.variant=
-Test TestCase2\Concurrent.properties
-  * Difference (Delete): #text
-  * Difference (Add): #text
- Failed. (Destination: http://localhost:9080/OrderProcessService/OrderProcessPort)
+Test TestTwoItems\Concurrent.properties Failed. (Destination: http://localhost:9080/OrderProcessService/OrderProcessPort)
 ]]></system-out>
-  <system-err><![CDATA[10.01.2011 22:48:10 org.netbeans.modules.csl.core.LanguageRegistry readSfs
-INFO: No CslPlugins folder
-]]></system-err>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>
