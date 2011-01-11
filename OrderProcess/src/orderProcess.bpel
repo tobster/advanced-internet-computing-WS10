@@ -28,6 +28,9 @@
         <partnerLink name="OrderProcessPL" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" partnerLinkType="tns:OrderProcessLinkType" myRole="OrderProcessProvider"/>
     </partnerLinks>
     <variables>
+        <variable name="updateAccountResult" messageType="ns1:update_accountResponse"/>
+        <variable name="updateAccount" messageType="ns1:update_account"/>
+        <variable name="totalSumm" type="xsd:decimal"/>
         <variable name="notificationResponse" messageType="ns1:notifyResponse"/>
         <variable name="notification" messageType="ns1:notify"/>
         <variable name="shippingID" messageType="ns1:ship_itemsResponse"/>
@@ -43,6 +46,10 @@
             <copy>
                 <from>$ExternalOrder.part1/ns0:customer</from>
                 <to>$CustomerID.parameters/id</to>
+            </copy>
+            <copy>
+                <from>0</from>
+                <to variable="totalSumm"/>
             </copy>
         </assign>
         <invoke name="GetCustomer" partnerLink="CustomerManagementPL" operation="get" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" portType="ns1:CustomerManagementServiceWrapper" inputVariable="CustomerID" outputVariable="customer"/>
@@ -83,6 +90,12 @@
                                 </copy>
                             </assign>
                             <invoke name="OrderWarehouse" partnerLink="WarehousePL" operation="order" portType="ns1:WarehouseService" inputVariable="OrderWarehouseProduct" outputVariable="orderWarehouseResponse"/>
+                            <assign name="Assign9">
+                                <copy>
+                                    <from>$totalSumm + $orderWarehouseResponse.parameters/return</from>
+                                    <to variable="totalSumm"/>
+                                </copy>
+                            </assign>
                         </sequence>
                     </if>
                 </sequence>
@@ -115,6 +128,19 @@
                 </assign>
                 <invoke name="NotifyCustomer" partnerLink="CustomerManagementPL" operation="notify" portType="ns1:CustomerManagementServiceWrapper" inputVariable="notification" outputVariable="notificationResponse"/>
             </sequence>
+            <sequence name="FlowSequence2">
+                <assign name="Assign8">
+                    <copy>
+                        <from variable="totalSumm"/>
+                        <to>$updateAccount.parameters/arg1</to>
+                    </copy>
+                    <copy>
+                        <from>$ExternalOrder.part1/ns0:customer</from>
+                        <to>$updateAccount.parameters/id</to>
+                    </copy>
+                </assign>
+                <invoke name="UpdateCustomerAccount" partnerLink="CustomerManagementPL" operation="update_account" portType="ns1:CustomerManagementServiceWrapper" inputVariable="updateAccount" outputVariable="updateAccountResult"/>
+            </sequence>
         </flow>
         <assign name="Assign2">
             <copy>
@@ -129,6 +155,8 @@
         <reply name="SendReply" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="returnValue"/>
     </sequence>
 </process>
+
+
 
 
 
