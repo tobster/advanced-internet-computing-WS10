@@ -1,0 +1,9 @@
+* XSL Transformation bei Assign 6 (für Orders -> Items)
+* If Schleife implementieren
+* Update_Customer_Account implementieren
+
+--- To-Dos von Assignment 1 ---
+
+* statt W3CReference aus dem XSD die Java Klasse generieren (k.A. wie wir das übersehen konnten, in der Angabe steht's eh ziemlich deutlich drinnen: "Obviously, you need to use a different approach when implementing this service. You may want to check the CXF documentation about WSDL-First development for this task.")
+* die Order <-> Customer Relationship richtig abbilden
+* ordentlichen Textoutput einbauen	
