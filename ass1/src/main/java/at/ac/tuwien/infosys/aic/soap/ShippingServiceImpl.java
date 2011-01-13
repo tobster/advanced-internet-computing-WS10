@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
 
-@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.ShippingService")
+@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.ShippingService" ,targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/shipping")
 public class ShippingServiceImpl implements ShippingService {
 
     Logger log = Logger.getLogger("Shipping Service");

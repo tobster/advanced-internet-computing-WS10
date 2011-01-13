@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
+import javax.jws.WebMethod;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse",
@@ -43,6 +45,8 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
+    @WebMethod(operationName = "order")
+    @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse", name = "supplierOrderResult")
     public WarehouseResponse check_availability(Product product, Integer amount) {
 
         ProductData pd = ds.getProductData(product);

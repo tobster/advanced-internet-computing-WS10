@@ -16,7 +16,7 @@ import org.xmlsoap.schemas.ws._2004._08.addressing.AttributedURI;
 import org.xmlsoap.schemas.ws._2004._08.addressing.EndpointReferenceType;
 import org.xmlsoap.schemas.ws._2004._08.addressing.ObjectFactory;
 
-@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.registry.ServiceRegistry")
+@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.registry.ServiceRegistry", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/registry")
 public class ServiceRegistryImpl implements ServiceRegistry {
 
     DataStore ds = DataStore.getInstance();

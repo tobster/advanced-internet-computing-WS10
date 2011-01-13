@@ -4,8 +4,8 @@
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ShippingWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/ShippingWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/ShippingWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://soap.aic.infosys.tuwien.ac.at/">
-    <import location="Shipping.wsdl" namespace="http://soap.aic.infosys.tuwien.ac.at/"/>
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ShippingWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/ShippingWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/ShippingWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://infosys.tuwien.ac.at/aic10/dto/shipping">
+    <import location="Shipping.wsdl" namespace="http://infosys.tuwien.ac.at/aic10/dto/shipping"/>
     <plnk:partnerLinkType name="ShippingServiceLinkType">
         <plnk:role name="ShippingServiceRole" portType="ns:ShippingService"/>
     </plnk:partnerLinkType>

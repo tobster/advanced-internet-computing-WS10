@@ -1,5 +1,5 @@
 <?xml version="1.0" ?><wsdl:definitions name="SupplierImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <wsdl:import location="http://localhost:8080/Supplier2?wsdl=SupplierService.wsdl" namespace="http://soap.aic.infosys.tuwien.ac.at/">
+  <wsdl:import location="http://localhost:8080/Supplier1?wsdl=SupplierService.wsdl" namespace="http://soap.aic.infosys.tuwien.ac.at/">
     </wsdl:import>
   <wsdl:binding name="SupplierImplServiceSoapBinding" type="ns1:SupplierService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
@@ -15,7 +15,7 @@
   </wsdl:binding>
   <wsdl:service name="SupplierImplService">
     <wsdl:port binding="tns:SupplierImplServiceSoapBinding" name="SupplierImplPort">
-      <soap:address location="http://localhost:8080/Supplier2"></soap:address>
+      <soap:address location="http://localhost:8080/Supplier1"></soap:address>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

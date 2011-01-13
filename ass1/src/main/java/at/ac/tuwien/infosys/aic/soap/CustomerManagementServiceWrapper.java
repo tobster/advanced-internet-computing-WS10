@@ -6,7 +6,8 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.ws.rs.QueryParam;
 
-@WebService//(portName = "CustomerManagerServiceWrapperPT", name = "CustomManagerWrapper", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper")
+@WebService//(portName = "CustomerManagerServiceWrapperPT", name = "CustomManagerWrapper",
+(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper")
 public interface CustomerManagementServiceWrapper {
 
      //getCustomer

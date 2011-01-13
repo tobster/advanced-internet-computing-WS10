@@ -1,0 +1,21 @@
+<?xml version="1.0" ?><wsdl:definitions name="ServiceRegistryImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:ns1="http://registry.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://localhost:8080/Registry?wsdl=ServiceRegistry.wsdl" namespace="http://registry.aic.infosys.tuwien.ac.at/">
+    </wsdl:import>
+  <wsdl:binding name="ServiceRegistryImplServiceSoapBinding" type="ns1:ServiceRegistry">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getSupplier">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getSupplier">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getSupplierResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceRegistryImplService">
+    <wsdl:port binding="tns:ServiceRegistryImplServiceSoapBinding" name="ServiceRegistryImplPort">
+      <soap:address location="http://localhost:8080/Registry"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

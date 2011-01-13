@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package at.ac.tuwien.infosys.aic.soap;
 
 import at.ac.tuwien.infosys.aic.soap.faults.UnknownProductFault;
@@ -12,9 +11,7 @@ import java.math.BigDecimal;
 import java.util.logging.Logger;
 import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/supplier",
-portName = "SupplierPT",
-endpointInterface = "at.ac.tuwien.infosys.aic.soap.SupplierService")
+@WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.SupplierService", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/supplier")
 public class SupplierImpl implements SupplierService {
 
     Logger log = Logger.getLogger("Supplier Service");
@@ -25,18 +22,17 @@ public class SupplierImpl implements SupplierService {
         log.info("supplier service called!");
 
         Product p = DataStore.getInstance().getProduct(product.getId());
-        if (p == null){
+        if (p == null) {
             throw new UnknownProductFault();
         }
 
         log.info("product name: " + p.getName());
 
-        BigDecimal order = p.getSingleUnitPrice().multiply( new BigDecimal(amount));
+        BigDecimal order = p.getSingleUnitPrice().multiply(new BigDecimal(amount));
 
         log.info("order total: " + order);
 
         return order;
 
     }
-
 }

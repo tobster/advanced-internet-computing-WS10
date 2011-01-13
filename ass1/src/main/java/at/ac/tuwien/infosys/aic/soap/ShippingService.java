@@ -5,7 +5,8 @@ import at.ac.tuwien.infosys.aic.model.Item;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService//(portName = "ShippingPT", name = "Shipping", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/shipping")
+@WebService//(portName = "ShippingPT", name = "Shipping",
+(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/shipping")
 public interface ShippingService {
 
     String ship_items(@WebParam(name = "items") Item[] items, @WebParam(name = "address") Address address);
