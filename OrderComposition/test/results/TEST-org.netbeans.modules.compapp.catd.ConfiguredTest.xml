@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="piercebook" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="1.171" timestamp="2011-01-14T02:58:46">
+<testsuite errors="0" failures="1" hostname="piercebook" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="1.203" timestamp="2011-01-14T10:14:51">
   <properties>
     <property name="netbeans.autoupdate.country" value="AT" />
     <property name="com.sun.jbi.sa.internal.routing" value="true" />
@@ -288,6 +288,7 @@
     <property name="dist.dir" value="dist" />
     <property name="org.netbeans.modules.compapp.catd.context" value="" />
     <property name="libs.sjmc-ant-utils.classpath" value="/opt/GlassFishESBv22/netbeans/mobility8/modules/ext/org-netbeans-modules-j2me-cdc-project-sjmc.jar" />
+    <property name="inDebug" value="${inDebug}" />
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="libs.JMUnit4CLDC10.classpath" value="/opt/GlassFishESBv22/netbeans/mobility8/modules/ext/jmunit4cldc10-1.2.1.jar" />
     <property name="default.javac.source" value="1.6" />
@@ -308,7 +309,7 @@
     <property name="java.module.install.dir" value="/opt/GlassFishESBv22/netbeans/java2/modules" />
     <property name="libs.ant-contrib.src" value="" />
     <property name="ant.file.OrderComposition-jbi-impl" value="/home/smolle/master/Advanced Internet Computing/advanced-internet-computing-WS10/OrderComposition/nbproject/build-impl.xml" />
-    <property name="netbeans.dirs" value="/opt/GlassFishESBv22/netbeans/nb6.7:/opt/GlassFishESBv22/netbeans/ide11:/opt/GlassFishESBv22/netbeans/java2:/opt/GlassFishESBv22/netbeans/xml2:/opt/GlassFishESBv22/netbeans/apisupport1:/opt/GlassFishESBv22/netbeans/webcommon1:/opt/GlassFishESBv22/netbeans/websvccommon1:/opt/GlassFishESBv22/netbeans/enterprise5:/opt/GlassFishESBv22/netbeans/mobility8:/opt/GlassFishESBv22/netbeans/profiler3:./../ruby2:./../python1:./../php1:./../visualweb2:/opt/GlassFishESBv22/netbeans/soa2:/opt/GlassFishESBv22/netbeans/identity2:./../uml6:/opt/GlassFishESBv22/netbeans/harness:./../cnd2:./../dlight1:./../groovy1:./../extra:./../javafx2:./../{ide-cluster}:./../{xml-cluster}:" />
+    <property name="netbeans.dirs" value="/opt/GlassFishESBv22/netbeans/nb6.7:/opt/GlassFishESBv22/netbeans/ide11:/opt/GlassFishESBv22/netbeans/java2:/opt/GlassFishESBv22/netbeans/xml2:/opt/GlassFishESBv22/netbeans/apisupport1:/opt/GlassFishESBv22/netbeans/webcommon1:/opt/GlassFishESBv22/netbeans/websvccommon1:/opt/GlassFishESBv22/netbeans/enterprise5:/opt/GlassFishESBv22/netbeans/mobility8:/opt/GlassFishESBv22/netbeans/profiler3:/opt/GlassFishESBv22/netbeans/bin/../ruby2:/opt/GlassFishESBv22/netbeans/bin/../python1:/opt/GlassFishESBv22/netbeans/bin/../php1:/opt/GlassFishESBv22/netbeans/bin/../visualweb2:/opt/GlassFishESBv22/netbeans/soa2:/opt/GlassFishESBv22/netbeans/identity2:/opt/GlassFishESBv22/netbeans/bin/../uml6:/opt/GlassFishESBv22/netbeans/harness:/opt/GlassFishESBv22/netbeans/bin/../cnd2:/opt/GlassFishESBv22/netbeans/bin/../dlight1:/opt/GlassFishESBv22/netbeans/bin/../groovy1:/opt/GlassFishESBv22/netbeans/bin/../extra:/opt/GlassFishESBv22/netbeans/bin/../javafx2:/opt/GlassFishESBv22/netbeans/bin/../{ide-cluster}:/opt/GlassFishESBv22/netbeans/bin/../{xml-cluster}:" />
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/ext:/usr/java/packages/lib/ext" />
     <property name="libs.metro.src" value="" />
     <property name="libs.savaje-ant-utils.maven-pom" value="" />
@@ -350,8 +351,8 @@
     <property name="ant.version" value="Apache Ant version 1.7.1 compiled on June 27 2008" />
     <property name="file.encoding" value="UTF-8" />
   </properties>
-  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestSingleItem" time="1.157">
-    <failure message="[14.01.2011 03:58:47] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [14.01.2011 03:58:47] The response is not identical to the expected output.
+  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestSingleItem" time="1.187">
+    <failure message="[14.01.2011 11:14:52] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [14.01.2011 11:14:52] The response is not identical to the expected output.
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2348)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2218)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.testConcurrentSOAPRequest(ConfiguredTest.java:862)
@@ -362,6 +363,7 @@ NetBeansUserDir=/opt/GlassFishESBv22/.netbeans/glassfishesb
 file.encoding=UTF-8
 file.encoding.pkg=sun.io
 file.separator=/
+inDebug=${inDebug}
 java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment
 java.awt.printerjob=sun.print.PSPrinterJob
 java.class.path=/opt/GlassFishESBv22/netbeans/soa2/modules/org-netbeans-modules-compapp-manager-jbi.jar:/opt/GlassFishESBv22/netbeans/soa2/modules/org-netbeans-modules-compapp-projects-jbi.jar:/opt/GlassFishESBv22/netbeans/soa2/modules/ext/jbi/jbi-admin-common.jar:/opt/GlassFishESBv22/netbeans/soa2/modules/ext/jbi/catd.jar:/opt/GlassFishESBv22/netbeans/java2/modules/ext/junit-3.8.2.jar:/opt/GlassFishESBv22/netbeans/java2/modules/ext/jaxws21/api/saaj-api.jar:/opt/GlassFishESBv22/netbeans/java2/modules/ext/jaxws21/saaj-impl.jar:/opt/GlassFishESBv22/netbeans/java2/modules/ext/jaxws21/FastInfoset.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-lib.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-util.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-lib2.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-indent.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-plain.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-plain-lib.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-settings.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-editor-settings-storage.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-lexer.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-xml-core.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-xml-lexer.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-xml-text.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-xml-xdm.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-xml-xam.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/org-netbeans-modules-csl-api.jar:/opt/GlassFishESBv22/netbeans/ide11/modules/ext/jaxb/activation.jar:/opt/GlassFishESBv22/netbeans/platform10/lib/org-openide-modules.jar:/opt/GlassFishESBv22/netbeans/platform10/lib/org-openide-util.jar:/opt/GlassFishESBv22/netbeans/platform10/modules/org-openide-options.jar:/opt/GlassFishESBv22/netbeans/platform10/modules/org-openide-text.jar:/opt/GlassFishESBv22/netbeans/platform10/modules/org-openide-loaders.jar:/opt/GlassFishESBv22/netbeans/platform10/modules/org-openide-nodes.jar:/opt/GlassFishESBv22/netbeans/platform10/modules/org-netbeans-modules-editor-mimelookup.jar:/opt/GlassFishESBv22/netbeans/platform10/modules/org-netbeans-modules-editor-mimelookup-impl.jar:/opt/GlassFishESBv22/netbeans/platform10/core/org-openide-filesystems.jar:/opt/GlassFishESBv22/netbeans/java2/ant/lib/ant-launcher.jar:/opt/GlassFishESBv22/netbeans/java2/ant/lib/ant.jar:/opt/GlassFishESBv22/netbeans/java2/ant/patches/72080.jar
@@ -416,7 +418,7 @@ Test TestSingleItem\Concurrent.properties
   * Difference (Add): SOAP-ENV:Fault
  Failed. (Destination: http://localhost:9080/OrderProcessService/OrderProcessPort)
 ]]></system-out>
-  <system-err><![CDATA[14.01.2011 03:58:47 org.netbeans.modules.csl.core.LanguageRegistry readSfs
+  <system-err><![CDATA[14.01.2011 11:14:52 org.netbeans.modules.csl.core.LanguageRegistry readSfs
 INFO: No CslPlugins folder
 ]]></system-err>
 </testsuite>

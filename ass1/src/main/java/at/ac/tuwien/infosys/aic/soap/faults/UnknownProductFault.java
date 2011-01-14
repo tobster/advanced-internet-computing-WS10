@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.ws.WebFault;
 
-@WebFault(name=" UnknownProductFault")
+@WebFault(name="UnknownProductFault")
 @XmlAccessorType( XmlAccessType.FIELD )
 public class UnknownProductFault extends Exception {
 

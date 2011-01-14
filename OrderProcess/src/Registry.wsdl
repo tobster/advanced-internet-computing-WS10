@@ -59,7 +59,7 @@
 <xs:restriction base="xs:integer"></xs:restriction>
 </xs:simpleType>
 </xs:schema>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/registry" version="1.0" xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 <xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"></xs:import>
 <xs:element name="getSupplier" type="tns:getSupplier"></xs:element>
 <xs:element name="getSupplierResponse" type="tns:getSupplierResponse"></xs:element>
@@ -81,10 +81,18 @@
 <xs:element minOccurs="0" name="return" type="ns1:EndpointReferenceType"></xs:element>
 </xs:sequence>
 </xs:complexType>
+<xs:element name="UnknownProductFault" type="tns:UnknownProductFault"></xs:element>
+<xs:complexType name="UnknownProductFault">
+<xs:sequence></xs:sequence>
+</xs:complexType>
 </xs:schema>
   </wsdl:types>
   <wsdl:message name="getSupplierResponse">
     <wsdl:part element="tns:getSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownProductFault">
+    <wsdl:part element="tns:UnknownProductFault" name="UnknownProductFault">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getSupplier">
@@ -97,6 +105,8 @@
     </wsdl:input>
       <wsdl:output message="tns:getSupplierResponse" name="getSupplierResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownProductFault" name="UnknownProductFault">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServiceRegistryImplServiceSoapBinding" type="tns:ServiceRegistry">
@@ -109,6 +119,9 @@
       <wsdl:output name="getSupplierResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
+      <wsdl:fault name="UnknownProductFault">
+        <soap:fault name="UnknownProductFault" use="literal"></soap:fault>
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServiceRegistryImplService">
