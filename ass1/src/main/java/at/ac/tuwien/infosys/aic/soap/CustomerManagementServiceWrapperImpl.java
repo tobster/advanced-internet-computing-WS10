@@ -23,7 +23,7 @@ import static at.ac.tuwien.infosys.aic.Constants.*;
 @WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapper", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper")
 public class CustomerManagementServiceWrapperImpl implements CustomerManagementServiceWrapper {
 
-    private Logger log = Logger.getLogger("CustomerManagementServiceWrapperImpl");
+    private Logger log = Logger.getLogger("aic23 CustomerManagementServiceWrapperImpl");
     private CustomerManagementService customerManagementService;
 
     public CustomerManagementServiceWrapperImpl() {

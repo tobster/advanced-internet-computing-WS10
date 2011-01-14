@@ -24,7 +24,7 @@ import static at.ac.tuwien.infosys.aic.Constants.*;
 public class CustomerManagementServiceWrapperTest extends BaseIntegrationTest {
 
     private DataStore ds = DataStore.getInstance();
-    Logger log = Logger.getLogger("CustomerManagerServiceWrapperTes");
+    Logger log = Logger.getLogger("aic23 CustomerManagerServiceWrapperTes");
 
 
     @Before
