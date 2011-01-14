@@ -15,7 +15,7 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.ShippingService" ,targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/shipping")
 public class ShippingServiceImpl implements ShippingService {
 
-    Logger log = Logger.getLogger("Shipping Service");
+    Logger log = Logger.getLogger("aic23 Shipping Service");
 
     @Override
     @WebMethod(operationName = "ship_items")

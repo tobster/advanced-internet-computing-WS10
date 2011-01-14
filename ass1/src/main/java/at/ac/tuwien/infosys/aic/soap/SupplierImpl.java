@@ -16,7 +16,7 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.SupplierService", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/supplier")
 public class SupplierImpl implements SupplierService {
 
-    Logger log = Logger.getLogger("Supplier Service");
+    Logger log = Logger.getLogger("aic23 Supplier Service");
 
     @Override
     @WebMethod(operationName = "order")

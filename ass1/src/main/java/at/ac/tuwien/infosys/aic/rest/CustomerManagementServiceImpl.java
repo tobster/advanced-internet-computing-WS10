@@ -24,7 +24,7 @@ import org.apache.cxf.jaxrs.impl.ResponseBuilderImpl;
 public class CustomerManagementServiceImpl implements CustomerManagementService {
 
     DataStore ds = DataStore.getInstance();
-    Logger log = Logger.getLogger("CustomerManagementService");
+    Logger log = Logger.getLogger("aic23 CustomerManagementService");
 
     //handleGet -> Customer Info holen
     @GET

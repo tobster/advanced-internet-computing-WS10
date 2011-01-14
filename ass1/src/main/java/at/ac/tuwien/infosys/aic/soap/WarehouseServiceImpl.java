@@ -21,7 +21,7 @@ endpointInterface = "at.ac.tuwien.infosys.aic.soap.WarehouseService")
 public class WarehouseServiceImpl implements WarehouseService {
 
     DataStore ds = DataStore.getInstance();
-    Logger log = Logger.getLogger("WarehouseServiceImpl");
+    Logger log = Logger.getLogger("aic23 WarehouseServiceImpl");
 
     @Override
     @WebMethod(operationName = "order")
