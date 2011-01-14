@@ -99,15 +99,16 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         } else {
             if (changedValue != null) {
-                log.info("value="+changedValue);
+                log.info("value: "+changedValue);
                 if (customer.getOpenBalance() != null) {
-                    log.info("adding to balance");
+                    log.info("Balance before order: " + customer.getOpenBalance());
+                    log.info("Now adding to balance");
                     customer.setOpenBalance(customer.getOpenBalance().add(changedValue));
-                    log.info("added to balance");
+                    log.info("Balance after order: " + customer.getOpenBalance());
                 } else {
-                    log.info("setting balance");
+                    log.info("Setting balance");
                     customer.setOpenBalance(changedValue);
-                    log.info("balance set");
+                    log.info("Balance after order: " + customer.getOpenBalance());
                 }
             } else {
                 log.info("cangedValue==null!!");
@@ -134,7 +135,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
                 messages.add(message);
                 ds.putMessages(id, messages);
 
-                log.info("Message " + "'" + message + "' was delivered to customer " + ds.getCustomer(id).getName());
+                log.info("Message " + "'" + message + "' was delivered to customer " + ds.getCustomer(id).getName() + ".");
            
         }
     }
@@ -143,7 +144,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
     @DELETE
     @Path("/{id}")
     public void deleteCustomer(@PathParam("id") String id) {
-        log.info("deletCustomer called!");
+        log.info("deleteCustomer called!");
         Customer result = ds.getCustomer(id);
         if (!ds.deleteCustomer(id)) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);

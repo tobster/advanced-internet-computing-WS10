@@ -29,21 +29,21 @@ public class ShippingServiceImpl implements ShippingService  {
             throw new UnknownAddressFault();
         }
 
-        StringBuffer message = new StringBuffer("Sending items ");
+        StringBuffer message = new StringBuffer("Shipping items ");
         if (items == null) {
             log.log(Level.WARNING, "item was null");
             throw new UnknownProductFault();
         }
-        for (Item item : items) {
-            if (item.getProduct() != null) {
-                message.append("'");
-                message.append(ds.getProduct(item.getProduct().getId())); //TODO
-                message.append("', ");
-            } else {
-                log.log(Level.WARNING, "product was null");
-                throw new UnknownProductFault();
-            }
-        }
+//        for (Item item : items) {
+//            if (item.getProduct() != null) {
+//                message.append("'");
+//                message.append(ds.getProduct(item.getProduct().getId())); //TODO
+//                message.append("', ");
+//            } else {
+//                log.log(Level.WARNING, "product was null");
+//                throw new UnknownProductFault();
+//            }
+//        }
         message.append("to ");
 
         if (ds.getAddress(address.getId()) != null) {

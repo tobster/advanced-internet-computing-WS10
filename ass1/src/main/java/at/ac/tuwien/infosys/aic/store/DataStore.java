@@ -83,6 +83,7 @@ public class DataStore {
         c.setId(CUSTOMER1);
         List ad = new ArrayList();
         ad.add(addresses.get("a8888070b-96f3-47ac-9fe9-dfe2dadc00cb"));
+        ad.add(addresses.get("a9999070b-96f3-47ac-9fe9-dfe2dadc00cb"));
         c.setAdresses(ad);
         c.setName("Heinrich Harrer");
         c.setOpenBalance(BigDecimal.TEN);
