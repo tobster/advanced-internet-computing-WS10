@@ -4,14 +4,17 @@
  */
 package at.ac.tuwien.infosys.aic.soap.faults;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.ws.WebFault;
-import org.apache.cxf.binding.soap.SoapFault;
 
-@WebFault
-public class NegativeAmountFault extends SoapFault {
+
+@WebFault(name="NegativeAmountFault")
+@XmlAccessorType( XmlAccessType.FIELD )
+public class NegativeAmountFault extends Exception {
 
     public NegativeAmountFault() {
-        super("negative amount fault", ATTACHMENT_IO);
+        super("negative amount fault");
 
 
 

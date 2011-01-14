@@ -23,7 +23,7 @@ public class ServiceRegistryImpl implements ServiceRegistry {
     Logger log = Logger.getLogger("aic23 ServiceRegistryImpl");
 
     @Override
-    public EndpointReferenceType getSupplier(Product product) {
+    public EndpointReferenceType getSupplier(Product product) throws UnknownProductFault {
 
         log.info("Service Registry called!");
 

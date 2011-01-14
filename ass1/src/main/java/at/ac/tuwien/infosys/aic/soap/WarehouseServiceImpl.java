@@ -22,7 +22,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     @WebMethod(operationName = "order")
     @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse", name = "warehouseOrderResult")
-    public BigDecimal order(Product product, Integer amount) {
+    public BigDecimal order(Product product, Integer amount) throws UnknownProductFault{
 
         log.info("warehouse service called!");
 
@@ -50,7 +50,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public WarehouseResponse check_availability(Product product, Integer amount) throws UnknownProductFault{
+    public WarehouseResponse check_availability(Product product, Integer amount) throws UnknownProductFault, NegativeAmountFault{
 
         ProductData pd = ds.getProductData(product);
         WarehouseResponse w = new WarehouseResponse();

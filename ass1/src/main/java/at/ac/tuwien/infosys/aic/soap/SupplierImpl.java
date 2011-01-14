@@ -21,7 +21,7 @@ public class SupplierImpl implements SupplierService {
     @Override
     @WebMethod(operationName = "order")
     @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/ass1/dto/supplierService", name = "supplierServiceResult")
-    public BigDecimal order(Product product, Integer amount) {
+    public BigDecimal order(Product product, Integer amount) throws UnknownProductFault {
 
         log.info("supplier service called!");
 

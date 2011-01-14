@@ -1,6 +1,6 @@
 <?xml version="1.0" ?><wsdl:definitions name="CustomerManagementServiceWrapperImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" version="1.0" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 <xs:element name="address" type="tns:address"></xs:element>
 <xs:element name="customer" type="tns:customer"></xs:element>
 <xs:element name="delete" type="tns:delete"></xs:element>
@@ -88,46 +88,22 @@
 <xs:complexType name="deleteResponse">
 <xs:sequence></xs:sequence>
 </xs:complexType>
+<xs:element name="UnknownCustomerFault" type="tns:UnknownCustomerFault"></xs:element>
+<xs:complexType name="UnknownCustomerFault">
+<xs:sequence></xs:sequence>
+</xs:complexType>
 </xs:schema>
   </wsdl:types>
-  <wsdl:message name="post">
-    <wsdl:part element="tns:post" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="put">
-    <wsdl:part element="tns:put" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="deleteResponse">
     <wsdl:part element="tns:deleteResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="update_account">
-    <wsdl:part element="tns:update_account" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="putResponse">
-    <wsdl:part element="tns:putResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="notify">
     <wsdl:part element="tns:notify" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="get">
-    <wsdl:part element="tns:get" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getResponse">
-    <wsdl:part element="tns:getResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="delete">
     <wsdl:part element="tns:delete" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="postResponse">
-    <wsdl:part element="tns:postResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="update_accountResponse">
@@ -138,42 +114,86 @@
     <wsdl:part element="tns:notifyResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="put">
+    <wsdl:part element="tns:put" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="post">
+    <wsdl:part element="tns:post" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update_account">
+    <wsdl:part element="tns:update_account" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="putResponse">
+    <wsdl:part element="tns:putResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="get">
+    <wsdl:part element="tns:get" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownCustomerFault">
+    <wsdl:part element="tns:UnknownCustomerFault" name="UnknownCustomerFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part element="tns:getResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="postResponse">
+    <wsdl:part element="tns:postResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="CustomerManagementServiceWrapper">
     <wsdl:operation name="notify">
       <wsdl:input message="tns:notify" name="notify">
     </wsdl:input>
       <wsdl:output message="tns:notifyResponse" name="notifyResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownCustomerFault" name="UnknownCustomerFault">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="update_account">
       <wsdl:input message="tns:update_account" name="update_account">
     </wsdl:input>
       <wsdl:output message="tns:update_accountResponse" name="update_accountResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownCustomerFault" name="UnknownCustomerFault">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="put">
       <wsdl:input message="tns:put" name="put">
     </wsdl:input>
       <wsdl:output message="tns:putResponse" name="putResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownCustomerFault" name="UnknownCustomerFault">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="get">
       <wsdl:input message="tns:get" name="get">
     </wsdl:input>
       <wsdl:output message="tns:getResponse" name="getResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownCustomerFault" name="UnknownCustomerFault">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="post">
       <wsdl:input message="tns:post" name="post">
     </wsdl:input>
       <wsdl:output message="tns:postResponse" name="postResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownCustomerFault" name="UnknownCustomerFault">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="delete">
       <wsdl:input message="tns:delete" name="delete">
     </wsdl:input>
       <wsdl:output message="tns:deleteResponse" name="deleteResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownCustomerFault" name="UnknownCustomerFault">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CustomerManagementServiceWrapperImplServiceSoapBinding" type="tns:CustomerManagementServiceWrapper">
@@ -186,6 +206,9 @@
       <wsdl:output name="notifyResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
+      <wsdl:fault name="UnknownCustomerFault">
+        <soap:fault name="UnknownCustomerFault" use="literal"></soap:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="update_account">
       <soap:operation soapAction="" style="document"></soap:operation>
@@ -195,6 +218,9 @@
       <wsdl:output name="update_accountResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
+      <wsdl:fault name="UnknownCustomerFault">
+        <soap:fault name="UnknownCustomerFault" use="literal"></soap:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="put">
       <soap:operation soapAction="" style="document"></soap:operation>
@@ -204,6 +230,9 @@
       <wsdl:output name="putResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
+      <wsdl:fault name="UnknownCustomerFault">
+        <soap:fault name="UnknownCustomerFault" use="literal"></soap:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="get">
       <soap:operation soapAction="" style="document"></soap:operation>
@@ -213,6 +242,9 @@
       <wsdl:output name="getResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
+      <wsdl:fault name="UnknownCustomerFault">
+        <soap:fault name="UnknownCustomerFault" use="literal"></soap:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="post">
       <soap:operation soapAction="" style="document"></soap:operation>
@@ -222,6 +254,9 @@
       <wsdl:output name="postResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
+      <wsdl:fault name="UnknownCustomerFault">
+        <soap:fault name="UnknownCustomerFault" use="literal"></soap:fault>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="delete">
       <soap:operation soapAction="" style="document"></soap:operation>
@@ -231,6 +266,9 @@
       <wsdl:output name="deleteResponse">
         <soap:body use="literal"></soap:body>
       </wsdl:output>
+      <wsdl:fault name="UnknownCustomerFault">
+        <soap:fault name="UnknownCustomerFault" use="literal"></soap:fault>
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CustomerManagementServiceWrapperImplService">

@@ -4,17 +4,16 @@
  */
 package at.ac.tuwien.infosys.aic.soap.faults;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.ws.WebFault;
-import org.apache.cxf.binding.soap.SoapFault;
 
-@WebFault
-public class UnknownProductFault extends SoapFault {
+@WebFault(name=" UnknownProductFault")
+@XmlAccessorType( XmlAccessType.FIELD )
+public class UnknownProductFault extends Exception {
 
     public UnknownProductFault() {
-        super("unknown product fault", ATTACHMENT_IO);
-   
-
-
+        super("unknown product fault");
     }
 
 }

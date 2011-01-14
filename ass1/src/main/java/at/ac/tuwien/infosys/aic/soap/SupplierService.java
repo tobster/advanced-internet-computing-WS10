@@ -5,6 +5,7 @@
 package at.ac.tuwien.infosys.aic.soap;
 
 import at.ac.tuwien.infosys.aic.model.Product;
+import at.ac.tuwien.infosys.aic.soap.faults.UnknownProductFault;
 import java.math.BigDecimal;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -13,5 +14,5 @@ import javax.jws.WebService;
 public interface SupplierService {
 
     // returns total Price
-    BigDecimal order(@WebParam(name = "product") Product product, @WebParam(name = "amount") Integer amount);
+    BigDecimal order(@WebParam(name = "product") Product product, @WebParam(name = "amount") Integer amount) throws UnknownProductFault;
 }

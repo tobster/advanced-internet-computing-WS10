@@ -5,19 +5,20 @@
 
 package at.ac.tuwien.infosys.aic.soap.faults;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.ws.WebFault;
-import org.apache.cxf.binding.soap.SoapFault;
-
 /**
  *
  * @author Christoph Derndorfer
  */
 
-@WebFault
-public class UnknownAddressFault extends SoapFault {
+@WebFault(name="UnknownAddressFault")
+@XmlAccessorType( XmlAccessType.FIELD )
+public class UnknownAddressFault extends Exception {
 
         public UnknownAddressFault() {
-        super("unknown address fault", ATTACHMENT_IO);
+        super("unknown address fault");
 
 
 
