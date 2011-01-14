@@ -31,7 +31,7 @@ public class ShippingServiceImpl implements ShippingService  {
         for (Item item : items) {
             if (item.getProduct() != null) {
                 message.append("'");
-                message.append(ds.getProduct(item.getProduct().getId()).getName());
+                //message.append(ds.getProduct(item.getProduct().getId()).getName()); TODO
                 message.append("', ");
             } else {
                 log.log(Level.WARNING, "product was null");
