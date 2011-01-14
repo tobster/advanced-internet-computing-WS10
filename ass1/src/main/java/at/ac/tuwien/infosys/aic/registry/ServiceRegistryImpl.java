@@ -20,7 +20,7 @@ import org.xmlsoap.schemas.ws._2004._08.addressing.ObjectFactory;
 public class ServiceRegistryImpl implements ServiceRegistry {
 
     DataStore ds = DataStore.getInstance();
-    Logger log = Logger.getLogger("ServiceRegistryImpl");
+    Logger log = Logger.getLogger("aic23 ServiceRegistryImpl");
 
     @Override
     public EndpointReferenceType getSupplier(Product product) {

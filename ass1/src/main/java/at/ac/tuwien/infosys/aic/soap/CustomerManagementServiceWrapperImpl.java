@@ -23,7 +23,7 @@ import static at.ac.tuwien.infosys.aic.Constants.*;
 @WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.CustomerManagementServiceWrapper", targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper")
 public class CustomerManagementServiceWrapperImpl implements CustomerManagementServiceWrapper {
 
-    private Logger log = Logger.getLogger("CustomerManagementServiceWrapperImpl");
+    private Logger log = Logger.getLogger("aic23 CustomerManagementServiceWrapperImpl");
     private CustomerManagementService customerManagementService;
 
     public CustomerManagementServiceWrapperImpl() {
@@ -44,13 +44,6 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
 
     }
 
-//BookStore store = JAXRSClientFactory.create("http://bookstore.com", BookStore.class);
-// (1) remote GET call to http://bookstore.com/bookstore
-//Books books = store.getAllBooks();
-// (2) no remote call
-//BookResource subresource = store.getBookSubresource(1);
-// {3} remote GET call to http://bookstore.com/bookstore/1
-//Book b = subresource.getDescription();
     @Override
     public void put(Customer customer) {
         try {

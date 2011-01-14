@@ -24,7 +24,7 @@ import org.apache.cxf.jaxrs.impl.ResponseBuilderImpl;
 public class CustomerManagementServiceImpl implements CustomerManagementService {
 
     DataStore ds = DataStore.getInstance();
-    Logger log = Logger.getLogger("CustomerManagementService");
+    Logger log = Logger.getLogger("aic23 CustomerManagementService");
 
     //handleGet -> Customer Info holen
     @GET
@@ -35,8 +35,10 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
         log.info("getCustomer called!");
         Customer result = ds.getCustomer(id);
         if (result != null) {
+            log.info("returning customer: " + result.getName());
             return result;
         } else {
+            log.info("customer not found");
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }
