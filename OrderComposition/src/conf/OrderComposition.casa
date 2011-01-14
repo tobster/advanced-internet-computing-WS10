@@ -27,25 +27,25 @@
                     <consumes endpoint="endpoint3"/>
                     <provides endpoint="endpoint3"/>
                 </port>
-                <port x="67" y="198">
-                    <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/service[@name='WarehouseServiceImplService']/port[@name='WarehousePT'])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint5"/>
-                    <provides endpoint="endpoint5"/>
-                </port>
                 <port x="67" y="358">
                     <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/service[@name='OrderProcessService']/port[@name='OrderProcessPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint1"/>
                     <provides endpoint="endpoint1"/>
+                </port>
+                <port x="67" y="118">
+                    <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/service[@name='ShippingServiceImplService']/port[@name='ShippingServiceImplPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
                 </port>
                 <port x="67" y="37">
                     <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier1.wsdl#xpointer(/definitions/service[@name='SupplierImplService']/port[@name='SupplierImplPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint4"/>
                     <provides endpoint="endpoint4"/>
                 </port>
-                <port x="67" y="118">
-                    <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/service[@name='ShippingServiceImplService']/port[@name='ShippingServiceImplPort'])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint2"/>
-                    <provides endpoint="endpoint2"/>
+                <port x="67" y="198">
+                    <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/service[@name='WarehouseServiceImplService']/port[@name='WarehousePT'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint5"/>
+                    <provides endpoint="endpoint5"/>
                 </port>
             </ports>
         </binding-component-service-unit>
@@ -54,41 +54,38 @@
         <connection consumer="endpoint10" provider="endpoint2" state="unchanged"/>
         <connection consumer="endpoint7" provider="endpoint3" state="unchanged"/>
         <connection consumer="endpoint9" provider="endpoint4" state="unchanged"/>
-        <connection consumer="endpoint1" provider="endpoint6" state="unchanged"/>
         <connection consumer="endpoint8" provider="endpoint5" state="unchanged"/>
+        <connection consumer="endpoint1" provider="endpoint6" state="unchanged"/>
     </connections>
     <porttypes>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Reset.wsdl#xpointer(/definitions/portType[@name='ResetService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/portType[@name='CustomerManagementServiceWrapper'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/portType[@name='WarehouseService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/portType[@name='OrderProcessPortType'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier1.wsdl#xpointer(/definitions/portType[@name='SupplierService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/portType[@name='ShippingService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier2.wsdl#xpointer(/definitions/portType[@name='SupplierService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/Registry.wsdl#xpointer(/definitions/portType[@name='ServiceRegistry'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/OrderProcess/src/_references/_cache/localhost_8080/Shipping.wsdl_ShippingService.wsdl#xpointer(/definitions/portType[@name='ShippingService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/OrderProcess/src/_references/_cache/localhost_8080/CustomerManagementServiceWrapper.wsdl_CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/portType[@name='CustomerManagementServiceWrapper'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/OrderProcess/src/_references/_cache/localhost_8080/Warehouse.wsdl_WarehouseService.wsdl#xpointer(/definitions/portType[@name='WarehouseService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Reset.wsdl#xpointer(/definitions/portType[@name='ResetService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/portType[@name='ShippingService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier1.wsdl#xpointer(/definitions/portType[@name='SupplierService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier2.wsdl#xpointer(/definitions/portType[@name='SupplierService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/portType[@name='WarehouseService'])" xlink:type="simple"/>
     </porttypes>
     <bindings>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Reset.wsdl#xpointer(/definitions/binding[@name='ResetServiceImplServiceSoapBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/binding[@name='CustomerManagementServiceWrapperImplServiceSoapBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/binding[@name='WarehouseServiceImplServiceSoapBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/binding[@name='OrderProcessBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier1.wsdl#xpointer(/definitions/binding[@name='SupplierImplServiceSoapBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/binding[@name='ShippingServiceImplServiceSoapBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier2.wsdl#xpointer(/definitions/binding[@name='SupplierImplServiceSoapBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/Registry.wsdl#xpointer(/definitions/binding[@name='ServiceRegistryImplServiceSoapBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Reset.wsdl#xpointer(/definitions/binding[@name='ResetServiceImplServiceSoapBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/binding[@name='ShippingServiceImplServiceSoapBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier1.wsdl#xpointer(/definitions/binding[@name='SupplierImplServiceSoapBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier2.wsdl#xpointer(/definitions/binding[@name='SupplierImplServiceSoapBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/binding[@name='WarehouseServiceImplServiceSoapBinding'])" xlink:type="simple"/>
     </bindings>
     <services>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Reset.wsdl#xpointer(/definitions/service[@name='ResetServiceImplService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/CustomerManagementServiceWrapper.wsdl#xpointer(/definitions/service[@name='CustomerManagementServiceWrapperImplService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/service[@name='WarehouseServiceImplService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/OrderProcess.wsdl#xpointer(/definitions/service[@name='OrderProcessService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier1.wsdl#xpointer(/definitions/service[@name='SupplierImplService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/service[@name='ShippingServiceImplService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier2.wsdl#xpointer(/definitions/service[@name='SupplierImplService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrderProcess/Registry.wsdl#xpointer(/definitions/service[@name='ServiceRegistryImplService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Reset.wsdl#xpointer(/definitions/service[@name='ResetServiceImplService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Shipping.wsdl#xpointer(/definitions/service[@name='ShippingServiceImplService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier1.wsdl#xpointer(/definitions/service[@name='SupplierImplService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Supplier2.wsdl#xpointer(/definitions/service[@name='SupplierImplService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrderProcess/Warehouse.wsdl#xpointer(/definitions/service[@name='WarehouseServiceImplService'])" xlink:type="simple"/>
     </services>
     <regions>
         <region name="WSDL Endpoints" width="150"/>

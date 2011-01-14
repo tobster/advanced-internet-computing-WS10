@@ -51,6 +51,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public WarehouseResponse check_availability(Product product, Integer amount) throws UnknownProductFault, NegativeAmountFault{
 
+        Product p = ds.getProduct(product.getId());
         ProductData pd = ds.getProductData(product);
         WarehouseResponse w = new WarehouseResponse();
 
@@ -67,10 +68,10 @@ public class WarehouseServiceImpl implements WarehouseService {
 
                 if (amount > pd.getAmount()){
                     w.setIsAvailable(false);
-                    log.info("Check availability: " + product.getName() + " is not available in the warehouse.");
+                    log.info("Check availability: " + p.getName() + " is not available in the warehouse.");
                 } else {
                     w.setIsAvailable(true);
-                    log.info("Check availability: " + product.getName() + " is available in the warehouse.");
+                    log.info("Check availability: " + p.getName() + " is available in the warehouse.");
                 }
             }
             ;

@@ -93,7 +93,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
     @POST
     @Path("{id}/account")
     public void update_account(@PathParam("id") String id, @QueryParam("changedValue") BigDecimal changedValue) {
-        log.info("upadte account called");
+        log.info("update account called");
         Customer customer = ds.getCustomer(id);
         if (customer == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
