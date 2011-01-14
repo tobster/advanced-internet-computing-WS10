@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="t400" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="0.276" timestamp="2011-01-14T02:22:22">
+<testsuite errors="0" failures="1" hostname="t400" name="org.netbeans.modules.compapp.catd.ConfiguredTest" tests="1" time="0.198" timestamp="2011-01-14T02:48:24">
   <properties>
     <property name="netbeans.autoupdate.country" value="AT" />
     <property name="com.sun.jbi.sa.internal.routing" value="true" />
@@ -355,8 +355,8 @@
     <property name="file.encoding" value="Cp1252" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestSingleItem" time="0.258">
-    <failure message="[14.01.2011 03:22:22] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [14.01.2011 03:22:22] The response is not identical to the expected output.
+  <testcase classname="org.netbeans.modules.compapp.catd.ConfiguredTest" name="TestUnknownProduct" time="0.183">
+    <failure message="[14.01.2011 03:48:24] The response is not identical to the expected output." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: [14.01.2011 03:48:24] The response is not identical to the expected output.
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2348)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.checkExpectedOutput(ConfiguredTest.java:2218)
 	at org.netbeans.modules.compapp.catd.ConfiguredTest.testConcurrentSOAPRequest(ConfiguredTest.java:862)
@@ -419,7 +419,7 @@ user.language=de
 user.name=Christoph Derndorfer
 user.timezone=Europe/Berlin
 user.variant=
-Test TestSingleItem\Concurrent.properties Failed. (Destination: http://localhost:9080/OrderProcessService/OrderProcessPort)
+Test TestUnknownProduct\Concurrent.properties Failed. (Destination: http://localhost:9080/OrderProcessService/OrderProcessPort)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
