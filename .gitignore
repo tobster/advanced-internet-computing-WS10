@@ -111,8 +111,9 @@ velocity.log*
 *.swp
 
 */build/*
-*nbproject
+*private
 catalog.xml
 *.casa
+*results
 
 
