@@ -5,13 +5,15 @@
 
 package at.ac.tuwien.infosys.aic.soap.faults;
 
+import javax.xml.ws.WebFault;
 import org.apache.cxf.binding.soap.SoapFault;
 
 /**
  *
  * @author Christoph Derndorfer
  */
-@SuppressWarnings("serial")
+
+@WebFault
 public class UnknownAddressFault extends SoapFault {
 
         public UnknownAddressFault() {

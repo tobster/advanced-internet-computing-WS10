@@ -4,20 +4,16 @@
  */
 package at.ac.tuwien.infosys.aic.soap.faults;
 
-import org.apache.cxf.binding.soap.SoapFault;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.ws.WebFault;
 
-@SuppressWarnings("serial")
-public class UnknownCustomerFault extends SoapFault {
+@WebFault(name="UnknownCustomerFault")
+@XmlAccessorType( XmlAccessType.FIELD )
+public class UnknownCustomerFault extends Exception {
 
     public UnknownCustomerFault() {
-        super("unknown costumer fault", ATTACHMENT_IO);
-
-
-
-    }
-
-    public UnknownCustomerFault(String msg) {
-        super("unknown costumer fault", ATTACHMENT_IO);
+        super("unknown costumer fault");
 
 
 

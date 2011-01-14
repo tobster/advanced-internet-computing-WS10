@@ -33,7 +33,7 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
     }
 
     @Override
-    public Customer get(String id) {
+    public Customer get(String id) throws UnknownCustomerFault{
 
         try {
             return customerManagementService.getCustomer(id);
@@ -63,7 +63,7 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(String id)throws UnknownCustomerFault {
 
         try {
             customerManagementService.deleteCustomer(id);
@@ -74,7 +74,7 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
     }
 
     @Override
-    public void post(Customer customer) {
+    public void post(Customer customer) throws UnknownCustomerFault{
 
         try {
             customerManagementService.updateCustomer(customer.getId(), customer);
@@ -85,7 +85,7 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
     }
 
     @Override
-    public void update_account(String id, BigDecimal changedValue) {
+    public void update_account(String id, BigDecimal changedValue) throws UnknownCustomerFault{
 
         try {
             customerManagementService.update_account(id, changedValue);
@@ -96,7 +96,7 @@ public class CustomerManagementServiceWrapperImpl implements CustomerManagementS
     }
 
     @Override
-    public void notify(String id, String message) {
+    public void notify(String id, String message) throws UnknownCustomerFault{
 
         try {
             customerManagementService.notify(id, message);

@@ -26,6 +26,10 @@
         <partnerLink name="OrderProcessPL" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" partnerLinkType="tns:OrderProcessLinkType" myRole="OrderProcessProvider"/>
     </partnerLinks>
     <variables>
+        <variable name="fault1NotifyOut" messageType="ns3:notifyResponse"/>
+        <variable name="fault1NotifyIn" messageType="ns3:notify"/>
+        <variable name="faultNotifyOut" messageType="ns3:notifyResponse"/>
+        <variable name="faultNotifyIn" messageType="ns3:notify"/>
         <variable name="notifyCostumerOut" messageType="ns3:notifyResponse"/>
         <variable name="notifyCustomerIn" messageType="ns3:notify"/>
         <variable name="totalAmount" type="xs:decimal"/>
@@ -46,6 +50,16 @@
         <variable name="warehouseOrderIn" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/warehouse" messageType="tns:order"/>
         <variable name="externalOrderIn" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" messageType="tns:start_process_request"></variable>
     </variables>
+    <faultHandlers>
+        <catch>
+            <sequence name="Sequence4">
+                <invoke name="InvokeFaultNotify" partnerLink="CustomerPL" operation="notify" portType="ns3:CustomerManagementServiceWrapper" inputVariable="faultNotifyIn" outputVariable="faultNotifyOut"/>
+            </sequence>
+        </catch>
+        <catch>
+            <invoke name="fault1Invoke" partnerLink="CustomerPL" operation="notify" portType="ns3:CustomerManagementServiceWrapper" inputVariable="fault1NotifyIn" outputVariable="fault1NotifyOut"/>
+        </catch>
+    </faultHandlers>
     <sequence>
         <receive name="ReceiveExternalOrder" createInstance="yes" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="externalOrderIn"/>
         <assign name="Assign1">
@@ -202,6 +216,7 @@
         <reply name="ReplyExternalOrder" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="externalOrderOut"/>
     </sequence>
 </process>
+
 
 
 

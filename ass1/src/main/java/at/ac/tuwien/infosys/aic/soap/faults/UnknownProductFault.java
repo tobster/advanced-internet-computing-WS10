@@ -4,9 +4,10 @@
  */
 package at.ac.tuwien.infosys.aic.soap.faults;
 
+import javax.xml.ws.WebFault;
 import org.apache.cxf.binding.soap.SoapFault;
 
-@SuppressWarnings("serial")
+@WebFault
 public class UnknownProductFault extends SoapFault {
 
     public UnknownProductFault() {

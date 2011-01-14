@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.xml.ws.WebFault;
 
 @WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse",
 portName = "WarehousePT",
@@ -47,7 +48,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public WarehouseResponse check_availability(Product product, Integer amount) {
+    public WarehouseResponse check_availability(Product product, Integer amount) throws UnknownProductFault{
 
         ProductData pd = ds.getProductData(product);
         WarehouseResponse w = new WarehouseResponse();
