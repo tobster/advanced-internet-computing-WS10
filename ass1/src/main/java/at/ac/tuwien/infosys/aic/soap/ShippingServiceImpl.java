@@ -15,6 +15,7 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.ShippingService" ,targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/shipping")
 public class ShippingServiceImpl implements ShippingService {
 
+    DataStore ds = DataStore.getInstance();
     Logger log = Logger.getLogger("aic23 Shipping Service");
 
     @Override
@@ -30,7 +31,7 @@ public class ShippingServiceImpl implements ShippingService {
         for (Item item : items) {
             if (item.getProduct() != null) {
                 message.append("'");
-                message.append(item.getProduct().getName());
+                message.append(ds.getProduct(item.getProduct().getId()).getName());
                 message.append("', ");
             } else {
                 log.log(Level.WARNING, "product was null");
@@ -52,7 +53,6 @@ public class ShippingServiceImpl implements ShippingService {
             throw new UnknownAddressFault();
         }
 
-        //message.append(address.toString());
         log.info(message.toString());
         return UUID.randomUUID().toString();
     }

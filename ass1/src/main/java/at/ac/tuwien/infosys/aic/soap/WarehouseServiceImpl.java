@@ -67,10 +67,13 @@ public class WarehouseServiceImpl implements WarehouseService {
 
                 if (amount > pd.getAmount()){
                     w.setIsAvailable(false);
+                    log.info("Check availability: " + product.getName() + " is not available in the warehouse.");
                 } else {
                     w.setIsAvailable(true);
+                    log.info("Check availability: " + product.getName() + " is available in the warehouse.");
                 }
             }
+            ;
             return w;
         }
 
