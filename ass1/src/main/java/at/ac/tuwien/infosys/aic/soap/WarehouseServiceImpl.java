@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.xml.ws.WebFault;
 
 @WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse",
 portName = "WarehousePT",
