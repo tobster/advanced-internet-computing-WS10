@@ -116,4 +116,8 @@ catalog.xml
 *.casa
 *results
 
+OrderComposition/test/TestSingleItem/Output.xml
+OrderComposition/test/TestTwoItems/Output.xml
+OrderComposition/test/results/TEST-org.netbeans.modules.compapp.catd.ConfiguredTest.xml
+OrderComposition/test/selected-tests.properties
 
