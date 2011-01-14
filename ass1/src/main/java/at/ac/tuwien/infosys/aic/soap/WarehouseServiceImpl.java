@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package at.ac.tuwien.infosys.aic.soap;
 
 import at.ac.tuwien.infosys.aic.soap.faults.NegativeAmountFault;
@@ -30,7 +25,7 @@ public class WarehouseServiceImpl implements WarehouseService {
 
         log.info("warehouse service called!");
 
-        Product p = DataStore.getInstance().getProduct(product.getId());
+        Product p = ds.getProduct(product.getId());
         if (p == null){
             throw new UnknownProductFault();
         }
