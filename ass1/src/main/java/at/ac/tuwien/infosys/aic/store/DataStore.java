@@ -49,7 +49,12 @@ public class DataStore {
         p = new Product();
         p.setId("aec0737d-e783-4c16-9b26-66040caf4aff");
         p.setName("War and Peace");
-        p.setSingleUnitPrice(BigDecimal.ZERO);
+        p.setSingleUnitPrice(new BigDecimal(3));
+        products.put(p.getId(), p);
+        p = new Product();
+        p.setId("xac0737d-e987-4c16-9b26-660406fgs41f");
+        p.setName("1984");
+        p.setSingleUnitPrice(new BigDecimal(7));
         products.put(p.getId(), p);
         //      Address
         Address a = new Address();
@@ -122,9 +127,14 @@ public class DataStore {
         pd.setDeliveryTime(5);
         pd.setAmount(5);
         availability.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), pd);
+        pd = new ProductData();
+        pd.setDeliveryTime(5);
+        pd.setAmount(0);
+        availability.put(products.get("xac0737d-e987-4c16-9b26-660406fgs41f"), pd);
         //Service registry
         productEndpointAddresses.put(products.get("a777070b-96f3-47ac-9fe9-dfe2dadc00cb"), SUPPLIER1ADDRESS);
         productEndpointAddresses.put(products.get("aec0737d-e783-4c16-9b26-66040caf4aff"), SUPPLIER2ADDRESS);
+        productEndpointAddresses.put(products.get("xac0737d-e987-4c16-9b26-660406fgs41f"), SUPPLIER2ADDRESS);
     }
 
     public String putProductEndpointAddress(Product key, String value) {
