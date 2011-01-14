@@ -17,7 +17,7 @@
     <jaxws:endpoint
 	  id="shippingService"
 	  implementor="at.ac.tuwien.infosys.aic.soap.ShippingServiceImpl"
-	  address="/Shipping" />
+	  address="/Shipping"/>
 
     <jaxws:endpoint
 	  id="supplierService1"

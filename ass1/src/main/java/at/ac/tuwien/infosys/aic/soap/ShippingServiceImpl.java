@@ -8,6 +8,8 @@ import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.jws.WebMethod;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService(endpointInterface = "at.ac.tuwien.infosys.aic.soap.ShippingService" ,targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/shipping")
@@ -16,6 +18,8 @@ public class ShippingServiceImpl implements ShippingService {
     Logger log = Logger.getLogger("Shipping Service");
 
     @Override
+    @WebMethod(operationName = "ship_items")
+    @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/ass1/dto/shippingService", name = "shippingServiceSResult")
     public String ship_items(Item[] items, Address address) {
         log.info("ship items called!");
         StringBuffer message = new StringBuffer("Sending items ");

@@ -1,22 +1,7 @@
 <?xml version="1.0" ?><wsdl:definitions name="WarehouseServiceImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
-<xs:schema elementFormDefault="unqualified" targetNamespace="http://soap.aic.infosys.tuwien.ac.at/" version="1.0" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:tns="http://soap.aic.infosys.tuwien.ac.at/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:import namespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse"></xs:import>
-<xs:element name="order" type="tns:order"></xs:element>
-<xs:element name="orderResponse" type="tns:orderResponse"></xs:element>
-<xs:complexType name="order">
-<xs:sequence>
-<xs:element minOccurs="0" name="product" type="ns1:product"></xs:element>
-<xs:element minOccurs="0" name="amount" type="xs:int"></xs:element>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="orderResponse">
-<xs:sequence>
-<xs:element minOccurs="0" name="return" type="xs:decimal"></xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:schema>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns0="http://soap.aic.infosys.tuwien.ac.at/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://infosys.tuwien.ac.at/aic10/dto/supplier"></xs:import>
 <xs:element name="check_availability" type="tns:check_availability"></xs:element>
 <xs:element name="check_availabilityResponse" type="tns:check_availabilityResponse"></xs:element>
 <xs:element name="product" type="tns:product"></xs:element>
@@ -47,6 +32,22 @@
 </xs:complexType>
 <xs:element name="order" nillable="true" type="ns0:order"></xs:element>
 <xs:element name="orderResponse" nillable="true" type="ns0:orderResponse"></xs:element>
+</xs:schema>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" version="1.0" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse"></xs:import>
+<xs:element name="order" type="tns:order"></xs:element>
+<xs:element name="orderResponse" type="tns:orderResponse"></xs:element>
+<xs:complexType name="order">
+<xs:sequence>
+<xs:element minOccurs="0" name="product" type="ns1:product"></xs:element>
+<xs:element minOccurs="0" name="amount" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="orderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:decimal"></xs:element>
+</xs:sequence>
+</xs:complexType>
 </xs:schema>
   </wsdl:types>
   <wsdl:message name="orderResponse">

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService//(portName = "SupplierPT", name = "Supplier",
+@WebService(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/supplier")//(portName = "SupplierPT", name = "Supplier",
 public interface SupplierService {
 
     // returns total Price

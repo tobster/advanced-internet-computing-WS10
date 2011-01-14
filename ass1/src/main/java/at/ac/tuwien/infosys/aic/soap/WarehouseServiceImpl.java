@@ -26,6 +26,8 @@ public class WarehouseServiceImpl implements WarehouseService {
     Logger log = Logger.getLogger("WarehouseServiceImpl");
 
     @Override
+    @WebMethod(operationName = "order")
+    @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse", name = "warehouseOrderResult")
     public BigDecimal order(Product product, Integer amount) {
 
         log.info("supplier service called!");
@@ -45,8 +47,6 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    @WebMethod(operationName = "order")
-    @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse", name = "supplierOrderResult")
     public WarehouseResponse check_availability(Product product, Integer amount) {
 
         ProductData pd = ds.getProductData(product);

@@ -1,7 +1,46 @@
-<?xml version="1.0" ?><wsdl:definitions name="SupplierImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns1="http://soap.aic.infosys.tuwien.ac.at/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <wsdl:import location="http://localhost:8080/Supplier2?wsdl=SupplierService.wsdl" namespace="http://soap.aic.infosys.tuwien.ac.at/">
-    </wsdl:import>
-  <wsdl:binding name="SupplierImplServiceSoapBinding" type="ns1:SupplierService">
+<?xml version="1.0" ?><wsdl:definitions name="SupplierImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" version="1.0" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="order" type="tns:order"></xs:element>
+<xs:element name="orderResponse" type="tns:orderResponse"></xs:element>
+<xs:element name="product" type="tns:product"></xs:element>
+<xs:complexType name="order">
+<xs:sequence>
+<xs:element minOccurs="0" name="product" type="tns:product"></xs:element>
+<xs:element minOccurs="0" name="amount" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="product">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="singleUnitPrice" type="xs:decimal"></xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"></xs:attribute>
+</xs:complexType>
+<xs:complexType name="orderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:decimal"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="orderResponse">
+    <wsdl:part element="tns:orderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="order">
+    <wsdl:part element="tns:order" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SupplierService">
+    <wsdl:operation name="order">
+      <wsdl:input message="tns:order" name="order">
+    </wsdl:input>
+      <wsdl:output message="tns:orderResponse" name="orderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SupplierImplServiceSoapBinding" type="tns:SupplierService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
     <wsdl:operation name="order">
       <soap:operation soapAction="" style="document"></soap:operation>
