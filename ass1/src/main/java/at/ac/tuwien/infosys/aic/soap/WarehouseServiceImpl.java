@@ -10,8 +10,6 @@ import at.ac.tuwien.infosys.aic.soap.faults.UnknownProductFault;
 import at.ac.tuwien.infosys.aic.model.Product;
 import at.ac.tuwien.infosys.aic.store.DataStore;
 import java.math.BigDecimal;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
@@ -30,14 +28,23 @@ public class WarehouseServiceImpl implements WarehouseService {
     @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/dto/warehouse", name = "warehouseOrderResult")
     public BigDecimal order(Product product, Integer amount) {
 
-        log.info("supplier service called!");
+        log.info("warehouse service called!");
 
         Product p = DataStore.getInstance().getProduct(product.getId());
         if (p == null){
             throw new UnknownProductFault();
         }
 
-        log.info("product name: " + p.getName());
+        log.info("product ordered: " + p.getName());
+
+        ProductData pd = ds.getProductData(product);
+
+        log.info("quantity of: " + p.getName() + " before processing the order: " + pd.getAmount());
+
+        pd.setAmount(pd.getAmount() - amount);
+        ds.putProductData(product, pd);
+
+        log.info("quantity of: " + p.getName() + " after processing the order: " + pd.getAmount());
 
         BigDecimal order = p.getSingleUnitPrice().multiply( new BigDecimal(amount));
 
