@@ -23,6 +23,12 @@ public class ShippingServiceImpl implements ShippingService  {
     @WebResult(targetNamespace = "http://infosys.tuwien.ac.at/aic10/ass1/dto/shippingService", name = "shippingServiceSResult")
     public String ship_items(Item[] items, Address address) throws UnknownProductFault, UnknownAddressFault{
         log.info("ship items called!");
+
+        if (address == null) {
+            log.log(Level.WARNING, "address was null");
+            throw new UnknownAddressFault();
+        }
+
         StringBuffer message = new StringBuffer("Sending items ");
         if (items == null) {
             log.log(Level.WARNING, "item was null");
@@ -40,7 +46,7 @@ public class ShippingServiceImpl implements ShippingService  {
         }
         message.append("to ");
 
-        if (DataStore.getInstance().getAddress(address.getId()) != null) {
+        if (ds.getAddress(address.getId()) != null) {
 
             Address thisAddress = DataStore.getInstance().getAddress(address.getId());
 

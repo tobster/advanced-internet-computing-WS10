@@ -8,7 +8,7 @@
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns3="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:ns4="http://infosys.tuwien.ac.at/aic10/dto/warehouse">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns3="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:ns4="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns5="http://infosys.tuwien.ac.at/aic10/dto/shipping">
     <import namespace="http://infosys.tuwien.ac.at/aic10/ass2/process" location="OrderProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/WarehouseWrapper" location="WarehouseWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse" location="Warehouse.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -57,12 +57,99 @@
                         <to>$NotifyErrorIn.parameters/id</to>
                     </copy>
                     <copy>
-                        <from>'This is an unknown product fault'</from>
+                        <from>'Your order included an unknown product.'</from>
                         <to>$NotifyErrorIn.parameters/arg1</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:success</to>
+                    </copy>
+                    <copy>
+                        <from>0</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:orderid</to>
+                    </copy>
+                    <copy>
+                        <from>'The order included an unknown product.'</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:comment</to>
                     </copy>
                 </assign>
                 <invoke name="InvokeNotifyWithError" partnerLink="CustomerPL" operation="notify" portType="ns3:CustomerManagementServiceWrapper" inputVariable="NotifyErrorIn" outputVariable="NotifyErrorOut"/>
                 <reply name="Reply1" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" faultName="ns4:UnknownProductFault" variable="externalOrderOut"/>
+            </sequence>
+        </catch>
+        <catch faultName="ns3:UnknownCustomerFault" faultVariable="MyUnknownCustomerFault" faultMessageType="ns3:UnknownCustomerFault">
+            <sequence name="Sequence5">
+                <assign name="Assign12">
+                    <copy>
+                        <from>'The order included an unknown customer.'</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:comment</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:success</to>
+                    </copy>
+                    <copy>
+                        <from>0</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:orderid</to>
+                    </copy>
+                </assign>
+                <reply name="ReplyUnknownCustomer" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" faultName="ns3:UnknownCustomerFault" variable="externalOrderOut"/>
+            </sequence>
+        </catch>
+        <catch faultName="ns4:NegativeAmountFault" faultVariable="MyNegativeAmountFault" faultMessageType="ns4:NegativeAmountFault">
+            <sequence name="Sequence6">
+                <assign name="Assign13">
+                    <copy>
+                        <from>'Your order included a negative quantity.'</from>
+                        <to>$NotifyErrorIn.parameters/arg1</to>
+                    </copy>
+                    <copy>
+                        <from>$externalOrderIn.part1/ns0:customer</from>
+                        <to>$NotifyErrorIn.parameters/id</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:success</to>
+                    </copy>
+                    <copy>
+                        <from>0</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:orderid</to>
+                    </copy>
+                    <copy>
+                        <from>'Your order included a negative quantity.'</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:comment</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeNotifyNegative" partnerLink="CustomerPL" operation="notify" portType="ns3:CustomerManagementServiceWrapper" inputVariable="NotifyErrorIn" outputVariable="NotifyErrorOut"/>
+                <reply name="Reply2" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" faultName="ns4:NegativeAmountFault" variable="externalOrderOut"/>
+            </sequence>
+        </catch>
+        <catch faultName="ns5:UnknownAddressFault" faultVariable="MyUnknownAddress" faultMessageType="ns5:UnknownAddressFault">
+            <sequence name="Sequence7">
+                <assign name="Assign14">
+                    <copy>
+                        <from>'Your order included an unknown address.'</from>
+                        <to>$NotifyErrorIn.parameters/arg1</to>
+                    </copy>
+                    <copy>
+                        <from>$externalOrderIn.part1/ns0:customer</from>
+                        <to variable="NotifyErrorIn" part="parameters"/>
+                    </copy>
+                    <copy>
+                        <from>0</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:orderid</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:success</to>
+                    </copy>
+                    <copy>
+                        <from>'Your order included an unknown address.'</from>
+                        <to>$externalOrderOut.part1/ns0:orderResult/ns0:comment</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeNotifyAddress" partnerLink="CustomerPL" operation="notify" portType="ns3:CustomerManagementServiceWrapper" inputVariable="NotifyErrorIn" outputVariable="NotifyErrorOut"/>
+                <reply name="Reply3" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" faultName="ns5:UnknownAddressFault" variable="externalOrderOut"/>
             </sequence>
         </catch>
     </faultHandlers>

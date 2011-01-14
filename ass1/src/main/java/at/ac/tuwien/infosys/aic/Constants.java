@@ -16,5 +16,6 @@ public interface Constants {
 
     public static final String CUSTOMER1= "c7777070b-96f3-47ac-9fe9-dfe2dadc00cb";
     public static final String CUSTOMER2= "c8888070b-96f3-47ac-9fe9-dfe2dadc00cb";
+    public static final String CUSTOMER3= "poijfa732-6f31-17ac-1263-dfhdsue9214a";
 
 }

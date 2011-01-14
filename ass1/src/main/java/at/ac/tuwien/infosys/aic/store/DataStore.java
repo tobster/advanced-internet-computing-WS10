@@ -95,6 +95,12 @@ public class DataStore {
         c.setName("Heinrich Harrer");
         c.setOpenBalance(BigDecimal.ZERO);
         customers.put(c.getId(), c);
+        c = new Customer();
+        c.setId(CUSTOMER3);
+        c.setAdresses(null);
+        c.setName("Reinhard Fendrich");
+        c.setOpenBalance(BigDecimal.TEN);
+        customers.put(c.getId(), c);
         //      Order
         Order o = new Order();
         o.setId("o7777070b-96f3-47ac-9fe9-dfe2dadc00cb");

@@ -11,7 +11,7 @@
           <jbi:part xmlns:jbi="http://java.sun.com/xml/ns/jbi/wsdl-11-wrapper">
             <result xmlns="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema">
               <orderResult>
-                <comment>The order included an unknown product.</comment>
+                <comment>Your order included a negative quantity.</comment>
                 <orderid>0</orderid>
                 <success>false</success>
               </orderResult>
