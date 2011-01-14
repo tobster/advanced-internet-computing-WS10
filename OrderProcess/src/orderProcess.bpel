@@ -110,7 +110,7 @@
                             <invoke name="InvokeWarehouseOrder" partnerLink="WarehousePL" operation="order" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/warehouse" portType="tns:WarehouseService" inputVariable="warehouseOrderIn" outputVariable="warehouseOrderOut"/>
                             <assign name="Assign8">
                                 <copy>
-                                    <from>$totalAmount + stub() + $warehouseOrderOut.parameters/return</from>
+                                    <from>$totalAmount + $warehouseOrderOut.parameters/return</from>
                                     <to variable="totalAmount"/>
                                 </copy>
                             </assign>
@@ -186,7 +186,7 @@
                         <to>$notifyCustomerIn.parameters/id</to>
                     </copy>
                     <copy>
-                        <from>;concat('Dear ', $getCustomerOut.parameters/return/name, ' yout shipment with ID number ', $externalOrderIn.part1/ns0:orderParts/ns0:product_id, 'is been delivered.')</from>
+                        <from>concat('Dear ', $getCustomerOut.parameters/return/name, ' your shipment is being delivered.')</from>
                         <to>$notifyCustomerIn.parameters/arg1</to>
                     </copy>
                 </assign>
@@ -202,6 +202,7 @@
         <reply name="ReplyExternalOrder" partnerLink="OrderProcessPL" operation="start_process" xmlns:tns="http://infosys.tuwien.ac.at/aic10/ass2/process" portType="tns:OrderProcessPortType" variable="externalOrderOut"/>
     </sequence>
 </process>
+
 
 
 
