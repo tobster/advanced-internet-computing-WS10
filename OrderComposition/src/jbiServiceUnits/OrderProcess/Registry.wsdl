@@ -1,0 +1,132 @@
+<?xml version="1.0" ?><wsdl:definitions name="ServiceRegistryImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" version="1.0" xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="Action" nillable="true" type="tns:AttributedURI"></xs:element>
+<xs:element name="EndpointReference" nillable="true" type="tns:EndpointReferenceType"></xs:element>
+<xs:element name="FaultTo" nillable="true" type="tns:EndpointReferenceType"></xs:element>
+<xs:element name="From" nillable="true" type="tns:EndpointReferenceType"></xs:element>
+<xs:element name="MessageID" nillable="true" type="tns:AttributedURI"></xs:element>
+<xs:element name="RelatesTo" nillable="true" type="tns:Relationship"></xs:element>
+<xs:element name="ReplyAfter" nillable="true" type="tns:ReplyAfterType"></xs:element>
+<xs:element name="ReplyTo" nillable="true" type="tns:EndpointReferenceType"></xs:element>
+<xs:element name="RetryAfter" nillable="true" type="tns:RetryAfterType"></xs:element>
+<xs:element name="To" nillable="true" type="tns:AttributedURI"></xs:element>
+<xs:complexType name="EndpointReferenceType">
+<xs:sequence>
+<xs:element name="Address" type="tns:AttributedURI"></xs:element>
+<xs:element minOccurs="0" name="ReferenceProperties" type="tns:ReferencePropertiesType"></xs:element>
+<xs:element minOccurs="0" name="ReferenceParameters" type="tns:ReferenceParametersType"></xs:element>
+<xs:element minOccurs="0" name="PortType" type="tns:AttributedQName"></xs:element>
+<xs:element minOccurs="0" name="ServiceName" type="tns:ServiceNameType"></xs:element>
+<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"></xs:any>
+</xs:sequence>
+<xs:anyAttribute namespace="##other" processContents="skip"></xs:anyAttribute>
+</xs:complexType>
+<xs:simpleType name="AttributedURI">
+<xs:restriction base="xs:string"></xs:restriction>
+</xs:simpleType>
+<xs:complexType name="ReferencePropertiesType">
+<xs:sequence>
+<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"></xs:any>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ServiceNameType">
+<xs:simpleContent>
+<xs:extension base="xs:QName">
+<xs:attribute name="PortName" type="xs:NCName"></xs:attribute>
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+<xs:complexType name="ReferenceParametersType">
+<xs:sequence>
+<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"></xs:any>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="AttributedQName">
+<xs:restriction base="xs:QName"></xs:restriction>
+</xs:simpleType>
+<xs:complexType name="Relationship">
+<xs:simpleContent>
+<xs:extension base="xs:string">
+<xs:attribute name="RelationshipType" type="xs:QName"></xs:attribute>
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+<xs:simpleType name="ReplyAfterType">
+<xs:restriction base="xs:integer"></xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="RetryAfterType">
+<xs:restriction base="xs:integer"></xs:restriction>
+</xs:simpleType>
+</xs:schema>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"></xs:import>
+<xs:element name="getSupplier" type="tns:getSupplier"></xs:element>
+<xs:element name="getSupplierResponse" type="tns:getSupplierResponse"></xs:element>
+<xs:element name="product" type="tns:product"></xs:element>
+<xs:complexType name="getSupplier">
+<xs:sequence>
+<xs:element minOccurs="0" name="product" type="tns:product"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="product">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="singleUnitPrice" type="xs:decimal"></xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"></xs:attribute>
+</xs:complexType>
+<xs:complexType name="getSupplierResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="ns1:EndpointReferenceType"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="UnknownProductFault" type="tns:UnknownProductFault"></xs:element>
+<xs:complexType name="UnknownProductFault">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getSupplierResponse">
+    <wsdl:part element="tns:getSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownProductFault">
+    <wsdl:part element="tns:UnknownProductFault" name="UnknownProductFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSupplier">
+    <wsdl:part element="tns:getSupplier" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServiceRegistry">
+    <wsdl:operation name="getSupplier">
+      <wsdl:input message="tns:getSupplier" name="getSupplier">
+    </wsdl:input>
+      <wsdl:output message="tns:getSupplierResponse" name="getSupplierResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownProductFault" name="UnknownProductFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceRegistryImplServiceSoapBinding" type="tns:ServiceRegistry">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getSupplier">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getSupplier">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getSupplierResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="UnknownProductFault">
+        <soap:fault name="UnknownProductFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceRegistryImplService">
+    <wsdl:port binding="tns:ServiceRegistryImplServiceSoapBinding" name="ServiceRegistryImplPort">
+      <soap:address location="http://localhost:8080/Registry"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

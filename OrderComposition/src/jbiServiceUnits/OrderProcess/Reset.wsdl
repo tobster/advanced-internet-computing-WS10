@@ -1,0 +1,47 @@
+<?xml version="1.0" ?><wsdl:definitions name="ResetServiceImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/reset" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/reset" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/reset" version="1.0" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/reset" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="reset" type="tns:reset"></xs:element>
+<xs:element name="resetResponse" type="tns:resetResponse"></xs:element>
+<xs:complexType name="reset">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:complexType name="resetResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="reset">
+    <wsdl:part element="tns:reset" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetResponse">
+    <wsdl:part element="tns:resetResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ResetService">
+    <wsdl:operation name="reset">
+      <wsdl:input message="tns:reset" name="reset">
+    </wsdl:input>
+      <wsdl:output message="tns:resetResponse" name="resetResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ResetServiceImplServiceSoapBinding" type="tns:ResetService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="reset">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="reset">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="resetResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ResetServiceImplService">
+    <wsdl:port binding="tns:ResetServiceImplServiceSoapBinding" name="ResetServiceImplPort">
+      <soap:address location="http://localhost:8080/Reset"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

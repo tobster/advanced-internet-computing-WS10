@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/OrderProcess/orderProcess" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:ns2="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns3="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:ns4="http://infosys.tuwien.ac.at/aic10/dto/shipping" xmlns:ns5="http://infosys.tuwien.ac.at/aic10/ass2/process" xmlns:ns6="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="OrderProcessProvider_myRole" interface-name="ns5:OrderProcessPortType" service-name="ns0:OrderProcessPL">
+            <ns6:display-name>OrderProcessPL</ns6:display-name>
+            <ns6:process-name>orderProcess</ns6:process-name>
+            <ns6:file-path>orderProcess.bpel</ns6:file-path>
+        </provides>
+        <consumes endpoint-name="CustomerManagementServiceWrapperRole_partnerRole" interface-name="ns1:CustomerManagementServiceWrapper" service-name="ns0:CustomerPL">
+            <ns6:display-name>CustomerPL</ns6:display-name>
+            <ns6:process-name>orderProcess</ns6:process-name>
+            <ns6:file-path>orderProcess.bpel</ns6:file-path>
+        </consumes>
+        <consumes endpoint-name="WarehouseServiceRole_partnerRole" interface-name="ns2:WarehouseService" service-name="ns0:WarehousePL">
+            <ns6:display-name>WarehousePL</ns6:display-name>
+            <ns6:process-name>orderProcess</ns6:process-name>
+            <ns6:file-path>orderProcess.bpel</ns6:file-path>
+        </consumes>
+        <consumes endpoint-name="SupplierServiceRole_partnerRole" interface-name="ns3:SupplierService" service-name="ns0:Supplier2PL">
+            <ns6:display-name>Supplier2PL</ns6:display-name>
+            <ns6:process-name>orderProcess</ns6:process-name>
+            <ns6:file-path>orderProcess.bpel</ns6:file-path>
+        </consumes>
+        <consumes endpoint-name="ShippingServiceRole_partnerRole" interface-name="ns4:ShippingService" service-name="ns0:ShippingPL">
+            <ns6:display-name>ShippingPL</ns6:display-name>
+            <ns6:process-name>orderProcess</ns6:process-name>
+            <ns6:file-path>orderProcess.bpel</ns6:file-path>
+        </consumes>
+    </services>
+</jbi>

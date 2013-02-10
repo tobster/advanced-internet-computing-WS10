@@ -1,0 +1,140 @@
+<?xml version="1.0" ?><wsdl:definitions name="WarehouseServiceImplService" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://infosys.tuwien.ac.at/aic10/dto/supplier"></xs:import>
+<xs:element name="check_availability" type="tns:check_availability"></xs:element>
+<xs:element name="check_availabilityResponse" type="tns:check_availabilityResponse"></xs:element>
+<xs:element name="product" type="tns:product"></xs:element>
+<xs:element name="warehouseResponse" type="tns:warehouseResponse"></xs:element>
+<xs:complexType name="product">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="singleUnitPrice" type="xs:decimal"></xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"></xs:attribute>
+</xs:complexType>
+<xs:complexType name="check_availability">
+<xs:sequence>
+<xs:element minOccurs="0" name="product" type="tns:product"></xs:element>
+<xs:element minOccurs="0" name="amount" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="check_availabilityResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:warehouseResponse"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="warehouseResponse">
+<xs:sequence>
+<xs:element name="deliveryTime" type="xs:int"></xs:element>
+<xs:element name="isAvailable" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="order" nillable="true" type="ns0:order"></xs:element>
+<xs:element name="orderResponse" nillable="true" type="ns0:orderResponse"></xs:element>
+<xs:element name="UnknownProductFault" type="tns:UnknownProductFault"></xs:element>
+<xs:complexType name="UnknownProductFault">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="NegativeAmountFault" type="tns:NegativeAmountFault"></xs:element>
+<xs:complexType name="NegativeAmountFault">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/supplier" version="1.0" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/dto/warehouse" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/supplier" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://infosys.tuwien.ac.at/aic10/dto/warehouse"></xs:import>
+<xs:element name="order" type="tns:order"></xs:element>
+<xs:element name="orderResponse" type="tns:orderResponse"></xs:element>
+<xs:complexType name="order">
+<xs:sequence>
+<xs:element minOccurs="0" name="product" type="ns1:product"></xs:element>
+<xs:element minOccurs="0" name="amount" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="orderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:decimal"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="orderResponse">
+    <wsdl:part element="tns:orderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NegativeAmountFault">
+    <wsdl:part element="tns:NegativeAmountFault" name="NegativeAmountFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="order">
+    <wsdl:part element="tns:order" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="check_availability">
+    <wsdl:part element="tns:check_availability" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownProductFault">
+    <wsdl:part element="tns:UnknownProductFault" name="UnknownProductFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="check_availabilityResponse">
+    <wsdl:part element="tns:check_availabilityResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WarehouseService">
+    <wsdl:operation name="order">
+      <wsdl:input message="tns:order" name="order">
+    </wsdl:input>
+      <wsdl:output message="tns:orderResponse" name="orderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownProductFault" name="UnknownProductFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="check_availability">
+      <wsdl:input message="tns:check_availability" name="check_availability">
+    </wsdl:input>
+      <wsdl:output message="tns:check_availabilityResponse" name="check_availabilityResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:NegativeAmountFault" name="NegativeAmountFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnknownProductFault" name="UnknownProductFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WarehouseServiceImplServiceSoapBinding" type="tns:WarehouseService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="check_availability">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="check_availability">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="check_availabilityResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="NegativeAmountFault">
+        <soap:fault name="NegativeAmountFault" use="literal"></soap:fault>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownProductFault">
+        <soap:fault name="UnknownProductFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="order">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="order">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="orderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="UnknownProductFault">
+        <soap:fault name="UnknownProductFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WarehouseServiceImplService">
+    <wsdl:port binding="tns:WarehouseServiceImplServiceSoapBinding" name="WarehousePT">
+      <soap:address location="http://localhost:8080/Warehouse"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

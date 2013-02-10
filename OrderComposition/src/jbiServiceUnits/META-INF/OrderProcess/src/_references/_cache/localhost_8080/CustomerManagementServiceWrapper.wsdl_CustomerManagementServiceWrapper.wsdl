@@ -1,0 +1,179 @@
+<?xml version="1.0" ?><wsdl:definitions name="CustomerManagementServiceWrapper" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:ns1="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" version="1.0" xmlns:tns="http://infosys.tuwien.ac.at/aic10/dto/custommanagerwrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="address" type="tns:address"></xs:element>
+<xs:element name="customer" type="tns:customer"></xs:element>
+<xs:element name="delete" type="tns:delete"></xs:element>
+<xs:element name="deleteResponse" type="tns:deleteResponse"></xs:element>
+<xs:element name="get" type="tns:get"></xs:element>
+<xs:element name="getResponse" type="tns:getResponse"></xs:element>
+<xs:element name="notify" type="tns:notify"></xs:element>
+<xs:element name="notifyResponse" type="tns:notifyResponse"></xs:element>
+<xs:element name="post" type="tns:post"></xs:element>
+<xs:element name="postResponse" type="tns:postResponse"></xs:element>
+<xs:element name="put" type="tns:put"></xs:element>
+<xs:element name="putResponse" type="tns:putResponse"></xs:element>
+<xs:element name="update_account" type="tns:update_account"></xs:element>
+<xs:element name="update_accountResponse" type="tns:update_accountResponse"></xs:element>
+<xs:complexType name="notify">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="notifyResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:complexType name="update_account">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:decimal"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="update_accountResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:complexType name="put">
+<xs:sequence>
+<xs:element minOccurs="0" name="customer" type="tns:customer"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="customer">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="openBalance" type="xs:decimal"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="adresses" nillable="true" type="tns:address"></xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"></xs:attribute>
+</xs:complexType>
+<xs:complexType name="address">
+<xs:sequence>
+<xs:element minOccurs="0" name="street" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="city" type="xs:string"></xs:element>
+<xs:element name="house" type="xs:int"></xs:element>
+<xs:element name="door" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="zipCode" type="xs:string"></xs:element>
+<xs:element name="isShipping" type="xs:boolean"></xs:element>
+<xs:element name="isBilling" type="xs:boolean"></xs:element>
+<xs:element name="isOther" type="xs:boolean"></xs:element>
+</xs:sequence>
+<xs:attribute name="id" type="xs:string"></xs:attribute>
+</xs:complexType>
+<xs:complexType name="putResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:complexType name="get">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:customer"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="post">
+<xs:sequence>
+<xs:element minOccurs="0" name="customer" type="tns:customer"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="postResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:complexType name="delete">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="deleteResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="post">
+    <wsdl:part element="ns1:post" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="put">
+    <wsdl:part element="ns1:put" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="ns1:deleteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update_account">
+    <wsdl:part element="ns1:update_account" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="putResponse">
+    <wsdl:part element="ns1:putResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="notify">
+    <wsdl:part element="ns1:notify" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="get">
+    <wsdl:part element="ns1:get" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part element="ns1:getResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part element="ns1:delete" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="postResponse">
+    <wsdl:part element="ns1:postResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update_accountResponse">
+    <wsdl:part element="ns1:update_accountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="notifyResponse">
+    <wsdl:part element="ns1:notifyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CustomerManagementServiceWrapper">
+    <wsdl:operation name="notify">
+      <wsdl:input message="ns1:notify" name="notify">
+    </wsdl:input>
+      <wsdl:output message="ns1:notifyResponse" name="notifyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update_account">
+      <wsdl:input message="ns1:update_account" name="update_account">
+    </wsdl:input>
+      <wsdl:output message="ns1:update_accountResponse" name="update_accountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="put">
+      <wsdl:input message="ns1:put" name="put">
+    </wsdl:input>
+      <wsdl:output message="ns1:putResponse" name="putResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get">
+      <wsdl:input message="ns1:get" name="get">
+    </wsdl:input>
+      <wsdl:output message="ns1:getResponse" name="getResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="post">
+      <wsdl:input message="ns1:post" name="post">
+    </wsdl:input>
+      <wsdl:output message="ns1:postResponse" name="postResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input message="ns1:delete" name="delete">
+    </wsdl:input>
+      <wsdl:output message="ns1:deleteResponse" name="deleteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
