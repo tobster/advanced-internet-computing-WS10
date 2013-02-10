@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <result xmlns="http://infosys.tuwien.ac.at/aic10/ass2/OrderProcessSchema" xmlns:msgns="http://infosys.tuwien.ac.at/aic10/ass2/process">
+      <orderResult xmlns:msgns="http://infosys.tuwien.ac.at/aic10/dto/shipping" xmlns:ns0="http://infosys.tuwien.ac.at/aic10/ass2/process" xmlns:ns2="http://infosys.tuwien.ac.at/aic10/dto/shipping">98288d6a-ac9f-4a13-8675-98781f7093ba</orderResult>
+    </result>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
